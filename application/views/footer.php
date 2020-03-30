@@ -1,72 +1,194 @@
-<!-- Footer Start-->
-    <div class="footer-copyright-area">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="footer-copy-right">
-                        <p>Copyright &#169; 2019 Lembaga Bimbinga Belajar Noermandiri.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Footer End-->
-    <!-- jquery
-		============================================ -->
-    <script src="<?php echo base_url('assets/adm/js/vendor/jquery-1.11.3.min.js')?>"></script>
-    <!-- bootstrap JS
-		============================================ -->
-    <script src="<?php echo base_url('assets/adm/js/bootstrap.min.js')?>"></script>
-    <!-- meanmenu JS
-		============================================ -->
-    <script src="<?php echo base_url('assets/adm/js/jquery.meanmenu.js')?>"></script>
-    <!-- mCustomScrollbar JS
-		============================================ -->
-    <script src="<?php echo base_url('assets/adm/js/jquery.mCustomScrollbar.concat.min.js')?>"></script>
-    <!-- sticky JS
-		============================================ -->
-    <script src="<?php echo base_url('assets/adm/js/jquery.sticky.js')?>"></script>
-    <!-- scrollUp JS
-		============================================ -->
-    <script src="<?php echo base_url('assets/adm/js/jquery.scrollUp.min.js')?>"></script>
-    <!-- counterup JS
-		============================================ -->
-    <script src="<?php echo base_url('assets/adm/js/counterup/jquery.counterup.min.js')?>"></script>
-    <script src="<?php echo base_url('assets/adm/js/counterup/waypoints.min.js')?>"></script>
-    <script src="<?php echo base_url('assets/adm/js/counterup/counterup-active.js')?>"></script>
-    <!-- peity JS
-		============================================ -->
-    <script src="<?php echo base_url('assets/adm/js/peity/jquery.peity.min.js')?>"></script>
-    <script src="<?php echo base_url('assets/adm/js/peity/peity-active.js')?>"></script>
-    <!-- sparkline JS
-		============================================ -->
-    <script src="<?php echo base_url('assets/adm/js/sparkline/jquery.sparkline.min.js')?>"></script>
-    <script src="<?php echo base_url('assets/adm/js/sparkline/sparkline-active.js')?>"></script>
-    <!-- flot JS
-		============================================ -->
-    <script src="<?php echo base_url('assets/adm/js/flot/Chart.min.js')?>"></script>
-    <script src="<?php echo base_url('assets/adm/js/flot/flot-active.js')?>"></script>
-    <!-- map JS
-		============================================ -->
-    <script src="<?php echo base_url('assets/adm/js/map/raphael.min.js')?>"></script>
-    <script src="<?php echo base_url('assets/adm/js/map/jquery.mapael.js')?>"></script>
-    <script src="<?php echo base_url('assets/adm/js/map/france_departments.js')?>"></script>
-    <script src="<?php echo base_url('assets/adm/js/map/world_countries.js')?>"></script>
-    <script src="<?php echo base_url('assets/adm/js/map/usa_states.js')?>"></script>
-    <script src="<?php echo base_url('assets/adm/js/map/map-active.js')?>"></script>
-    <!-- data table JS
-		============================================ -->
-    <script src="<?php echo base_url('assets/adm/js/data-table/bootstrap-table.js')?>"></script>
-    <script src="<?php echo base_url('assets/adm/js/data-table/tableExport.js')?>"></script>
-    <script src="<?php echo base_url('assets/adm/js/data-table/data-table-active.js')?>"></script>
-    <script src="<?php echo base_url('assets/adm/js/data-table/bootstrap-table-editable.js')?>"></script>
-    <script src="<?php echo base_url('assets/adm/js/data-table/bootstrap-editable.js')?>"></script>
-    <script src="<?php echo base_url('assets/adm/js/data-table/bootstrap-table-resizable.js')?>"></script>
-    <script src="<?php echo base_url('assets/adm/js/data-table/colResizable-1.5.source.js')?>"></script>
-    <script src="<?php echo base_url('assets/adm/js/data-table/bootstrap-table-export.js')?>"></script>
-    <!-- main JS
-		============================================ -->
-    <script src="<?php echo base_url('assets/adm/js/main.js')?>"></script>
-</body>
+<footer class="footer">
+				<div class="container-fluid">
+					<nav class="pull-left">
+						
+					</nav>
+					<div class="copyright ml-auto">
+            Copyright &#169;2020 Lembaga Bimbingan Belajar Noermandiri
+					</div>				
+				</div>
+			</footer>
+		</div>
+		
+	</div>
+	<!--   Core JS Files   -->
+	<script src="<?php echo base_url('assets/adm/js/core/jquery.3.2.1.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/adm/js/core/popper.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/adm/js/core/bootstrap.min.js')?>"></script>
 
+	<!-- jQuery UI -->
+	<script src="<?php echo base_url('assets/adm/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/adm/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js')?>"></script>
+
+	<!-- jQuery Scrollbar -->
+	<script src="<?php echo base_url('assets/adm/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js')?>"></script>
+
+
+	<!-- Chart JS -->
+	<script src="<?php echo base_url('assets/adm/js/plugin/chart.js/chart.min.js')?>"></script>
+
+	<!-- jQuery Sparkline -->
+	<script src="<?php echo base_url('assets/adm/js/plugin/jquery.sparkline/jquery.sparkline.min.js')?>"></script>
+
+	<!-- Chart Circle -->
+	<script src="<?php echo base_url('assets/adm/js/plugin/chart-circle/circles.min.js')?>"></script>
+
+	<!-- Datatables -->
+	<script src="<?php echo base_url('assets/adm/dataTables/datatables.min.js')?>"></script>
+
+
+	<!-- jQuery Vector Maps -->
+	<script src="<?php echo base_url('assets/adm/js/plugin/jqvmap/jquery.vmap.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/adm/js/plugin/jqvmap/maps/jquery.vmap.world.js')?>"></script>
+
+	<!-- Sweet Alert -->
+	<script src="<?php echo base_url('assets/adm/js/plugin/sweetalert/sweetalert.min.js')?>"></script>
+
+	<!-- Atlantis JS -->
+	<script src="<?php echo base_url('assets/adm/js/atlantis.min.js')?>"></script>
+  	<script src="<?php echo base_url('assets/js/sweetalert/sweetalert2.all.min.js')?>"></script>
+ 	<script src="<?php echo base_url('assets/js/myscript.js')?>"></script>
+
+	<script>
+		Circles.create({
+			id:'circles-1',
+			radius:45,
+			value:60,
+			maxValue:100,
+			width:7,
+			text: 5,
+			colors:['#f1f1f1', '#FF9E27'],
+			duration:400,
+			wrpClass:'circles-wrp',
+			textClass:'circles-text',
+			styleWrapper:true,
+			styleText:true
+		})
+
+		Circles.create({
+			id:'circles-2',
+			radius:45,
+			value:70,
+			maxValue:100,
+			width:7,
+			text: 36,
+			colors:['#f1f1f1', '#2BB930'],
+			duration:400,
+			wrpClass:'circles-wrp',
+			textClass:'circles-text',
+			styleWrapper:true,
+			styleText:true
+		})
+
+		Circles.create({
+			id:'circles-3',
+			radius:45,
+			value:40,
+			maxValue:100,
+			width:7,
+			text: 12,
+			colors:['#f1f1f1', '#F25961'],
+			duration:400,
+			wrpClass:'circles-wrp',
+			textClass:'circles-text',
+			styleWrapper:true,
+			styleText:true
+		})
+
+		var totalIncomeChart = document.getElementById('totalIncomeChart').getContext('2d');
+
+		var mytotalIncomeChart = new Chart(totalIncomeChart, {
+			type: 'bar',
+			data: {
+				labels: ["S", "M", "T", "W", "T", "F", "S", "S", "M", "T"],
+				datasets : [{
+					label: "Total Income",
+					backgroundColor: '#ff9e27',
+					borderColor: 'rgb(23, 125, 255)',
+					data: [6, 4, 9, 5, 4, 6, 4, 3, 8, 10],
+				}],
+			},
+			options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				legend: {
+					display: false,
+				},
+				scales: {
+					yAxes: [{
+						ticks: {
+							display: false //this will remove only the label
+						},
+						gridLines : {
+							drawBorder: false,
+							display : false
+						}
+					}],
+					xAxes : [ {
+						gridLines : {
+							drawBorder: false,
+							display : false
+						}
+					}]
+				},
+			}
+		});
+
+		$('#lineChart').sparkline([105,103,123,100,95,105,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: '#ffa534',
+			fillColor: 'rgba(255, 165, 52, .14)'
+    });
+    
+    $(document).ready(function() {
+			$('#basic-datatables').DataTable({
+			});
+
+			$('#multi-filter-select').DataTable( {
+				"pageLength": 5,
+				initComplete: function () {
+					this.api().columns().every( function () {
+						var column = this;
+						var select = $('<select class="form-control"><option value=""></option></select>')
+						.appendTo( $(column.footer()).empty() )
+						.on( 'change', function () {
+							var val = $.fn.dataTable.util.escapeRegex(
+								$(this).val()
+								);
+
+							column
+							.search( val ? '^'+val+'$' : '', true, false )
+							.draw();
+						} );
+
+						column.data().unique().sort().each( function ( d, j ) {
+							select.append( '<option value="'+d+'">'+d+'</option>' )
+						} );
+					} );
+				}
+			});
+
+			// Add Row
+			$('#add-row').DataTable({
+				"pageLength": 5,
+			});
+
+			var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
+
+			$('#addRowButton').click(function() {
+				$('#add-row').dataTable().fnAddData([
+					$("#addName").val(),
+					$("#addPosition").val(),
+					$("#addOffice").val(),
+					action
+					]);
+				$('#addRowModal').modal('hide');
+
+			});
+		});
+	</script>
+</body>
 </html>

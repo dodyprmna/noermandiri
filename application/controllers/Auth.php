@@ -1,4 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+ <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
  
 class Auth extends CI_Controller {
     function __construct(){
@@ -9,7 +9,7 @@ class Auth extends CI_Controller {
     public function index($error = NULL) {
         $data = array(
             'title' => 'Login Page',
-            'action' => site_url('Auth/login'),
+            'action'=> site_url('Auth/login'),
             'error' => $error,
             'judul' => 'Login'
         );
@@ -17,46 +17,48 @@ class Auth extends CI_Controller {
     }
 
     public function login(){
-    //     $login = $this->auth_model->login($this->input->post(''))
-    //    redirect(site_url('Home'));
 
         $username=$this->input->post('username');
         $password=$this->input->post('password');
         
         $cek_pegawai=$this->M_login->auth_pegawai($username,$password);
-        if($cek_pegawai->num_rows() > 0){ //jika login sebagai pegawai
+        //jika login sebagai pegawai
+        if($cek_pegawai->num_rows() > 0){ 
             $data=$cek_pegawai->row_array();
             $this->session->set_userdata('masuk',TRUE);
-            if($data['LEVEL']=='admin'){ //akses untuk admin
-                $this->session->set_userdata('akses','1');
+            if($data['LEVEL']=='1'){ //akses untuk admin
+                $this->session->set_userdata('akses','admin');
                 $this->session->set_userdata('ses_id',$data['ID_PEGAWAI']);
                 $this->session->set_userdata('ses_nama',$data['NAMA_PEGAWAI']);
                 redirect(site_url('Home'));
-            }elseif($data['LEVEL']=='tentor'){ //akses tentor
-                $this->session->set_userdata('akses','2');
+            }elseif($data['LEVEL']=='2'){ //akses pemilik
+                $this->session->set_userdata('akses','pemilik');
                 $this->session->set_userdata('ses_id',$data['ID_PEGAWAI']);
                 $this->session->set_userdata('ses_nama',$data['NAMA_PEGAWAI']);
                 redirect(site_url('Home'));
-            }elseif($data['LEVEL']=='pemilik'){ //akses pemilik
-                $this->session->set_userdata('akses','3');
+            }elseif($data['LEVEL']=='3'){ //akses tentor
+                $this->session->set_userdata('akses','tentor');
                 $this->session->set_userdata('ses_id',$data['ID_PEGAWAI']);
                 $this->session->set_userdata('ses_nama',$data['NAMA_PEGAWAI']);
                 redirect(site_url('Home'));
             }else{
-                $error = 'username / password salah';
+                $error = 'Username atau Password salah';
                 $this->index($error);
             }
-        }else { //jika login sebagai siswa
+        //jika login sebagai siswa
+        }else { 
             $cek_siswa=$this->M_login->auth_siswa($username,$password);
             if ($cek_siswa->num_rows() > 0) {
                 $data=$cek_siswa->row_array();
-
                 $this->session->set_userdata('masuk',TRUE);
-                $this->session->set_userdata('akses','4');
+                $this->session->set_userdata('akses','siswa');
                 $this->session->set_userdata('ses_id',$data['NOINDUK']);
                 $this->session->set_userdata('ses_nama',$data['NAMA_SISWA']);
+                $this->session->set_userdata('ses_kelas',$data['ID_KELAS']);
+                $this->session->set_userdata('ses_email',$data['EMAIL']);
+                redirect(site_url('Home'));
             }else {
-                $error = 'username / password salah';
+                $error = 'Username atau Password salah';
             $this->index($error);
             }
 

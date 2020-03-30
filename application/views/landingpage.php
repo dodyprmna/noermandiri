@@ -1,741 +1,877 @@
-<!DOCTYPE html>
-<html lang="zxx" class="no-js">
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="icon" href="<?php echo base_url('assets/img/logo1.png')?>" type="image/png" />
+    <title>LBB Noermandiri</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.css')?>" />
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/flaticon.css')?>" />
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/themify-icons.css')?>" />
+    <link rel="stylesheet" href="<?php echo base_url('assets/vendors/owl-carousel/owl.carousel.min.css')?>" />
+    <link rel="stylesheet" href="<?php echo base_url('assets/vendors/nice-select/css/nice-select.css')?>" />
+    <!-- main css -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css')?>" />
+  </head>
 
-<head>
-  <!-- Mobile Specific Meta -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Favicon -->
-  <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url('assets/img/logo1.ico')?>">
-  <!-- Author Meta -->
-  <meta name="description" content="" />
-  <!-- Meta Keyword -->
-  <meta name="keywords" content="" />
-  <!-- meta character set -->
-  <meta charset="UTF-8" />
-  <!-- Site Title -->
-  <title><?php echo $judul?></title>
+  <body>
+    <!--================ Start Header Menu Area =================-->
+    <header class="header_area">
+      <div class="main_menu">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="container">
+            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash')?>"></div>
+            <div class="datatelp" data-datatelp="<?= $this->session->flashdata('notelp')?>"></div>
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <a class="navbar-brand logo_h" href="#home"
+              ><img src="<?php echo base_url('assets/img/logo1.png')?>" width="40px" height="40px" alt=""
+            /> LBB Noermandiri</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="icon-bar"></span> <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div
+              class="collapse navbar-collapse offset"
+              id="navbarSupportedContent"
+            >
+              <ul class="nav navbar-nav menu_nav ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#home">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="about-us.html">About</a>
+                </li>
+                <li class="nav-item submenu dropdown">
+                  <a
+                    href="#"
+                    class="nav-link dropdown-toggle"
+                    data-toggle="dropdown"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    >Pages</a
+                  >
+                  <ul class="dropdown-menu">
+                    <li class="nav-item">
+                      <a class="nav-link" href="courses.html">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="course-details.html"
+                        >Course Details</a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="elements.html">Elements</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item submenu dropdown">
+                  <a
+                    href="#"
+                    class="nav-link dropdown-toggle"
+                    data-toggle="dropdown"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    >Blog</a
+                  >
+                  <ul class="dropdown-menu">
+                    <li class="nav-item">
+                      <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="single-blog.html"
+                        >Blog Details</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="<?php echo base_url('Auth')?>">Login</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!--================ End Header Menu Area =================-->
 
-  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:900|Roboto:400,400i,500,700" rel="stylesheet" />
-  <!--
-      CSS
-      =============================================
-    -->
-  <link rel="stylesheet" href="<?php echo base_url('assets/css/linearicons.css')?>" />
-  <link rel="stylesheet" href="<?php echo base_url('assets/css/font-awesome.min.css')?>" />
-  <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.css')?>" />
-  <link rel="stylesheet" href="<?php echo base_url('assets/css/magnific-popup.css')?>" />
-  <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.carousel.css')?>" />
-  <link rel="stylesheet" href="<?php echo base_url('assets/css/nice-select.css')?>">
-  <link rel="stylesheet" href="<?php echo base_url('assets/css/hexagons.min.css')?>" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css" />
-  <link rel="stylesheet" href="<?php echo base_url('assets/css/main.css')?>" />
-</head>
-
-<body>
-  <!-- ================ Start Header Area ================= -->
-  <header class="default-header">
-    <nav class="navbar navbar-expand-lg  navbar-light">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">
-          <img src="assets/img/icons/logo1.png" alt="" width="80px" height="81px" >
-        </a>
-        <h2 class="text-white">LBB Noermandiri</h2>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="lnr lnr-menu"></span>
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
-          <ul class="navbar-nav">
-            <li><a href="#home-banner-area">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="#popular-course-area section-gap">Courses</a></li>
-            <!-- Dropdown -->
-            <li><a href="contacts.html">Contacts</a></li>
-            <li><a href="<?php echo base_url('Auth')?>">Login</a></li>
-          </ul>
+    <!--================ Start Home Banner Area =================-->
+    <section class="home_banner_area" id="home">
+      <div class="banner_inner">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="banner_content text-center">
+                <p class="text-uppercase">
+                  Selamat Datang di
+                </p>
+                <h2 class="text-uppercase mt-4 mb-5">
+                  Lembaga Bimbingan Belajar Noermandiri
+                </h2>
+                <div>
+                  <a href="" class="primary-btn2 mb-3 mb-sm-0" data-toggle="modal" data-target="#modal_pendaftaran">Pendaftaran Siswa Baru</a>
+                  <a href="<?php echo base_url('Pendaftaran/daftar_ulang')?>" class="primary-btn ml-sm-3 ml-0">Daftar Ulang</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </nav>
-    <div class="search-input" id="search-input-box">
+    </section>
+    <!--================ End Home Banner Area =================-->
+
+    <!--================ Start Feature Area =================-->
+    <section class="feature_area section_gap_top">
       <div class="container">
-        <form class="d-flex justify-content-between">
-          <input type="text" class="form-control" id="search-input" placeholder="Search Here" />
-          <button type="submit" class="btn"></button>
-          <span class="lnr lnr-cross" id="close-search" title="Close Search"></span>
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <div class="main_title">
+              <h2 class="mb-3">Awesome Feature</h2>
+              <p>
+                Replenish man have thing gathering lights yielding shall you
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="single_feature">
+              <div class="icon"><span class="flaticon-student"></span></div>
+              <div class="desc">
+                <h4 class="mt-3 mb-2">Scholarship Facility</h4>
+                <p>
+                  One make creepeth, man bearing theira firmament won't great
+                  heaven
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="single_feature">
+              <div class="icon"><span class="flaticon-book"></span></div>
+              <div class="desc">
+                <h4 class="mt-3 mb-2">Sell Online Course</h4>
+                <p>
+                  One make creepeth, man bearing theira firmament won't great
+                  heaven
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="single_feature">
+              <div class="icon"><span class="flaticon-earth"></span></div>
+              <div class="desc">
+                <h4 class="mt-3 mb-2">Global Certification</h4>
+                <p>
+                  One make creepeth, man bearing theira firmament won't great
+                  heaven
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================ End Feature Area =================-->
+
+    <!--================ Start Popular Courses Area =================-->
+    <div class="popular_courses">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <div class="main_title">
+              <h2 class="mb-3">Our Popular Courses</h2>
+              <p>
+                Replenish man have thing gathering lights yielding shall you
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- single course -->
+          <div class="col-lg-12">
+            <div class="owl-carousel active_course">
+              <div class="single_course">
+                <div class="course_head">
+                  <img class="img-fluid" src="<?php echo base_url('assets/img/courses/c1.jpg')?>" alt="" />
+                </div>
+                <div class="course_content">
+                  <span class="price">$25</span>
+                  <span class="tag mb-4 d-inline-block">design</span>
+                  <h4 class="mb-3">
+                    <a href="course-details.html">Custom Product Design</a>
+                  </h4>
+                  <p>
+                    One make creepeth man bearing their one firmament won't fowl
+                    meat over sea
+                  </p>
+                  <div
+                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
+                  >
+                    <div class="authr_meta">
+                      <img src="<?php echo base_url('assets/img/courses/author1.png')?>" alt="" />
+                      <span class="d-inline-block ml-2">Cameron</span>
+                    </div>
+                    <div class="mt-lg-0 mt-3">
+                      <span class="meta_info mr-4">
+                        <a href="#"> <i class="ti-user mr-2"></i>25 </a>
+                      </span>
+                      <span class="meta_info"
+                        ><a href="#"> <i class="ti-heart mr-2"></i>35 </a></span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="single_course">
+                <div class="course_head">
+                  <img class="img-fluid" src="<?php echo base_url('assets/img/courses/c2.jpg')?>" alt="" />
+                </div>
+                <div class="course_content">
+                  <span class="price">$25</span>
+                  <span class="tag mb-4 d-inline-block">design</span>
+                  <h4 class="mb-3">
+                    <a href="course-details.html">Social Media Network</a>
+                  </h4>
+                  <p>
+                    One make creepeth man bearing their one firmament won't fowl
+                    meat over sea
+                  </p>
+                  <div
+                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
+                  >
+                    <div class="authr_meta">
+                      <img src="<?php echo base_url('assets/img/courses/author2.png')?>" alt="" />
+                      <span class="d-inline-block ml-2">Cameron</span>
+                    </div>
+                    <div class="mt-lg-0 mt-3">
+                      <span class="meta_info mr-4">
+                        <a href="#"> <i class="ti-user mr-2"></i>25 </a>
+                      </span>
+                      <span class="meta_info"
+                        ><a href="#"> <i class="ti-heart mr-2"></i>35 </a></span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="single_course">
+                <div class="course_head">
+                  <img class="img-fluid" src="<?php echo base_url('assets/img/courses/c3.jpg')?>" alt="" />
+                </div>
+                <div class="course_content">
+                  <span class="price">$25</span>
+                  <span class="tag mb-4 d-inline-block">design</span>
+                  <h4 class="mb-3">
+                    <a href="course-details.html">Computer Engineering</a>
+                  </h4>
+                  <p>
+                    One make creepeth man bearing their one firmament won't fowl
+                    meat over sea
+                  </p>
+                  <div
+                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
+                  >
+                    <div class="authr_meta">
+                      <img src="<?php echo base_url('assets/img/courses/author3.png')?>" alt="" />
+                      <span class="d-inline-block ml-2">Cameron</span>
+                    </div>
+                    <div class="mt-lg-0 mt-3">
+                      <span class="meta_info mr-4">
+                        <a href="#"> <i class="ti-user mr-2"></i>25 </a>
+                      </span>
+                      <span class="meta_info"
+                        ><a href="#"> <i class="ti-heart mr-2"></i>35 </a></span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--================ End Popular Courses Area =================-->
+
+    <!--================ Start Cetak Invoice =================-->
+    <div class="section_gap registration_area" id="cetak_invoice">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <div class="main_title">
+              <h3 class="text-white">Download bukti pendaftaran</h3>
+            </div>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-lg-8 offset-lg-2">
+            <div class="register_form">
+              <form class="form_area" id="form-invoice" action="<?php echo base_url('Cetak/bukti_pendaftaran_siswa_baru')?>" method="POST">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <input type="email" name="email" id="email" placeholder="Masukkan email anda" onchange="cekData()" />
+                  </div>
+                  <div class="col-lg-12 form_group">
+                    <label>
+                      <p id="keterangan"></p>
+                    </label>
+                  </div>
+                  <div class="col-lg-12 text-center">
+                    <button class="btn btn-primary" id="btncetak" disabled>Cetak</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--================ End Cetak Invoice =================-->
+
+    <!--================ Start Trainers Area =================-->
+    <section class="trainer_area section_gap_top">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <div class="main_title">
+              <h2 class="mb-3">Our Expert Trainers</h2>
+              <p>
+                Replenish man have thing gathering lights yielding shall you
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center d-flex align-items-center">
+          <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
+            <div class="thumb d-flex justify-content-sm-center">
+              <img class="img-fluid" src="<?php echo base_url('assets/img/trainer/t1.jpg')?>" alt="" />
+            </div>
+            <div class="meta-text text-sm-center">
+              <h4>Mated Nithan</h4>
+              <p class="designation">Sr. web designer</p>
+              <div class="mb-4">
+                <p>
+                  If you are looking at blank cassettes on the web, you may be
+                  very confused at the.
+                </p>
+              </div>
+              <div class="align-items-center justify-content-center d-flex">
+                <a href="#"><i class="ti-facebook"></i></a>
+                <a href="#"><i class="ti-twitter"></i></a>
+                <a href="#"><i class="ti-linkedin"></i></a>
+                <a href="#"><i class="ti-pinterest"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
+            <div class="thumb d-flex justify-content-sm-center">
+              <img class="img-fluid" src="<?php echo base_url('assets/img/trainer/t2.jpg')?>" alt="" />
+            </div>
+            <div class="meta-text text-sm-center">
+              <h4>David Cameron</h4>
+              <p class="designation">Sr. web designer</p>
+              <div class="mb-4">
+                <p>
+                  If you are looking at blank cassettes on the web, you may be
+                  very confused at the.
+                </p>
+              </div>
+              <div class="align-items-center justify-content-center d-flex">
+                <a href="#"><i class="ti-facebook"></i></a>
+                <a href="#"><i class="ti-twitter"></i></a>
+                <a href="#"><i class="ti-linkedin"></i></a>
+                <a href="#"><i class="ti-pinterest"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
+            <div class="thumb d-flex justify-content-sm-center">
+              <img class="img-fluid" src="<?php echo base_url('assets/img/trainer/t3.jpg')?>" alt="" />
+            </div>
+            <div class="meta-text text-sm-center">
+              <h4>Jain Redmel</h4>
+              <p class="designation">Sr. Faculty Data Science</p>
+              <div class="mb-4">
+                <p>
+                  If you are looking at blank cassettes on the web, you may be
+                  very confused at the.
+                </p>
+              </div>
+              <div class="align-items-center justify-content-center d-flex">
+                <a href="#"><i class="ti-facebook"></i></a>
+                <a href="#"><i class="ti-twitter"></i></a>
+                <a href="#"><i class="ti-linkedin"></i></a>
+                <a href="#"><i class="ti-pinterest"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
+            <div class="thumb d-flex justify-content-sm-center">
+              <img class="img-fluid" src="<?php echo base_url('assets/img/trainer/t4.jpg')?>" alt="" />
+            </div>
+            <div class="meta-text text-sm-center">
+              <h4>Nathan Macken</h4>
+              <p class="designation">Sr. web designer</p>
+              <div class="mb-4">
+                <p>
+                  If you are looking at blank cassettes on the web, you may be
+                  very confused at the.
+                </p>
+              </div>
+              <div class="align-items-center justify-content-center d-flex">
+                <a href="#"><i class="ti-facebook"></i></a>
+                <a href="#"><i class="ti-twitter"></i></a>
+                <a href="#"><i class="ti-linkedin"></i></a>
+                <a href="#"><i class="ti-pinterest"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================ End Trainers Area =================-->
+
+    <!--================ Start Events Area =================-->
+    <div class="events_area">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <div class="main_title">
+              <h2 class="mb-3 text-white">Upcoming Events</h2>
+              <p>
+                Replenish man have thing gathering lights yielding shall you
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-md-6">
+            <div class="single_event position-relative">
+              <div class="event_thumb">
+                <img src="<?php echo base_url('assets/img/event/e1.jpg')?>" alt="" />
+              </div>
+              <div class="event_details">
+                <div class="d-flex mb-4">
+                  <div class="date"><span>15</span> Jun</div>
+
+                  <div class="time-location">
+                    <p>
+                      <span class="ti-time mr-2"></span> 12:00 AM - 12:30 AM
+                    </p>
+                    <p>
+                      <span class="ti-location-pin mr-2"></span> Hilton Quebec
+                    </p>
+                  </div>
+                </div>
+                <p>
+                  One make creepeth man for so bearing their firmament won't
+                  fowl meat over seas great
+                </p>
+                <a href="#" class="primary-btn rounded-0 mt-3">View Details</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <div class="single_event position-relative">
+              <div class="event_thumb">
+                <img src="<?php echo base_url('assets/img/event/e2.jpg')?>" alt="" />
+              </div>
+              <div class="event_details">
+                <div class="d-flex mb-4">
+                  <div class="date"><span>15</span> Jun</div>
+
+                  <div class="time-location">
+                    <p>
+                      <span class="ti-time mr-2"></span> 12:00 AM - 12:30 AM
+                    </p>
+                    <p>
+                      <span class="ti-location-pin mr-2"></span> Hilton Quebec
+                    </p>
+                  </div>
+                </div>
+                <p>
+                  One make creepeth man for so bearing their firmament won't
+                  fowl meat over seas great
+                </p>
+                <a href="#" class="primary-btn rounded-0 mt-3">View Details</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-12">
+            <div class="text-center pt-lg-5 pt-3">
+              <a href="#" class="event-link">
+                View All Event <img src="<?php echo base_url('assets/img/next.png')?>" alt="" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--================ End Events Area =================-->
+
+    <!--================ Start Testimonial Area =================-->
+    <div class="testimonial_area section_gap">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <div class="main_title">
+              <h2 class="mb-3">Client say about me</h2>
+              <p>
+                Replenish man have thing gathering lights yielding shall you
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="testi_slider owl-carousel">
+            <div class="testi_item">
+              <div class="row">
+                <div class="col-lg-4 col-md-6">
+                  <img src="<?php echo base_url('assets/img/testimonials/t1.jpg')?>" alt="" />
+                </div>
+                <div class="col-lg-8">
+                  <div class="testi_text">
+                    <h4>Elite Martin</h4>
+                    <p>
+                      Him, made can't called over won't there on divide there
+                      male fish beast own his day third seed sixth seas unto.
+                      Saw from
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="testi_item">
+              <div class="row">
+                <div class="col-lg-4 col-md-6">
+                  <img src="<?php echo base_url('assets/img/testimonials/t2.jpg')?>" alt="" />
+                </div>
+                <div class="col-lg-8">
+                  <div class="testi_text">
+                    <h4>Davil Saden</h4>
+                    <p>
+                      Him, made can't called over won't there on divide there
+                      male fish beast own his day third seed sixth seas unto.
+                      Saw from
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="testi_item">
+              <div class="row">
+                <div class="col-lg-4 col-md-6">
+                  <img src="<?php echo base_url('assets/img/testimonials/t1.jpg')?>" alt="" />
+                </div>
+                <div class="col-lg-8">
+                  <div class="testi_text">
+                    <h4>Elite Martin</h4>
+                    <p>
+                      Him, made can't called over won't there on divide there
+                      male fish beast own his day third seed sixth seas unto.
+                      Saw from
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="testi_item">
+              <div class="row">
+                <div class="col-lg-4 col-md-6">
+                  <img src="<?php echo base_url('assets/img/testimonials/t2.jpg')?>" alt="" />
+                </div>
+                <div class="col-lg-8">
+                  <div class="testi_text">
+                    <h4>Davil Saden</h4>
+                    <p>
+                      Him, made can't called over won't there on divide there
+                      male fish beast own his day third seed sixth seas unto.
+                      Saw from
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="testi_item">
+              <div class="row">
+                <div class="col-lg-4 col-md-6">
+                  <img src="<?php echo base_url('assets/img/testimonials/t1.jpg')?>" alt="" />
+                </div>
+                <div class="col-lg-8">
+                  <div class="testi_text">
+                    <h4>Elite Martin</h4>
+                    <p>
+                      Him, made can't called over won't there on divide there
+                      male fish beast own his day third seed sixth seas unto.
+                      Saw from
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="testi_item">
+              <div class="row">
+                <div class="col-lg-4 col-md-6">
+                  <img src="<?php echo base_url('assets/img/testimonials/t2.jpg')?>" alt="" />
+                </div>
+                <div class="col-lg-8">
+                  <div class="testi_text">
+                    <h4>Davil Saden</h4>
+                    <p>
+                      Him, made can't called over won't there on divide there
+                      male fish beast own his day third seed sixth seas unto.
+                      Saw from
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--================ End Testimonial Area =================-->
+
+    <!--================ Start footer Area  =================-->
+    <footer class="footer-area section_gap">
+      <div class="container">
+        <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <div class="main_title">
+              <h2 class="text-white">Contact Us</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-lg-10 offset-lg-1">
+            
+          </div>
+        </div>
+      </div>
+        <div class="row footer-bottom d-flex justify-content-between" align="center">
+          <p class="col-lg-12 col-sm-12 footer-text m-0 text-white">
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy; 2019 Lembaga Bimbingan Belajar Noermandiri
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+        </div>
+      </div>
+    </footer>
+    <!--================ End footer Area  =================-->
+
+<!--================ Modal Form Pendaftaran  =================-->
+<div class="modal fade" id="modal_pendaftaran" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLongTitle" align="center">Formulir Pendaftaran Siswa Baru</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="form-pendaftaran" action="<?php echo base_url('Pendaftaran/tambah_pendaftaran_siswa_baru')?>" method="POST">
+            <div class="form-group-inner">
+                <div class="row">
+                    <div class="col-lg-3 offset-lg-1 mt-3">
+                        <label class="login2 pull-right pull-right-pro">Nama Lengkap</label>
+                    </div>
+                    <div class="col-lg-6 mt-2">
+                        <input type="text" class="form-control" name="nama" id="nama" required />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                    <div class="col-lg-3 offset-lg-1 mt-3">
+                        <label class="login2 pull-right pull-right-pro">Alamat</label>
+                    </div>
+                    <div class="col-lg-6 mt-2">
+                        <input type="text" class="form-control" name="alamat" id="alamat" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                    <div class="col-lg-3 offset-lg-1 mt-3">
+                        <label class="login2 pull-right pull-right-pro">Tanggal Lahir</label>
+                    </div>
+                    <div class="col-lg-6 mt-2">
+                        <input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                    <div class="col-lg-3 offset-lg-1 mt-3">
+                        <label class="login2 pull-right pull-right-pro">Asal Sekolah</label>
+                    </div>
+                    <div class="col-lg-6 mt-2">
+                        <input type="text" class="form-control" name="asal_sekolah" id="asal_sekolah" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                    <div class="col-lg-3 offset-lg-1 mt-3">
+                        <label class="login2 pull-right pull-right-pro">Nomor Telepon</label>
+                    </div>
+                    <div class="col-lg-6 mt-2">
+                        <input type="number" class="form-control" name="telepon" id="telepon" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                    <div class="col-lg-3 offset-lg-1 mt-3">
+                        <label class="login2 pull-right pull-right-pro">No.Telp Orang Tua</label>
+                    </div>
+                    <div class="col-lg-6 mt-2">
+                        <input type="number" class="form-control" name="telepon_ortu" id="telepon_ortu" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                    <div class="col-lg-3 offset-lg-1 mt-3">
+                        <label class="login2 pull-right pull-right-pro">Email</label>
+                    </div>
+                    <div class="col-lg-6 mt-2">
+                        <input type="email" class="form-control" name="email" id="email" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                    <div class="col-lg-3 offset-lg-1 mt-3">
+                        <label class="login2 pull-right pull-right-pro">Jenjang Kelas</label>
+                    </div>
+                    <div class="col-lg-6 mt-2">
+                        <div class="form-select-list">
+                            <select class="form-control custom-select-value" name="jenjang" id="jenjang" required>
+                                <option value="">-Pilih Jenjang Kelas-</option>
+                                <?php
+                                foreach ($jkelas as $jenjang) { ?>
+                                <option value="<?php echo $jenjang->ID_JENJANG;?>"><?php echo $jenjang->NAMA_JENJANG;?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                    <div class="col-lg-3 offset-lg-1 mt-3">
+                        <label class="login2 pull-right pull-right-pro">Jenis Kelamin</label>
+                    </div>
+                    <div class="col-lg-6 mt-2">
+                        <div class="form-select-list">
+                            <select class="form-control custom-select-value" name="jk" id="jk" required>
+                                <option value="">- Pilih Jenis Kelamin -</option>
+                                <option value="L">Laki-Laki</option>
+                                <option value="P">Perempuan</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="login-btn-inner">
+                    <div class="row">
+                        <div class="col-lg-4 mt-3"></div>
+                        <div class="col-lg-6 mt-3">
+                            <div class="login-horizental cancel-wp pull-left">
+                                <button type="reset" class="btn btn-danger" name="Batal">Batal</button>&nbsp;
+                                <button type="submit" class="btn btn-primary" name="simpan" id="btn_simpan">Daftar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </form>
       </div>
     </div>
-  </header>
-  <!-- ================ End Header Area ================= -->
+  </div>
+</div>
 
-  <!-- ================ start banner Area ================= -->
-  <section class="home-banner-area">
-    <div class="container">
-      <div class="row justify-content-center fullscreen align-items-center">
-        <div class="col-lg-5 col-md-8 home-banner-left">
-          <h1 class="text-white">
-            LBB Noermandiri
-          </h1>
-          <p class="mx-auto text-white  mt-20 mb-40">
-            In the history of modern astronomy, there is probably no one
-            greater leap forward than the building and launch of the space
-            telescope known as the Hubble.
-          </p>
-        </div>
-        <div class="offset-lg-2 col-lg-5 col-md-12 home-banner-right">
-          <img class="img-fluid" src="img/header-img.png" alt="" />
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ================ End banner Area ================= -->
+<!--================ Modal Form Pendaftaran  =================-->
 
-  <!-- ================ Start Feature Area ================= -->
-  <section class="feature-area">
-    <div class="container-fluid">
-      <div class="feature-inner row">
-        <div class="col-lg-2 col-md-6">
-          <div class="feature-item d-flex">
-            <i class="ti-book"></i>
-            <div class="ml-20">
-              <h4>New Classes</h4>
-              <p>
-                In the history of modern astronomy, there is probably no one greater leap forward.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-6">
-          <div class="feature-item d-flex">
-            <i class="ti-cup"></i>
-            <div class="ml-20">
-              <h4>Top Courses</h4>
-              <p>
-                In the history of modern astronomy, there is probably no one greater leap forward.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-6">
-          <div class="feature-item d-flex border-right-0">
-            <i class="ti-desktop"></i>
-            <div class="ml-20">
-              <h4>Full E-Books</h4>
-              <p>
-                In the history of modern astronomy, there is probably no one greater leap forward.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ================ End Feature Area ================= -->
 
-  <!-- ================ Start Popular Course Area ================= -->
-  <section class="popular-course-area section-gap">
-    <div class="container-fluid">
-      <div class="row justify-content-center section-title">
-        <div class="col-lg-12">
-          <h2>
-            Popular Courses <br />
-            Available Right Now
-          </h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        </div>
-      </div>
-      <div class="owl-carousel popuar-course-carusel">
-        <div class="single-popular-course">
-          <div class="thumb">
-            <img class="f-img img-fluid mx-auto" src="img/popular-course/p1.jpg" alt="" />
-          </div>
-          <div class="details">
-            <div class="d-flex justify-content-between mb-20">
-              <p class="name">programming language</p>
-              <p class="value">$150</p>
-            </div>
-            <a href="#">
-              <h4>Learn Angular JS Course for Legendary Persons</h4>
-            </a>
-            <div class="bottom d-flex mt-15">
-              <ul class="list">
-                <li>
-                  <a href="#"><i class="fa fa-star"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-star"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-star"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-star"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-star"></i></a>
-                </li>
-              </ul>
-              <p class="ml-20">25 Reviews</p>
-            </div>
-          </div>
-        </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="<?php echo base_url('assets/js/jquery-3.2.1.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/popper.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/bootstrap.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/vendors/nice-select/js/jquery.nice-select.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/vendors/owl-carousel/owl.carousel.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/owl-carousel-thumb.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.ajaxchimp.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/mail-script.js')?>"></script>
+    <!--gmaps Js-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="<?php echo base_url('assets/js/gmaps.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/theme.js')?>"></script>
+    <script src="<?= base_url('assets/js/sweetalert/sweetalert2.all.min.js')?>"></script>
+    <script src="<?= base_url('assets/js/myscript.js')?>"></script>
 
-        <div class="single-popular-course">
-          <div class="thumb">
-            <img class="f-img img-fluid mx-auto" src="img/popular-course/p2.jpg" alt="" />
-          </div>
-          <div class="details">
-            <div class="d-flex justify-content-between mb-20">
-              <p class="name">programming language</p>
-              <p class="value">$150</p>
-            </div>
-            <a href="#">
-              <h4>Learn Angular JS Course for Legendary Persons</h4>
-            </a>
-            <div class="bottom d-flex mt-15">
-              <ul class="list">
-                <li>
-                  <a href="#"><i class="fa fa-star"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-star"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-star"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-star"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-star"></i></a>
-                </li>
-              </ul>
-              <p class="ml-20">25 Reviews</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="single-popular-course">
-          <div class="thumb">
-            <img class="f-img img-fluid mx-auto" src="img/popular-course/p3.jpg" alt="" />
-          </div>
-          <div class="details">
-            <div class="d-flex justify-content-between mb-20">
-              <p class="name">programming language</p>
-              <p class="value">$150</p>
-            </div>
-            <a href="#">
-              <h4>Learn Angular JS Course for Legendary Persons</h4>
-            </a>
-            <div class="bottom d-flex mt-15">
-              <ul class="list">
-                <li>
-                  <a href="#"><i class="fa fa-star"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-star"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-star"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-star"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-star"></i></a>
-                </li>
-              </ul>
-              <p class="ml-20">25 Reviews</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="single-popular-course">
-          <div class="thumb">
-            <img class="f-img img-fluid mx-auto" src="img/popular-course/p4.jpg" alt="" />
-          </div>
-          <div class="details">
-            <div class="d-flex justify-content-between mb-20">
-              <p class="name">programming language</p>
-              <p class="value">$150</p>
-            </div>
-            <a href="#">
-              <h4>Learn Angular JS Course for Legendary Persons</h4>
-            </a>
-            <div class="bottom d-flex mt-15">
-              <ul class="list">
-                <li>
-                  <a href="#"><i class="fa fa-star"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-star"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-star"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-star"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-star"></i></a>
-                </li>
-              </ul>
-              <p class="ml-20">25 Reviews</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ================ End Popular Course Area ================= -->
-
-  <!-- ================ Start Video Area ================= -->
-  <section class="video-area section-gap-bottom">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-5">
-          <div class="section-title text-white">
-            <h2 class="text-white">
-              Watch Our Trainers <br>
-              in Live Action
-            </h2>
-            <p>
-              In the history of modern astronomy, there is probably no one greater leap forward than the building and
-              launch of the space telescope known as the Hubble.
-            </p>
-          </div>
-        </div>
-        <div class="offset-lg-1 col-md-6 video-left">
-          <div class="owl-carousel video-carousel">
-            <div class="single-video">
-              <div class="video-part">
-                <img class="img-fluid" src="img/video-img.jpg" alt="">
-                <div class="overlay"></div>
-                <a class="popup-youtube play-btn" href="https://www.youtube.com/watch?v=VufDd-QL1c0">
-                  <img class="play-icon" src="img/play-btn.png" alt="">
-                </a>
-              </div>
-              <h4 class="text-white mb-20 mt-30">Learn Angular js Course for Legendary Persons</h4>
-              <p class="text-white mb-20">
-                In the history of modern astronomy, there is probably no one greater leap forward than the building and
-                launch of the space telescope known as the Hubble.
-              </p>
-            </div>
-
-            <div class="single-video">
-              <div class="video-part">
-                <img class="img-fluid" src="img/video-img.jpg" alt="">
-                <div class="overlay"></div>
-                <a class="popup-youtube play-btn" href="https://www.youtube.com/watch?v=VufDd-QL1c0">
-                  <img class="play-icon" src="img/play-btn.png" alt="">
-                </a>
-              </div>
-              <h4 class="text-white mb-20 mt-30">Learn Angular js Course for Legendary Persons</h4>
-              <p class="text-white mb-20">
-                In the history of modern astronomy, there is probably no one greater leap forward than the building and
-                launch of the space telescope known as the Hubble.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ================ End Video Area ================= -->
-
-  <!-- ================ Start Feature Area ================= -->
-  <section class="other-feature-area">
-    <div class="container">
-      <div class="feature-inner row">
-        <div class="col-lg-12">
-          <div class="section-title text-left">
-            <h2>
-              Features That <br />
-              Can Avail By Everyone
-            </h2>
-            <p>
-              If you are looking at blank cassettes on the web, you may be
-              very confused at the difference in price. You may see some for
-              as low as $.17 each.
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="other-feature-item">
-            <i class="ti-key"></i>
-            <h4>Lifetime Access</h4>
-            <div>
-              <p>
-                Lorem ipsum dolor sit amet consec tetur adipisicing elit, sed
-                do eiusmod tempor incididunt labore. Lorem ipsum dolor sit
-                amet consec tetur adipisicing elit, sed do eiusmod tempor
-                incididunt labore.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 mt--160">
-          <div class="other-feature-item">
-            <i class="ti-files"></i>
-            <h4>Source File Included</h4>
-            <div>
-              <p>
-                Lorem ipsum dolor sit amet consec tetur adipisicing elit, sed
-                do eiusmod tempor incididunt labore. Lorem ipsum dolor sit
-                amet consec tetur adipisicing elit, sed do eiusmod tempor
-                incididunt labore.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 mt--260">
-          <div class="other-feature-item">
-            <i class="ti-medall-alt"></i>
-            <h4>Student Membership</h4>
-            <div>
-              <p>
-                Lorem ipsum dolor sit amet consec tetur adipisicing elit, sed
-                do eiusmod tempor incididunt labore. Lorem ipsum dolor sit
-                amet consec tetur adipisicing elit, sed do eiusmod tempor
-                incididunt labore.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="other-feature-item">
-            <i class="ti-briefcase"></i>
-            <h4>35000+ Courses</h4>
-            <div>
-              <p>
-                Lorem ipsum dolor sit amet consec tetur adipisicing elit, sed
-                do eiusmod tempor incididunt labore. Lorem ipsum dolor sit
-                amet consec tetur adipisicing elit, sed do eiusmod tempor
-                incididunt labore.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 mt--160">
-          <div class="other-feature-item">
-            <i class="ti-crown"></i>
-            <h4>Expert Mentors</h4>
-            <div>
-              <p>
-                Lorem ipsum dolor sit amet consec tetur adipisicing elit, sed
-                do eiusmod tempor incididunt labore. Lorem ipsum dolor sit
-                amet consec tetur adipisicing elit, sed do eiusmod tempor
-                incididunt labore.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 mt--260">
-          <div class="other-feature-item">
-            <i class="ti-headphone-alt"></i>
-            <h4>Live Supports</h4>
-            <div>
-              <p>
-                Lorem ipsum dolor sit amet consec tetur adipisicing elit, sed
-                do eiusmod tempor incididunt labore. Lorem ipsum dolor sit
-                amet consec tetur adipisicing elit, sed do eiusmod tempor
-                incididunt labore.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ================ End Feature Area ================= -->
-
-  <!-- ================ Start Testimonials Area ================= -->
-  <section class="testimonials-area section-gap">
-    <div class="container">
-      <div class="testi-slider owl-carousel" data-slider-id="1">
-        <div class="row align-items-center">
-          <div class="col-lg-5">
-            <div class="item">
-              <div class="testi-item">
-                <img src="img/quote.png" alt="" />
-                <div class="mt-40 text">
-                  <p>
-                    As conscious traveling Paup ers we must always be oncerned
-                    about our dear Mother Earth. If you think about it, you
-                    travel across her face and She is the host to your
-                    journey.
-                  </p>
-                </div>
-                <h4>Fanny Spencer</h4>
-                <p>Chief Executive, Amazon</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="offset-lg-1 col-lg-6">
-            <img src="img/testimonial/t1.jpg" alt="" />
-          </div>
-        </div>
-
-        <div class="row align-items-center">
-          <div class="col-lg-5">
-            <div class="item">
-              <div class="testi-item">
-                <img src="img/quote.png" alt="" />
-                <div class="mt-40 text">
-                  <p>
-                    As conscious traveling Paup ers we must always be oncerned
-                    about our dear Mother Earth. If you think about it, you
-                    travel across her face <br />
-                    and She is the host to your journey.
-                  </p>
-                </div>
-                <h4>Fanny Spencer</h4>
-                <p>Chief Executive, Amazon</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="offset-lg-1 col-lg-6">
-            <img src="img/testimonial/t1.jpg" alt="" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ================ End Testimonials Area ================= -->
-
-  <!-- ================ Start Registration Area ================= -->
-  <section class="registration-area">
-    <div class="container">
-      <div class="row align-items-end">
-        <div class="col-lg-5">
-          <div class="section-title text-left text-white">
-            <h2 class="text-white">
-              Watch Our Trainers <br>
-              in Live Action
-            </h2>
-            <p>
-              If you are looking at blank cassettes on the web, you may be
-              very confused at the difference in price. You may see some for
-              as low as $.17 each.
-            </p>
-          </div>
-        </div>
-        <div class="offset-lg-3 col-lg-4 col-md-6">
-          <div class="course-form-section">
-            <h3 class="text-white">Courses for Free</h3>
-            <p class="text-white">It is high time for learning</p>
-            <form class="course-form-area contact-page-form course-form text-right" id="myForm" action="mail.html" method="post">
-              <div class="form-group col-md-12">
-                <input type="text" class="form-control" id="name" name="name" placeholder="Name" onfocus="this.placeholder = ''"
-                 onblur="this.placeholder = 'Name'">
-              </div>
-              <div class="form-group col-md-12">
-                <input type="text" class="form-control" id="subject" name="subject" placeholder="Phone Number" onfocus="this.placeholder = ''"
-                 onblur="this.placeholder = 'Phone Number'">
-              </div>
-              <div class="form-group col-md-12">
-                <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''"
-                 onblur="this.placeholder = 'Email Address'">
-              </div>
-              <div class="col-lg-12 text-center">
-                <button class="btn text-uppercase">Submit</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ================ End Registration Area ================= -->
-
-  <!-- ================ Start Blog Post Area ================= -->
-  <section class="blog-post-area section-gap">
-    <div class="container-fluid">
-      <div class="feature-inner row">
-        <div class="col-lg-12">
-          <div class="section-title text-left">
-            <h2>
-              Features That <br />
-              Can Avail By Everyone
-            </h2>
-            <p>
-              There is a moment in the life of any aspiring astronomer that it is time to buy that first telescope.
-              It’s exciting to think about setting up your own viewing station.
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="single-blog-post">
-            <img src="img/blog-post/b1.jpg" class="img-fluid" alt="" />
-            <div class="overlay"></div>
-            <div class="top-text">
-              <p>29th, oct, 2018</p>
-              <p>121 likes</p>
-              <p>05 comments</p>
-            </div>
-            <div class="text">
-              <h4 class="text-white">Smart Kitchen Setup</h4>
-              <div>
-                <p>
-                  Lorem ipsum dolor sit amet consec tetur adipisicing elit,
-                  sed do.
-                </p>
-              </div>
-              <a href="#" class="primary-btn">
-                View Details
-                <i class="fa fa-long-arrow-right"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 mt--160">
-          <div class="single-blog-post">
-            <img src="img/blog-post/b2.jpg" class="img-fluid" alt="" />
-            <div class="overlay"></div>
-            <div class="top-text">
-              <p>29th, oct, 2018</p>
-              <p>121 likes</p>
-              <p>05 comments</p>
-            </div>
-            <div class="text">
-              <h4 class="text-white">Smart Kitchen Setup</h4>
-              <div>
-                <p>
-                  Lorem ipsum dolor sit amet consec tetur adipisicing elit,
-                  sed do.
-                </p>
-              </div>
-              <a href="#" class="primary-btn">
-                View Details
-                <i class="fa fa-long-arrow-right"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 mt--260">
-          <div class="single-blog-post">
-            <img src="img/blog-post/b3.jpg" class="img-fluid" alt="" />
-            <div class="overlay"></div>
-            <div class="top-text">
-              <p>29th, oct, 2018</p>
-              <p>121 likes</p>
-              <p>05 comments</p>
-            </div>
-            <div class="text">
-              <h4 class="text-white">Smart Kitchen Setup</h4>
-              <div>
-                <p>
-                  Lorem ipsum dolor sit amet consec tetur adipisicing elit,
-                  sed do.
-                </p>
-              </div>
-              <a href="#" class="primary-btn">
-                View Details
-                <i class="fa fa-long-arrow-right"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ================ End Blog Post Area ================= -->
-
-  <!-- ================ start footer Area ================= -->
-  <footer class="footer-area section-gap">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Top Products</h4>
-					<ul>
-						<li><a href="#">Managed Website</a></li>
-						<li><a href="#">Manage Reputation</a></li>
-						<li><a href="#">Power Tools</a></li>
-						<li><a href="#">Marketing Service</a></li>
-					</ul>
-				</div>
-				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Quick Links</h4>
-					<ul>
-						<li><a href="#">Jobs</a></li>
-						<li><a href="#">Brand Assets</a></li>
-						<li><a href="#">Investor Relations</a></li>
-						<li><a href="#">Terms of Service</a></li>
-					</ul>
-				</div>
-				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Features</h4>
-					<ul>
-						<li><a href="#">Jobs</a></li>
-						<li><a href="#">Brand Assets</a></li>
-						<li><a href="#">Investor Relations</a></li>
-						<li><a href="#">Terms of Service</a></li>
-					</ul>
-				</div>
-				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Resources</h4>
-					<ul>
-						<li><a href="#">Guides</a></li>
-						<li><a href="#">Research</a></li>
-						<li><a href="#">Experts</a></li>
-						<li><a href="#">Agencies</a></li>
-					</ul>
-				</div>
-				<div class="col-lg-4 col-md-6 single-footer-widget">
-					<h4>Newsletter</h4>
-					<p>You can trust us. we only send promo offers,</p>
-					<div class="form-wrap" id="mc_embed_signup">
-						<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-						 method="get" class="form-inline">
-							<input class="form-control" name="EMAIL" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '"
-							 required="" type="email">
-							<button class="click-btn btn btn-default text-uppercase">subscribe</button>
-							<div style="position: absolute; left: -5000px;">
-								<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-							</div>
-
-							<div class="info"></div>
-						</form>
-					</div>
-				</div>
-			</div>
-			<div class="footer-bottom row align-items-center">
-				<p class="footer-text m-0 col-lg-8 col-md-12">
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-				<div class="col-lg-4 col-md-12 footer-social">
-					<a href="#"><i class="fa fa-facebook"></i></a>
-					<a href="#"><i class="fa fa-twitter"></i></a>
-					<a href="#"><i class="fa fa-dribbble"></i></a>
-					<a href="#"><i class="fa fa-behance"></i></a>
-				</div>
-			</div>
-		</div>
-	</footer>
-  <!-- ================ End footer Area ================= -->
-
-  <script src="<?php echo base_url('assets/js/vendor/jquery-2.2.4.min.js')?>"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-    crossorigin="anonymous"></script>
-  <script src="<?php echo base_url('assets/js/vendor/bootstrap.min.js')?>"></script>
-  <script type="<?php echo base_url('assets/text/javascript')?>" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-  <script src="<?php echo base_url('assets/js/jquery.ajaxchimp.min.js')?>"></script>
-  <script src="<?php echo base_url('assets/js/jquery.magnific-popup.min.js')?>"></script>
-  <script src="<?php echo base_url('assets/js/parallax.min.js')?>"></script>
-  <script src="<?php echo base_url('assets/js/owl.carousel.min.js')?>"></script>
-  <script src="<?php echo base_url('assets/js/jquery.sticky.js')?>"></script>
-  <script src="<?php echo base_url('assets/js/hexagons.min.js')?>"></script>
-  <script src="<?php echo base_url('assets/js/jquery.counterup.min.js')?>"></script>
-  <script src="<?php echo base_url('assets/js/waypoints.min.js')?>"></script>
-  <script src="<?php echo base_url('assets/js/jquery.nice-select.min.js')?>"></script>
-  <script src="<?php echo base_url('assets/js/main.js')?>"></script>
-</body>
-
+    
+  </body>
 </html>
+
+<script type="text/javascript">
+
+    function cekData(){
+        var em = document.getElementById('email').value;
+        var btn = document.getElementById('btncetak');
+        $.ajax({
+            url : "<?php echo base_url('Pendaftaran/cek_pendaftaran')?>",
+            method: "POST",
+            dataType :"json",
+            data: {
+            email : em
+            },
+            success : function(data){
+                if (data.length > 0) {
+                    document.getElementById('keterangan').innerHTML = "Data ditemukan";
+                    btn.disabled = false;
+                }else{
+                    document.getElementById('keterangan').innerHTML = "Data tidak ditemukan, silahkan masukkan email dengan benar";
+                    btn.disabled = true;
+                }
+            }
+        });
+    }
+
+    </script>
