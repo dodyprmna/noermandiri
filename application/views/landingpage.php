@@ -52,7 +52,7 @@
                   <a class="nav-link" href="#home">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="about-us.html">About</a>
+                  <a class="nav-link" href="#ff">About</a>
                 </li>
                 <li class="nav-item submenu dropdown">
                   <a
@@ -127,7 +127,7 @@
                   Lembaga Bimbingan Belajar Noermandiri
                 </h2>
                 <div>
-                  <a href="" class="primary-btn2 mb-3 mb-sm-0" data-toggle="modal" data-target="#modal_pendaftaran">Pendaftaran Siswa Baru</a>
+                  <a href="#pendaftaran" class="primary-btn2 mb-3 mb-sm-0">Pendaftaran Siswa Baru</a>
                   <a href="<?php echo base_url('Pendaftaran/daftar_ulang')?>" class="primary-btn ml-sm-3 ml-0">Daftar Ulang</a>
                 </div>
               </div>
@@ -139,56 +139,40 @@
     <!--================ End Home Banner Area =================-->
 
     <!--================ Start Feature Area =================-->
-    <section class="feature_area section_gap_top">
+    <section class="feature_area section_gap_top" id="biaya">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <div class="main_title">
-              <h2 class="mb-3">Awesome Feature</h2>
-              <p>
-                Replenish man have thing gathering lights yielding shall you
-              </p>
+              <h2 class="mb-3">Daftar Biaya Les</h2>
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-4 col-md-6">
-            <div class="single_feature">
-              <div class="icon"><span class="flaticon-student"></span></div>
-              <div class="desc">
-                <h4 class="mt-3 mb-2">Scholarship Facility</h4>
-                <p>
-                  One make creepeth, man bearing theira firmament won't great
-                  heaven
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="single_feature">
-              <div class="icon"><span class="flaticon-book"></span></div>
-              <div class="desc">
-                <h4 class="mt-3 mb-2">Sell Online Course</h4>
-                <p>
-                  One make creepeth, man bearing theira firmament won't great
-                  heaven
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="single_feature">
-              <div class="icon"><span class="flaticon-earth"></span></div>
-              <div class="desc">
-                <h4 class="mt-3 mb-2">Global Certification</h4>
-                <p>
-                  One make creepeth, man bearing theira firmament won't great
-                  heaven
-                </p>
-              </div>
-            </div>
+          <div class="col-lg-8 offset-lg-2">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th width="20%">No.</th>
+                  <th width="30%">Jenjang Kelas</th>
+                  <th width="50%">Biaya</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                  $nourut = 1;
+                  foreach ($jkelas as $jk) {
+                  ?>
+                  <tr>
+                      <td><?php echo $nourut++?></td>
+                      <td><?php echo $jk->NAMA_JENJANG; ?></td>
+                      <td>Rp. <?php echo number_format($jk->BIAYA,2,',','.') ?>/Semester</td>
+                  </tr>
+                  <?php
+                  }
+                  ?>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -196,117 +180,154 @@
     <!--================ End Feature Area =================-->
 
     <!--================ Start Popular Courses Area =================-->
-    <div class="popular_courses">
+    <hr style="margin-bottom: 5em">
+    <div class="popular_courses" id="pendaftaran">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <div class="main_title">
-              <h2 class="mb-3">Our Popular Courses</h2>
-              <p>
-                Replenish man have thing gathering lights yielding shall you
-              </p>
+              <h2 class="mb-3">Pendaftaran Siswa Baru</h2>
+              <hr>
             </div>
           </div>
         </div>
         <div class="row">
-          <!-- single course -->
           <div class="col-lg-12">
-            <div class="owl-carousel active_course">
-              <div class="single_course">
-                <div class="course_head">
-                  <img class="img-fluid" src="<?php echo base_url('assets/img/courses/c1.jpg')?>" alt="" />
-                </div>
-                <div class="course_content">
-                  <span class="price">$25</span>
-                  <span class="tag mb-4 d-inline-block">design</span>
-                  <h4 class="mb-3">
-                    <a href="course-details.html">Custom Product Design</a>
-                  </h4>
-                  <p>
-                    One make creepeth man bearing their one firmament won't fowl
-                    meat over sea
-                  </p>
-                  <div
-                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
-                  >
-                    <div class="authr_meta">
-                      <img src="<?php echo base_url('assets/img/courses/author1.png')?>" alt="" />
-                      <span class="d-inline-block ml-2">Cameron</span>
-                    </div>
-                    <div class="mt-lg-0 mt-3">
-                      <span class="meta_info mr-4">
-                        <a href="#"> <i class="ti-user mr-2"></i>25 </a>
-                      </span>
-                      <span class="meta_info"
-                        ><a href="#"> <i class="ti-heart mr-2"></i>35 </a></span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="single_course">
-                <div class="course_head">
-                  <img class="img-fluid" src="<?php echo base_url('assets/img/courses/c2.jpg')?>" alt="" />
-                </div>
-                <div class="course_content">
-                  <span class="price">$25</span>
-                  <span class="tag mb-4 d-inline-block">design</span>
-                  <h4 class="mb-3">
-                    <a href="course-details.html">Social Media Network</a>
-                  </h4>
-                  <p>
-                    One make creepeth man bearing their one firmament won't fowl
-                    meat over sea
-                  </p>
-                  <div
-                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
-                  >
-                    <div class="authr_meta">
-                      <img src="<?php echo base_url('assets/img/courses/author2.png')?>" alt="" />
-                      <span class="d-inline-block ml-2">Cameron</span>
-                    </div>
-                    <div class="mt-lg-0 mt-3">
-                      <span class="meta_info mr-4">
-                        <a href="#"> <i class="ti-user mr-2"></i>25 </a>
-                      </span>
-                      <span class="meta_info"
-                        ><a href="#"> <i class="ti-heart mr-2"></i>35 </a></span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="single_course">
-                <div class="course_head">
-                  <img class="img-fluid" src="<?php echo base_url('assets/img/courses/c3.jpg')?>" alt="" />
-                </div>
-                <div class="course_content">
-                  <span class="price">$25</span>
-                  <span class="tag mb-4 d-inline-block">design</span>
-                  <h4 class="mb-3">
-                    <a href="course-details.html">Computer Engineering</a>
-                  </h4>
-                  <p>
-                    One make creepeth man bearing their one firmament won't fowl
-                    meat over sea
-                  </p>
-                  <div
-                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
-                  >
-                    <div class="authr_meta">
-                      <img src="<?php echo base_url('assets/img/courses/author3.png')?>" alt="" />
-                      <span class="d-inline-block ml-2">Cameron</span>
-                    </div>
-                    <div class="mt-lg-0 mt-3">
-                      <span class="meta_info mr-4">
-                        <a href="#"> <i class="ti-user mr-2"></i>25 </a>
-                      </span>
-                      <span class="meta_info"
-                        ><a href="#"> <i class="ti-heart mr-2"></i>35 </a></span
-                      >
-                    </div>
+            <div class="card" style="background-color: #f2f4f7; border-color: #c5ccd6">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <form method="POST" action="<?php echo base_url('Pendaftaran/tambah_pendaftaran_siswa_baru')?>">
+                      <div class="row">
+                        <div class="col-lg-8 offset-lg-2 mt-5">
+                          <div class="form-group">
+                            <div class="row">
+                                <div  class="col-lg-3 offset-lg-1">
+                                    <strong><label style="color: #002347">Nama Lengkap</label></strong>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" name="nama" id="nama" required value="<?php echo set_value('nama'); ?>"/>
+                                    <?php echo form_error('nama'); ?>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="row">
+                                <div  class="col-lg-3 offset-lg-1">
+                                    <strong><label style="color: #002347">Alamat Rumah</label></strong>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" name="alamat" id="alamat" required value="<?php echo set_value('alamat'); ?>"/>
+                                    <?php echo form_error('alamat'); ?>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 offset-lg-1">
+                                    <strong><label style="color: #002347">Tanggal Lahir</label></strong>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir" required value="<?php echo set_value('tgl_lahir'); ?>"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 offset-lg-1">
+                                    <strong><label style="color: #002347">Asal Sekolah</label></strong>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" name="asal_sekolah" id="asal_sekolah" required value="<?php echo set_value('asal_sekolah'); ?>"/>
+                                    <?php echo form_error('asal_sekolah'); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 offset-lg-1">
+                                    <strong><label style="color: #002347">Telepon</label></strong>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="number" class="form-control" name="telepon" id="telepon" required value="<?php echo set_value('telepon'); ?>"/>
+                                    <?php echo form_error('telepon'); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 offset-lg-1">
+                                    <strong><label style="color: #002347">Telepon Orang Tua</label></strong>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="number" class="form-control" name="telepon_ortu" id="telepon_ortu" required value="<?php echo set_value('telepon_ortu'); ?>"/>
+                                    <?php echo form_error('telepon_ortu'); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 offset-lg-1">
+                                    <strong><label style="color: #002347">Email</label></strong>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="email" class="form-control" name="email_pendaftaran" id="email_pendaftaran" onchange="cek_email()" required value="<?php echo set_value('email_pendaftaran'); ?>"/>
+                                    <div style="margin-bottom: -10px"><span class="notif_email" style="color: red;font-size: 12" id="notif_email"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 offset-lg-1">
+                                    <strong><label style="color: #002347">Jenjang Kelas</label></strong>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-select-list">
+                                        <select class="form-control custom-select-value" name="jenjang" id="jenjang" required>
+                                            <option value="">-Pilih Jenjang Kelas-</option>
+                                            <?php
+                                            foreach ($jkelas as $jenjang) { ?>
+                                            <option value="<?php echo $jenjang->ID_JENJANG;?>"><?php echo $jenjang->NAMA_JENJANG;?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 offset-lg-1">
+                                    <strong><label style="color: #002347">Jenis Kelamin</label></strong>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-select-list">
+                                        <select class="form-control custom-select-value" name="jk" id="jk" required>
+                                            <option value="">- Pilih Jenis Kelamin -</option>
+                                            <option value="L">Laki-Laki</option>
+                                            <option value="P">Perempuan</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="login-btn">
+                                <div class="row">
+                                    <div class="col-lg-4"></div>
+                                    <div class="col-lg-6">
+                                        <div class="login-horizental cancel-wp pull-left">
+                                            <button type="reset" class="btn btn-danger" name="Batal">Batal</button>&nbsp;
+                                            <button type="submit" class="btn btn-primary" name="simpan" id="btn_daftar" disabled>Daftar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -321,30 +342,35 @@
     <div class="section_gap registration_area" id="cetak_invoice">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-lg-5">
+          <div class="col-lg-8">
             <div class="main_title">
-              <h3 class="text-white">Download bukti pendaftaran</h3>
+              <h2 class="text-white">Download bukti pendaftaran</h2>
             </div>
           </div>
         </div>
-        <div class="row align-items-center">
-          <div class="col-lg-8 offset-lg-2">
-            <div class="register_form">
-              <form class="form_area" id="form-invoice" action="<?php echo base_url('Cetak/bukti_pendaftaran_siswa_baru')?>" method="POST">
+        <div class="row">
+          <div class="col-lg-6 offset-lg-3">
+            <div class="card">
+              <div class="card-body">
                 <div class="row">
-                  <div class="col-lg-12">
-                    <input type="email" name="email" id="email" placeholder="Masukkan email anda" onchange="cekData()" />
-                  </div>
-                  <div class="col-lg-12 form_group">
-                    <label>
-                      <p id="keterangan"></p>
-                    </label>
-                  </div>
-                  <div class="col-lg-12 text-center">
-                    <button class="btn btn-primary" id="btncetak" disabled>Cetak</button>
+                  <div class="col-lg-12 mt-5">
+                    <form class="form_area" id="form-invoice" action="<?php echo base_url('Pendaftaran/cetak_bukti_pendaftaran_siswa_baru')?>" method="POST">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <input class="form-control" type="email" name="email" id="email" placeholder="Masukkan email anda" onchange="cek_data_pendaftaran()" />
+                        </div>
+                        <div class="col-lg-12 form_group">
+                          <center><label id="keterangan">
+                          </label></center>
+                        </div>
+                        <div class="col-lg-12 text-center">
+                          <button class="btn btn-primary" id="btncetak" disabled>Cetak</button>
+                        </div>
+                      </div>
+                    </form>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -459,80 +485,16 @@
     <!--================ End Trainers Area =================-->
 
     <!--================ Start Events Area =================-->
-    <div class="events_area">
+    <div class="events_area"  id="">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <div class="main_title">
-              <h2 class="mb-3 text-white">Upcoming Events</h2>
-              <p>
-                Replenish man have thing gathering lights yielding shall you
-              </p>
+              <h2 class="mb-3 text-white">//////</h2>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-6 col-md-6">
-            <div class="single_event position-relative">
-              <div class="event_thumb">
-                <img src="<?php echo base_url('assets/img/event/e1.jpg')?>" alt="" />
-              </div>
-              <div class="event_details">
-                <div class="d-flex mb-4">
-                  <div class="date"><span>15</span> Jun</div>
-
-                  <div class="time-location">
-                    <p>
-                      <span class="ti-time mr-2"></span> 12:00 AM - 12:30 AM
-                    </p>
-                    <p>
-                      <span class="ti-location-pin mr-2"></span> Hilton Quebec
-                    </p>
-                  </div>
-                </div>
-                <p>
-                  One make creepeth man for so bearing their firmament won't
-                  fowl meat over seas great
-                </p>
-                <a href="#" class="primary-btn rounded-0 mt-3">View Details</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="single_event position-relative">
-              <div class="event_thumb">
-                <img src="<?php echo base_url('assets/img/event/e2.jpg')?>" alt="" />
-              </div>
-              <div class="event_details">
-                <div class="d-flex mb-4">
-                  <div class="date"><span>15</span> Jun</div>
-
-                  <div class="time-location">
-                    <p>
-                      <span class="ti-time mr-2"></span> 12:00 AM - 12:30 AM
-                    </p>
-                    <p>
-                      <span class="ti-location-pin mr-2"></span> Hilton Quebec
-                    </p>
-                  </div>
-                </div>
-                <p>
-                  One make creepeth man for so bearing their firmament won't
-                  fowl meat over seas great
-                </p>
-                <a href="#" class="primary-btn rounded-0 mt-3">View Details</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-12">
-            <div class="text-center pt-lg-5 pt-3">
-              <a href="#" class="event-link">
-                View All Event <img src="<?php echo base_url('assets/img/next.png')?>" alt="" />
-              </a>
-            </div>
-          </div>
-        </div>
+        <!--  -->
       </div>
     </div>
     <!--================ End Events Area =================-->
@@ -689,145 +651,6 @@
     </footer>
     <!--================ End footer Area  =================-->
 
-<!--================ Modal Form Pendaftaran  =================-->
-<div class="modal fade" id="modal_pendaftaran" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLongTitle" align="center">Formulir Pendaftaran Siswa Baru</h3>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="form-pendaftaran" action="<?php echo base_url('Pendaftaran/tambah_pendaftaran_siswa_baru')?>" method="POST">
-            <div class="form-group-inner">
-                <div class="row">
-                    <div class="col-lg-3 offset-lg-1 mt-3">
-                        <label class="login2 pull-right pull-right-pro">Nama Lengkap</label>
-                    </div>
-                    <div class="col-lg-6 mt-2">
-                        <input type="text" class="form-control" name="nama" id="nama" required />
-                    </div>
-                </div>
-            </div>
-            <div class="form-group-inner">
-                <div class="row">
-                    <div class="col-lg-3 offset-lg-1 mt-3">
-                        <label class="login2 pull-right pull-right-pro">Alamat</label>
-                    </div>
-                    <div class="col-lg-6 mt-2">
-                        <input type="text" class="form-control" name="alamat" id="alamat" required/>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group-inner">
-                <div class="row">
-                    <div class="col-lg-3 offset-lg-1 mt-3">
-                        <label class="login2 pull-right pull-right-pro">Tanggal Lahir</label>
-                    </div>
-                    <div class="col-lg-6 mt-2">
-                        <input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir" required/>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group-inner">
-                <div class="row">
-                    <div class="col-lg-3 offset-lg-1 mt-3">
-                        <label class="login2 pull-right pull-right-pro">Asal Sekolah</label>
-                    </div>
-                    <div class="col-lg-6 mt-2">
-                        <input type="text" class="form-control" name="asal_sekolah" id="asal_sekolah" required/>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group-inner">
-                <div class="row">
-                    <div class="col-lg-3 offset-lg-1 mt-3">
-                        <label class="login2 pull-right pull-right-pro">Nomor Telepon</label>
-                    </div>
-                    <div class="col-lg-6 mt-2">
-                        <input type="number" class="form-control" name="telepon" id="telepon" required/>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group-inner">
-                <div class="row">
-                    <div class="col-lg-3 offset-lg-1 mt-3">
-                        <label class="login2 pull-right pull-right-pro">No.Telp Orang Tua</label>
-                    </div>
-                    <div class="col-lg-6 mt-2">
-                        <input type="number" class="form-control" name="telepon_ortu" id="telepon_ortu" required/>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group-inner">
-                <div class="row">
-                    <div class="col-lg-3 offset-lg-1 mt-3">
-                        <label class="login2 pull-right pull-right-pro">Email</label>
-                    </div>
-                    <div class="col-lg-6 mt-2">
-                        <input type="email" class="form-control" name="email" id="email" required/>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group-inner">
-                <div class="row">
-                    <div class="col-lg-3 offset-lg-1 mt-3">
-                        <label class="login2 pull-right pull-right-pro">Jenjang Kelas</label>
-                    </div>
-                    <div class="col-lg-6 mt-2">
-                        <div class="form-select-list">
-                            <select class="form-control custom-select-value" name="jenjang" id="jenjang" required>
-                                <option value="">-Pilih Jenjang Kelas-</option>
-                                <?php
-                                foreach ($jkelas as $jenjang) { ?>
-                                <option value="<?php echo $jenjang->ID_JENJANG;?>"><?php echo $jenjang->NAMA_JENJANG;?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group-inner">
-                <div class="row">
-                    <div class="col-lg-3 offset-lg-1 mt-3">
-                        <label class="login2 pull-right pull-right-pro">Jenis Kelamin</label>
-                    </div>
-                    <div class="col-lg-6 mt-2">
-                        <div class="form-select-list">
-                            <select class="form-control custom-select-value" name="jk" id="jk" required>
-                                <option value="">- Pilih Jenis Kelamin -</option>
-                                <option value="L">Laki-Laki</option>
-                                <option value="P">Perempuan</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group-inner">
-                <div class="login-btn-inner">
-                    <div class="row">
-                        <div class="col-lg-4 mt-3"></div>
-                        <div class="col-lg-6 mt-3">
-                            <div class="login-horizental cancel-wp pull-left">
-                                <button type="reset" class="btn btn-danger" name="Batal">Batal</button>&nbsp;
-                                <button type="submit" class="btn btn-primary" name="simpan" id="btn_simpan">Daftar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--================ Modal Form Pendaftaran  =================-->
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -848,30 +671,65 @@
 
     
   </body>
+
+<script >
+    function cek_data_pendaftaran(){
+          var email = document.getElementById('email').value;
+          var btn = document.getElementById('btncetak');
+          $.ajax({
+              url : "<?php echo base_url('Pendaftaran/cek_pendaftaran')?>",
+              method: "POST",
+              dataType :"json",
+              data: {
+              email : email
+              },
+              success : function(data){
+                  var html = '';
+                  if (data.length > 0) {
+                      document.getElementById('keterangan').innerHTML = "Data ditemukan";
+                      btn.disabled = false;
+                  }else{
+                      document.getElementById('keterangan').innerHTML = "Data tidak ditemukan, silahkan masukkan email dengan benar";
+                      btn.disabled = true;
+                  }
+              }
+          });
+      }
+
+      function cek_email(){
+          var email = document.getElementById('email_pendaftaran').value;
+          var btn = document.getElementById('btn_daftar');
+          $.ajax({
+              url : "<?php echo base_url('Pendaftaran/cek_email')?>",
+              method: "POST",
+              dataType :"json",
+              data: {
+              email : email
+              },
+              success : function(data){
+                console.log(data);
+                  var html = '';
+                  if (data.length > 0) {
+                      document.getElementById('notif_email').innerHTML = "*email sudah terdaftar";
+                      btn.disabled = true;
+                  }else{
+                      document.getElementById('notif_email').innerHTML = "";
+                      btn.disabled = false;
+                  }
+              }
+          });
+      }
+
+      function validasi_nama() {
+        var nama = document.getElementById('nama').value;
+        if (nama.length > 30) {
+            $('.notif_nama').show();
+            document.getElementById('notif_nama').innerHTML = "*nama maksimal 30 karakter";
+        }
+      }
+
+</script>
+
 </html>
 
-<script type="text/javascript">
 
-    function cekData(){
-        var em = document.getElementById('email').value;
-        var btn = document.getElementById('btncetak');
-        $.ajax({
-            url : "<?php echo base_url('Pendaftaran/cek_pendaftaran')?>",
-            method: "POST",
-            dataType :"json",
-            data: {
-            email : em
-            },
-            success : function(data){
-                if (data.length > 0) {
-                    document.getElementById('keterangan').innerHTML = "Data ditemukan";
-                    btn.disabled = false;
-                }else{
-                    document.getElementById('keterangan').innerHTML = "Data tidak ditemukan, silahkan masukkan email dengan benar";
-                    btn.disabled = true;
-                }
-            }
-        });
-    }
-
-    </script>

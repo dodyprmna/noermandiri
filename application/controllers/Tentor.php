@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-    class Tentor extends CI_Controller {
+class Tentor extends CI_Controller {
 
         function __construct(){
         parent::__construct();
@@ -12,19 +12,35 @@
         function index(){
             //jika sebagai admin
             if($this->session->userdata('akses') == 'admin'){
+                $this->load->model('M_tentor');
                 //pagination
                 $this->load->library('pagination');
 
-                //config
-                $config[base_url] = 'http://localhost/LBBnoermandiri'
+                // filter search
+                if ($this->input->post('submit')) {
+                    $d['keyword'] = $this->input->post('keyword');
+                }else{
+                    $d['keyword'] = null;
+                }
 
-                $this->load->model('M_tentor');
-                $rows = $this->M_tentor->tampilkanSemua()->result();
+                //config
+                $config['base_url'] = 'http://localhost/LBBNoermandiri/Tentor/index';
+                $this->db->like('NAMA_TENTOR',$d['keyword']);
+                $this->db->from('tentor');
+                $config['total_rows'] = $this->db->count_all_results();
+                $config['per_page'] = 5;
+
+                //initialize
+                $this->pagination->initialize($config);
+
+                $dataa['start'] = $this->uri->segment(3);
+                $rows = $this->M_tentor->tampilkanSemua($config['per_page'],$dataa['start'],$d['keyword'])->result();
                 $data = array(
                         'tentor'     => $rows,
         	            'title'     => 'Data Tentor',
         	            'content'   => 'tabel/t_tentor',
         	            'judul'     => 'Data Tentor',
+                        'start'     => $this->uri->segment(3)
         	        );
         	        $this->load->view('layout', $data);
             }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
@@ -35,8 +51,8 @@
             //jika sebagai admin
             if($this->session->userdata('akses') == 'admin'){
             $this->load->library('form_validation');            
-            $this->load->model('M_mata_pelajaran');
-            $mata_ajar = $this->M_mata_pelajaran->TampilkanSemua()->result();
+            $this->load->model('M_API');
+            $mata_ajar = $this->M_API->getAll('mata_pelajaran')->result();
             $data = array(
                 'mata_ajar' => $mata_ajar,
                 'judul'     => 'Form Tambah Data Tentor',
@@ -52,24 +68,24 @@
         public function aksiTambah(){
             if($this->session->userdata('akses') == 'admin'){
             //load library form validation
-            $this->form_validation->set_error_delimiters('<div style="color:red; margin-bottom: 5px">', '</div>');
+            $this->form_validation->set_error_delimiters('<div style="margin-bottom:-10px"><span style="color:red;font-size:12px">', '</span></div>');
 
             //rules validasi
             $this->form_validation->set_rules('nama', 'nama', 'required|max_length[30]',[
-                'required' =>'Nama tidak boleh kosong',
-                'max_length'=> 'Nama maksimal 30 karakter']);
+                'required' =>'*nama tidak boleh kosong',
+                'max_length'=> '*nama maksimal 30 karakter']);
             $this->form_validation->set_rules('alamat', 'alamat', 'required|max_length[50]',[
-                'required' =>'Alamat tidak boleh kosong',
-                'max_length'=> 'Alamat maksimal 50 karakter']);
+                'required' =>'*alamat tidak boleh kosong',
+                'max_length'=> '*lamat maksimal 50 karakter']);
             $this->form_validation->set_rules('tgl_lahir', 'tgl_lahir', 'required',[
-                'required' =>'Tanggal lahir tidak boleh kosong']);
+                'required' =>'*tanggal lahir tidak boleh kosong']);
             $this->form_validation->set_rules('notelp', 'notelp', 'required|max_length[13]|numeric',[
-                'required' =>'Telepon tidak boleh kosong',
-                'max_length'=> 'Telepon maksimal 13 karakter']);
+                'required' =>'*telepon tidak boleh kosong',
+                'max_length'=> '*telepon maksimal 13 karakter']);
             $this->form_validation->set_rules('email', 'email', 'required|max_length[50]',[
-                'required' =>'Email tidak boleh kosong',
-                'max_length'=> 'Email maksimal 50 karakter']);
-            $this->form_validation->set_rules('mapel','mapel', 'required',['required' => 'Mata pelajaran tidak boleh kosong']);
+                'required' =>'*email tidak boleh kosong',
+                'max_length'=> '*email maksimal 50 karakter']);
+            $this->form_validation->set_rules('mapel','mapel', 'required',['required' => '*mata pelajaran tidak boleh kosong']);
 
                 if ($this->form_validation->run() == FALSE) {
                     //jika validasi gagal maka akan kembali ke form tambah jadwal
@@ -77,21 +93,20 @@
                     } else {    
                     //jika validasi berhasil
                         $data = array(
-                            'ID_PEGAWAI'          => '',
+                            'ID_TENTOR'           => '',
                             'ID_MAPEL'            => $this->input->post('mapel', TRUE),
-                            'ID_JABATAN'          => 'TNTR',
-                            'NAMA_PEGAWAI'        => $this->input->post('nama', TRUE),
-                            'ALAMAT_PEGAWAI'      => $this->input->post('alamat', TRUE),
-                            'TGL_LAHIR_PEG'       => $this->input->post('tgl_lahir', TRUE),
-                            'NOTELP_PEGAWAI'      => $this->input->post('notelp', TRUE),
-                            'EMAIL'               => $this->input->post('email', TRUE),
-                            'LEVEL'               => '3',
-                            'STATUS'              => '1',
-                            'PASSWORD_PEGAWAI'    => MD5($this->input->post('notelp', TRUE)),
+                            'NAMA_TENTOR'         => $this->input->post('nama', TRUE),
+                            'JK_TENTOR'           => $this->input->post('jk', TRUE),
+                            'ALAMAT_TENTOR'       => $this->input->post('alamat', TRUE),
+                            'TGL_LAHIR_TENTOR'    => $this->input->post('tgl_lahir', TRUE),
+                            'NOTELP_TENTOR'       => $this->input->post('notelp', TRUE),
+                            'EMAIL_TENTOR'        => $this->input->post('email', TRUE),
+                            'PASSWORD_TENTOR'     => MD5($this->input->post('notelp', TRUE)),
+                            'STATUS_TENTOR'       => '1',
 
                         );
-                        $this->load->model('M_pegawai');
-                        $this->M_pegawai->tambah($data);
+                        $this->load->model('M_API');
+                        $this->M_API->saveData('tentor',$data);
                         $this->session->set_flashdata('flash','Disimpan');
 
                         redirect(site_url('Tentor'));
@@ -105,7 +120,7 @@
         public function update(){
             if($this->session->userdata('akses') == 'admin'){
             //load library form validation
-            $this->form_validation->set_error_delimiters('<div style="color:red; margin-bottom: 5px">', '</div>');
+            $this->form_validation->set_error_delimiters('<div style="margin-bottom:-10px"><span style="color:red;font-size:12px">', '</span></div>');
 
             //rules validasi
             $this->form_validation->set_rules('nama_edit', 'NAMA', 'required|max_length[30]',[
@@ -131,15 +146,15 @@
                     //jika validasi berhasil
                         $id = $this->input->post('id_edit', TRUE);
                         $data = array(
-                            'NAMA_PEGAWAI'          => $this->input->post('nama_edit', TRUE),
-                            'ALAMAT_PEGAWAI'        => $this->input->post('alamat_edit', TRUE),
-                            'TGL_LAHIR_PEG'         => $this->input->post('tgl_lahir_edit', TRUE),
-                            'NOTELP_PEGAWAI'        => $this->input->post('notelp_edit', TRUE),
-                            'EMAIL'                 => $this->input->post('email_edit', TRUE),
-                            'STATUS'                => $this->input->post('status_edit', TRUE)
+                            'NAMA_TENTOR'           => $this->input->post('nama_edit', TRUE),
+                            'ALAMAT_TENTOR'         => $this->input->post('alamat_edit', TRUE),
+                            'TGL_LAHIR_TENTOR'      => $this->input->post('tgl_lahir_edit', TRUE),
+                            'NOTELP_TENTOR'         => $this->input->post('notelp_edit', TRUE),
+                            'EMAIL_TENTOR'          => $this->input->post('email_edit', TRUE),
+                            'STATUS_TENTOR'         => $this->input->post('status_edit', TRUE)
                         );
-                        $this->load->model('M_pegawai');
-                        $this->M_pegawai->update($data, $id);
+                        $this->load->model('M_tentor');
+                        $this->M_tentor->update($data, $id);
                         $this->session->set_flashdata('flash','ubah');
 
                         redirect(site_url('Tentor'));

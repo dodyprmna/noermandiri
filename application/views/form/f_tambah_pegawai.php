@@ -16,12 +16,6 @@
                         <div class="card-header">
                             <div class="card-title"><?php echo $judul?></div>
                         </div>
-                        <?php if (validation_errors()) : ?>
-                                        <div class="alert alert-danger">
-                                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                            <?php echo validation_errors(); ?>
-                                        </div>
-                            <?php endif; ?>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-12">
@@ -34,7 +28,8 @@
                                                     <label>Nama Lengkap</label>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input type="text" class="form-control" name="nama" id="nama" required/>
+                                                    <input type="text" class="form-control" name="nama" id="nama" required value="<?php echo set_value('nama'); ?>"/>
+                                                    <?php echo form_error('nama'); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -46,7 +41,26 @@
                                                     <label>Alamat Lengkap</label>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input type="text" class="form-control" name="alamat" id="alamat" required/>
+                                                    <input type="text" class="form-control" name="alamat" id="alamat" required value="<?php echo set_value('alamat'); ?>"/>
+                                                    <?php echo form_error('alamat'); ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-lg-1">
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <label>Jenis Kelamin</label>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-select-list">
+                                                        <select class="form-control" name="jk" id="jk" required>
+                                                            <option value="">-Pilih Jenis Kelamin-</option>
+                                                                <option value="L">Laki-Laki</option>
+                                                                <option value="L">Perempuan</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -58,7 +72,8 @@
                                                     <label>Tanggal Lahir</label>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir" required/>
+                                                    <input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir" value="<?php echo set_value('tgl_lahir'); ?>" required/>
+                                                    <?php echo form_error('tgl_lahir'); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -70,7 +85,8 @@
                                                     <label>Nomor Telepon</label>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input type="text" class="form-control" name="notelp" id="notelp" required/>
+                                                    <input type="text" class="form-control" name="notelp" id="notelp" value="<?php echo set_value('notelp'); ?>" required/>
+                                                    <?php echo form_error('notelp'); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -82,7 +98,8 @@
                                                     <label>Email</label>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input type="email" class="form-control" name="email" id="email" required/>
+                                                    <input type="email" class="form-control" name="email" id="email" value="<?php echo set_value('email'); ?>" required/>
+                                                    <?php echo form_error('email'); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -91,24 +108,19 @@
                                                 <div class="col-lg-1">
                                                 </div>
                                                 <div class="col-lg-3">
-                                                    <label>Jabatan</label>
+                                                    <label>Level</label>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-select-list">
-                                                        <select class="form-control" name="jabatan" id="jabatan" onchange="cekJabatan()" required>
-                                                            <option value="">-Pilih Jabatan-</option>
-                                                            <?php
-                                                            foreach ($jabatan as $jab) { ?>
-                                                                <option value="<?php echo $jab->ID_JABATAN;?>"><?php echo $jab->JABATAN;?></option>
-                                                            <?php
-                                                            }
-                                                            ?>
+                                                        <select class="form-control" name="level" id="level" required>
+                                                            <option value="">-Pilih Level-</option>
+                                                            <option value="1">Admin</option>
+                                                            <option value="2">Pemilik</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <input type="hidden" name="level" id="level" value="">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-lg-4"></div>

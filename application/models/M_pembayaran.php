@@ -13,15 +13,22 @@ class M_pembayaran extends CI_Model {
 		return $query;
     }
 
-    public function get_pembayaran_daftar_siswa_baru()
+    public function cekPembayaranDaftarUlang($id_daftar_ulang)
     {
-    	$query=$this->db->query("SELECT *FROM pembayaran ORDER BY ID_PEMBAYARAN DESC");
-		return $query;
+        $query=$this->db->query("SELECT *FROM pembayaran_daftar_ulang WHERE ID_DAFTAR_ULANG = '$id'");
+        return $query;
     }
 
-    public function get_pembayaran_daftar_ulang()
+    public function get_pembayaran_daftar_siswa_baru($limit,$start,$keyword)
     {
-    	$query=$this->db->query("SELECT *FROM pembayaran_daful ORDER BY ID_PEMBAYARAN_DAFUL DESC");
+        if ($keyword) {
+            $this->db->like('NO_PENDAFTARAN',$keyword);
+        }
+    	$this->db->SELECT('*');
+        $this->db->FROM('pembayaran');
+        $this->db->ORDER_BY('ID_PEMBAYARAN', 'DESC');
+        $this->db->limit($limit,$start);
+        $query = $this->db->get();
 		return $query;
     }
 

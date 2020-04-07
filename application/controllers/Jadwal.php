@@ -11,76 +11,22 @@
         }
         function index(){
             //jika sebagai admin
-            $month ='';
-            $periode = date('m-Y');
-            $tahun = date('Y');
-            $bulan     = date('m');
-                if ($bulan == '01') {
-                    $bln = ' Bulan Januari '.$tahun;
-                }elseif ($bulan == '02') {
-                    $bln = ' Bulan Februari '.$tahun;
-                }elseif ($bulan == '03') {
-                    $bln = ' Bulan Maret '.$tahun;
-                }elseif ($bulan == '04') {
-                    $bln = ' Bulan April '.$tahun;
-                }elseif ($bulan == '05') {
-                    $bln = ' Bulan Mei '.$tahun;
-                }elseif ($bulan == '06') {
-                    $bln = ' Bulan Juni '.$tahun;
-                }elseif ($bulan == '07') {
-                    $bln = ' Bulan Juli '.$tahun;
-                }elseif ($bulan == '08') {
-                    $bln = ' Bulan Agustus '.$tahun;
-                }elseif ($bulan == '09') {
-                    $bln = ' Bulan September '.$tahun;
-                }elseif ($bulan == '10') {
-                    $bln = ' Bulan Oktober '.$tahun;
-                }elseif ($bulan == '11') {
-                    $bln = ' Bulan November '.$tahun;
-                }elseif ($bulan == '12') {
-                    $bln = ' Bulan Desember '.$tahun;
-                }else{
-                    $bln = ' ';
-                }
             if($this->session->userdata('akses') == 'admin'){
-                $this->load->model('M_jadwal_les');
                 $this->load->model('M_kelas');
-                $this->load->library('form_validation');
-                $this->load->model('M_jadwal_les');
-                $this->load->model('M_ruangan');
-                $this->load->model('M_mata_pelajaran');
-                $this->load->model('M_pegawai');
-                $this->load->model('M_waktu');
-                $ruangan    = $this->M_ruangan->TampilkanSemua()->result();
-                $mata_ajar  = $this->M_mata_pelajaran->TampilMapel()->result();
-                $pengajar   = $this->M_pegawai->tampilTentor()->result();
-                $waktu      = $this->M_waktu->TampilkanSemua()->result();
                 $kelombel   = $this->M_kelas->TampilkanSemua()->result();
-                $rows = $this->M_jadwal_les->getByBulan($periode)->result();
                 $data = array(
-                        'jdwl'      => $rows,
-        	            'title'     => 'Jadwal Les',
-        	            'content'   => 'tabel/t_jadwal',
-        	            'judul'     => 'Jadwal Les',
-                        'bln'       => $bln,
-                        'kelombel'  => $kelombel,
-                        'waktu'     => $waktu,
-                        'ruangan'   => $ruangan,
-                        'mata_ajar' => $mata_ajar,
-                        'pengajar'  => $pengajar,
-        	        );
-        	        $this->load->view('layout', $data);
+                        'title'     => 'Jadwal Les',
+                        'content'   => 'tabel/t_jadwal',
+                        'judul'     => 'Jadwal Les',
+                        'kelombel'  => $kelombel
+                    );
+                    $this->load->view('layout', $data);
             //jika sebagai tentor
             }elseif ($this->session->userdata('akses') == 'tentor') {
-                $this->load->model('M_jadwal_les');
-                $id = $this->session->userdata('ses_id');
-                $rows = $this->M_jadwal_les->getJadwalTentorByBulan($id)->result();
                 $data = array(
-                        'jdwl'  => $rows,
-                        'title' => 'Jadwal Les',
+                        'title' => 'Jadwal Mengajar',
                         'content' => 'tabel/t_jadwal_tentor',
-                        'judul' => 'Jadwal Les',
-                        'bln'     => $bln,
+                        'judul' => 'Jadwal Mengajar',
                     );
                     $this->load->view('layout', $data);
             //jika sebagai siswa
@@ -93,7 +39,6 @@
                         'title'   => 'Jadwal Les',
                         'content' => 'tabel/t_jadwal_siswa',
                         'judul'   => 'Jadwal Les',
-                        'bln'     => $bln, 
                     );
                     $this->load->view('layout', $data);
             }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
@@ -105,22 +50,12 @@
             if($this->session->userdata('akses') == 'admin'){
             $this->load->library('form_validation');
             $this->load->model('M_jadwal_les');
-            $this->load->model('M_ruangan');
-            $this->load->model('M_mata_pelajaran');
-            $this->load->model('M_kelas');
-            $this->load->model('M_pegawai');
-            $this->load->model('M_waktu');
-            $ruangan    = $this->M_ruangan->TampilkanSemua()->result();
-            $kelombel   = $this->M_kelas->TampilkanSemua()->result();
-            $mata_ajar  = $this->M_mata_pelajaran->TampilMapel()->result();
-            $pengajar   = $this->M_pegawai->tampilTentor()->result();
-            $waktu      = $this->M_waktu->TampilkanSemua()->result();
+            $this->load->model('M_API');
+            $mata_ajar  = $this->M_API->getAll('mata_pelajaran')->result();
+            $sesi       = $this->M_API->getAll('sesi')->result();
             $data = array(
-                'waktu'     => $waktu,
-                'ruangan'   => $ruangan,
-                'kelombel'  => $kelombel,
+                'sesi'     => $sesi,
                 'mata_ajar' => $mata_ajar,
-                'pengajar'  => $pengajar,
                 'judul'     => 'Form Tambah Jadwal Les',
                 'title'     => 'Input Jadwal Les',
                 'content'   => 'form/f_jadwal',
@@ -134,14 +69,15 @@
         public function aksiTambah(){
             if($this->session->userdata('akses') == 'admin'){
             //load library form validation
-            $this->form_validation->set_error_delimiters('<div style="color:red; margin-bottom: 5px">', '</div>');
+             $this->load->library('form_validation');
+            $this->form_validation->set_error_delimiters('<div style="margin-bottom:-10px"><span style="color:red;font-size:12px">', '</span></div>');
 
             //rules validasi
             $this->form_validation->set_rules('kelas', 'ID_KELAS', 'required',['required' => 'Kelas tidak boleh kosong']);
             $this->form_validation->set_rules('mapel', 'ID_MAPEL', 'required',['required' => 'Mapel tidak boleh kosong']);
-            $this->form_validation->set_rules('tentor','ID_PEGAWAI', 'required',['required' => 'Tentor tidak boleh kosong']);
+            $this->form_validation->set_rules('tentor','ID_TENTOR', 'required',['required' => 'Tentor tidak boleh kosong']);
             $this->form_validation->set_rules('ruangan', 'ID_RUANGAN', 'required',['required' => 'Ruangan tidak boleh kosong']);
-            $this->form_validation->set_rules('waktu', 'ID_WAKTU', 'required',['required' => 'Jam tidak boleh kosong']);
+            $this->form_validation->set_rules('sesi', 'ID_WAKTU', 'required',['required' => 'Jam tidak boleh kosong']);
             $this->form_validation->set_rules('tanggal', 'TANGGAL', 'required',['required' => 'Tanggal tidak boleh kosong']);
 
                 if ($this->form_validation->run() == FALSE) {
@@ -156,11 +92,11 @@
                         $id = $tgl.$bulan.$tahun;
                         $data = array(
                             'ID_JADWAL'   => 'J'.$this->input->post('kelas').$id,
-                            'ID_PEGAWAI'  => $this->input->post('tentor', TRUE),
+                            'ID_TENTOR'   => $this->input->post('tentor', TRUE),
                             'ID_MAPEL'    => $this->input->post('mapel', TRUE),
                             'ID_KELAS'    => $this->input->post('kelas', TRUE),
                             'ID_RUANGAN'  => $this->input->post('ruangan', TRUE),
-                            'ID_WAKTU'    => $this->input->post('waktu', TRUE),
+                            'ID_SESI'     => $this->input->post('sesi', TRUE),
                             'TANGGAL'     => $this->input->post('tanggal', TRUE),
                         );
 
@@ -179,8 +115,8 @@
         public function cekTentor(){
             $waktu = $this->input->post('time',TRUE);
             $tanggal = $this->input->post('tgl',TRUE);
-            $this->load->model('M_pegawai');
-            $data=$this->M_pegawai->getTentorTersedia($waktu,$tanggal)->result();
+            $this->load->model('M_tentor');
+            $data=$this->M_tentor->getTentorTersedia($waktu,$tanggal)->result();
             echo json_encode($data);
         }
 
@@ -199,11 +135,27 @@
             echo json_encode($data);
         }
 
-        public function getJadwalByKelas(){
-            $bulan     = date('m');
-            $kelas = $this->input->post('kls',TRUE);
+        public function getJadwalByFilter(){
+            $periode     = $this->input->post('periode',TRUE);
+            $kelas       = $this->input->post('kls',TRUE);
             $this->load->model('M_jadwal_les');
-            $data = $this->M_jadwal_les->getByKelas($bulan,$kelas)->result();
+            $data = $this->M_jadwal_les->getByFilter($periode,$kelas)->result();
+            echo json_encode($data);
+        }
+
+        public function getJadwalSiswaByFilter(){
+            $periode     = $this->input->post('periode',TRUE);
+            $kelas       = $this->session->userdata('ses_kelas');
+            $this->load->model('M_jadwal_les');
+            $data = $this->M_jadwal_les->getJadwalSiswaByFilter($periode,$kelas)->result();
+            echo json_encode($data);
+        }
+
+        public function getJadwalTentorByFilter(){
+            $periode     = $this->input->post('periode',TRUE);
+            $id          = $this->session->userdata('ses_id');
+            $this->load->model('M_jadwal_les');
+            $data = $this->M_jadwal_les->getJadwalTentorByFilter($periode,$id)->result();
             echo json_encode($data);
         }
 

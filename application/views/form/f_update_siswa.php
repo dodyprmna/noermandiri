@@ -12,12 +12,6 @@
         <div class="page-inner mt--5">
             <div class="row">
                 <div class="col-md-12">
-                <?php if (validation_errors()) : ?>
-                                        <div class="alert alert-danger">
-                                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                            <?php echo validation_errors(); ?>
-                                        </div>
-                            <?php endif; ?>
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title"><?php echo $judul?></div>
@@ -25,7 +19,8 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form action="<?php echo base_url('Siswa/simpan')?>" method="POST">
+                                    <form action="<?php echo base_url('Siswa/update_kelas')?>" method="POST">
+                                        <input type="hidden" name="no_induk" value="<?php echo $siswa[0]->NO_INDUK?>">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-lg-1">
@@ -34,7 +29,7 @@
                                                     <label>Nama Lengkap</label>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input type="text" class="form-control" name="nama" id="nama" value="<?php echo $nama?>" required />
+                                                    <input type="text" class="form-control" name="nama" id="nama" value="<?php echo $siswa[0]->NAMA_SISWA?>" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -46,7 +41,7 @@
                                                     <label>Alamat</label>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input type="text" class="form-control" name="alamat" id="alamat" value="<?php echo $alamat?>" required/>
+                                                    <input type="text" class="form-control" name="alamat" id="alamat" value="<?php echo $siswa[0]->ALAMAT_SISWA?>" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -58,7 +53,7 @@
                                                     <label>Tanggal Lahir</label>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir" value="<?php echo $tgl_lahir?>" required/>
+                                                    <input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir" value="<?php echo $siswa[0]->TGL_LAHIR_SISWA?>" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -71,7 +66,7 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <select class="form-control" name="jk" id="mapel" >
-                                                        <?php if($jk = "L"){?>
+                                                        <?php if($siswa[0]->JK_SISWA = "L"){?>
                                                             <option value="L" selected>Laki-Laki</option>
                                                             <option value="P">Perempuan</option>
                                                         <?php }else{ ?>
@@ -90,7 +85,7 @@
                                                     <label>Email</label>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input type="email" class="form-control" name="email" id="email" value="<?php echo $email?>" required/>
+                                                    <input type="email" class="form-control" name="email" id="email" value="<?php echo $siswa[0]->EMAIL_SISWA?>" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -102,7 +97,7 @@
                                                     <label>Telepon</label>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input type="number" class="form-control" name="telp" id="telp" value="<?php echo $telp_siswa?>" required/>
+                                                    <input type="number" class="form-control" name="telp" id="telp" value="<?php echo $siswa[0]->NOTELP_SISWA?>" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -114,7 +109,7 @@
                                                     <label>Telepon Orang Tua</label>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input type="number" class="form-control" name="telp_ortu" id="telp_ortu" value="<?php echo $telp_ortu?>" required/>
+                                                    <input type="number" class="form-control" name="telp_ortu" id="telp_ortu" value="<?php echo $siswa[0]->NOTELP_ORTU_SISWA?>" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -126,7 +121,7 @@
                                                     <label>Asal Sekolah</label>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input type="text" class="form-control" name="asal_sekolah" id="asal_sekolah" value="<?php echo $sekolah?>" required/>
+                                                    <input type="text" class="form-control" name="asal_sekolah" id="asal_sekolah" value="<?php echo $siswa[0]->EMAIL_SISWA?>" required/>
                                                 </div>
                                             </div>
                                         </div>

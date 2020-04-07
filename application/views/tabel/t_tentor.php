@@ -15,7 +15,25 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="<?php echo base_url('Tentor/tambah')?>"><button type="button" class="btn btn-primary btn-round" >Tambah data</button></a>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <a href="<?php echo base_url('Tentor/tambah')?>"><button type="button" class="btn btn-primary btn-round" >Tambah data</button></a>
+                                </div>
+                                <div class="col-md-7">
+                                    <form action="<?php echo base_url('Tentor')?>" method="POST">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <input type="text" name="keyword" class="form-control" placeholder="Search......" autofocus/>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <input type="submit" class="btn btn-primary" name="submit"/>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                         <div class="table-responsive">
@@ -36,39 +54,34 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $nourut = 1;
                                     foreach ($tentor as $tntr) {
-                                        $id = $tntr->ID_PEGAWAI;
+                                        $id = $tntr->ID_TENTOR;
                                     ?>
                                     <tr>
-                                        <td><?php echo $nourut++;?></td>
-                                        <td><?php echo $tntr->ID_PEGAWAI; ?></td>
-                                        <td><?php echo $tntr->NAMA_PEGAWAI; ?></td>
+                                        <td><?php echo ++$start;?></td>
+                                        <td><?php echo $tntr->ID_TENTOR; ?></td>
+                                        <td><?php echo $tntr->NAMA_TENTOR; ?></td>
                                         <td><?php echo $tntr->NAMA_MAPEL; ?></td>
-                                        <td><?php echo $tntr->ALAMAT_PEGAWAI; ?></td>
-                                        <td><?php echo date("d-m-Y",strtotime($tntr->TGL_LAHIR_PEG)); ?></td>
-                                        <td><?php echo $tntr->NOTELP_PEGAWAI; ?></td>
-                                        <td><?php echo $tntr->EMAIL; ?></td>
-                                        <td><?php if($tntr->STATUS == 1){?>
+                                        <td><?php echo $tntr->ALAMAT_TENTOR; ?></td>
+                                        <td><?php echo date("d-m-Y",strtotime($tntr->TGL_LAHIR_TENTOR)); ?></td>
+                                        <td><?php echo $tntr->NOTELP_TENTOR; ?></td>
+                                        <td><?php echo $tntr->EMAIL_TENTOR; ?></td>
+                                        <td><?php if($tntr->STATUS_TENTOR == 1){?>
                                                 <center><p style="color: orange"><i class="fa fa-check-circle fa-2x"></i></p></center>
                                             <?php } else {?>
                                                 <center><p style="color: red"><i class="fa fa-times-circle fa-2x"></i></p></center>
                                             <?php }?>
                                         </td>
                                         <td>
-                                            <?php if($tntr->STATUS == 1){?>
-                                                <button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-pencil-alt"></i></button>
-                                            <?php } else {?>
-                                                <button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>" disabled><i class="fa fa-pencil-alt"></i></button>
-                                            <?php }?>
+                                            <button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-pencil-alt"></i></button>
                                         </td>
-
                                     </tr>
                                     <?php
                                     }
                                     ?>
                                 </tbody>
                             </table>
+                            <?php echo $this->pagination->create_links();?>
                         </div>
                     </div>
                 </div>
@@ -79,13 +92,13 @@
 <!-- Modal Edit-->
 <?php
     foreach($tentor as $t):
-        $id = $t->ID_PEGAWAI;
-        $nama = $t->NAMA_PEGAWAI;
-        $alamat = $t->ALAMAT_PEGAWAI;
-        $tgl_lahir = $t->TGL_LAHIR_PEG;
-        $notelp = $t->NOTELP_PEGAWAI;
-        $email = $t->EMAIL;
-        $status = $t->STATUS;
+        $id = $t->ID_TENTOR;
+        $nama = $t->NAMA_TENTOR;
+        $alamat = $t->ALAMAT_TENTOR;
+        $tgl_lahir = $t->TGL_LAHIR_TENTOR;
+        $notelp = $t->NOTELP_TENTOR;
+        $email = $t->EMAIL_TENTOR;
+        $status = $t->STATUS_TENTOR;
 ?>
 <div class="modal fade" id="modal_edit<?php echo $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

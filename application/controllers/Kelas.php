@@ -45,7 +45,8 @@
         public function aksiTambah(){
             if($this->session->userdata('akses') == 'admin'){
             //load library form validation
-            $this->form_validation->set_error_delimiters('<div style="color:red; margin-bottom: 5px">', '</div>');
+            $this->load->library('form_validation');
+            $this->form_validation->set_error_delimiters('<div style="margin-bottom:-10px"><span style="color:red;font-size:12px">', '</span></div>');
 
             //rules validasi
             $this->form_validation->set_rules('nama_kelas', 'NAMA KELAS', 'required|min_length[7]|max_length[7]',[

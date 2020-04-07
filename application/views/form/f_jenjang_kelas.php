@@ -12,12 +12,6 @@
         <div class="page-inner mt--5">
             <div class="row">
                 <div class="col-md-12">
-                <?php if (validation_errors()) : ?>
-                                        <div class="alert alert-danger">
-                                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                            <?php echo validation_errors(); ?>
-                                        </div>
-                            <?php endif; ?>
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title"><?php echo $judul?></div>
@@ -34,7 +28,8 @@
                                                     <label>Nama Jenjang</label>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="nama_jenjang" name="nama_jenjang" required/>
+                                                    <input type="text" class="form-control" id="nama_jenjang" name="nama_jenjang" required value="<?php echo set_value('nama_jenjang'); ?>" />
+                                                    <?php echo form_error('nama_jenjang'); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -46,7 +41,8 @@
                                                     <label>Biaya</label>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="biaya" name="biaya" required/>
+                                                    <input type="text" class="form-control" id="biaya" name="biaya" required value="<?php echo set_value('biaya'); ?>" />
+                                                    <?php echo form_error('biaya'); ?>
                                                 </div>
                                             </div>
                                         </div>

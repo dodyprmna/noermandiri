@@ -5,7 +5,7 @@
             <div class="page-inner py-5">
                 <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                     <div>
-                        <h2 class="text-white pb-2 fw-bold"><?php echo $judul?> <?php echo $bln;?></h2>
+                        <h2 class="text-white pb-2 fw-bold"><?php echo $judul?></h2>
                     </div>
                 </div>
             </div>
@@ -16,19 +16,46 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-md-9">
+                                <div class="col-md-3">
                                     <a href="<?php echo base_url('Jadwal/tambah')?>"><button type="button" class="btn btn-primary btn-round" >Tambah data</button></a>
                                 </div>
-                                <div class="col-md-3">
-                                    <select class="form-control custom-select-value" name="kelas" id="kelas" onchange="getJadwalByKelas();">
-                                        <option value="">-Pilih Kelas-</option>
-                                        <?php
-                                        foreach ($kelombel as $kelas) { ?>
-                                            <option value="<?php echo $kelas->ID_KELAS;?>"><?php echo $kelas->NAMA_KELAS;?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-4 mt-2">
+                                            <select class="form-control" name="kelas" id="kelas">
+                                                <option value="">-Pilih Kelas-</option>
+                                                <?php
+                                                foreach ($kelombel as $kelas) { ?>
+                                                    <option value="<?php echo $kelas->ID_KELAS;?>"><?php echo $kelas->NAMA_KELAS;?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mt-2">
+                                            <select class="form-control" name="periode" id="periode">
+                                                <?php
+                                                    date_default_timezone_set('Asia/Jakarta');
+                                                    $tahun = date("Y");
+                                                ?>
+                                                <option value="">-Pilih Bulan-</option>
+                                                <option value="01-<?php echo $tahun?>">Januari</option>
+                                                <option value="02-<?php echo $tahun?>">Februari</option>
+                                                <option value="03-<?php echo $tahun?>">Maret</option>
+                                                <option value="04-<?php echo $tahun?>">April</option>
+                                                <option value="05-<?php echo $tahun?>">Mei</option><option value="06-<?php echo $tahun?>">Juni</option>
+                                                <option value="07-<?php echo $tahun?>">Juli</option>
+                                                <option value="08-<?php echo $tahun?>">Agustus</option>
+                                                <option value="09-<?php echo $tahun?>">September</option>
+                                                <option value="10-<?php echo $tahun?>">Oktober</option>
+                                                <option value="11-<?php echo $tahun?>">November</option><option value="12-<?php echo $tahun?>">Desember</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2 mt-2">
+                                            <button class="btn btn-primary" id="btn_cari" onclick="getJadwal();">Cari</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -38,7 +65,7 @@
                                 <thead>
                                     <tr>
                                         <th>Tanggal</th>
-                                        <th>Waktu</th>
+                                        <th>Jam</th>
                                         <th>Kelas </th>
                                         <th>Mata Pelajaran</th>
                                         <th>Ruangan</th>
@@ -46,20 +73,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="show_data">
-                                    <?php
-                                    foreach ($jdwl as $jadwal) {
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $jadwal->TANGGAL; ?></td>
-                                        <td><?php echo $jadwal->WAKTU;?></td>
-                                        <td><?php echo $jadwal->NAMA_KELAS; ?></td>
-                                        <td><?php echo $jadwal->NAMA_MAPEL; ?></td>
-                                        <td><?php echo $jadwal->NAMA_RUANGAN; ?></td>
-                                        <td><?php echo $jadwal->NAMA_PEGAWAI; ?></td>
-                                    </tr>
-                                    <?php
-                                    }
-                                    ?>
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -69,14 +83,16 @@
         </div>
     </div>
 <script >
-	function getJadwalByKelas(){
+	function getJadwal(){
         var kls = document.getElementById('kelas').value;
+        var periode = document.getElementById('periode').value;
         $.ajax({
-            url : "<?php echo base_url('Jadwal/getJadwalByKelas')?>",
+            url : "<?php echo base_url('Jadwal/getJadwalByFilter')?>",
             method: "POST",
             dataType :"json",
             data: {
-            kls : kls
+            kls : kls,
+            periode : periode
             },
             success : function(data){
                 var html = '';
@@ -84,12 +100,12 @@
                         var i;
                         for(i=0; i<data.length; i++){
                             html += '<tr>'+
-                                    '<td>'+data[i].TANGGAL+'</td>'+
-                                    '<td>'+data[i].WAKTU+'</td>'+
+                                    '<td>'+data[i].tanggal+'</td>'+
+                                    '<td>'+data[i].jam+'</td>'+
                                     '<td>'+data[i].NAMA_KELAS+'</td>'+
                                     '<td>'+data[i].NAMA_MAPEL+'</td>'+
                                     '<td>'+data[i].NAMA_RUANGAN+'</td>'+
-                                    '<td>'+data[i].NAMA_PEGAWAI+'</td>'+
+                                    '<td>'+data[i].NAMA_TENTOR+'</td>'+
                                     '</tr>';
                         }
                     }else{
@@ -98,71 +114,6 @@
                                 '</tr>';
                     }
                     $('#show_data').html(html);
-            }
-        });
-    }
-
-    function getTentor(){
-        var tgl = document.getElementById('tanggal').value;
-        var time = document.getElementById('waktu').value;
-        $.ajax({
-            url : "<?php echo base_url('Jadwal/cekTentor')?>",
-            method: "POST",
-            dataType :"json",
-            data: {
-            time : time,
-            tgl : tgl
-            },
-            success : function(data){
-                var html = '';
-                        var i;
-                        for(i=0; i<data.length; i++){
-                            html += '<option value='+data[i].ID_PEGAWAI+'>'+data[i].NAMA_PEGAWAI+" - "+data[i].NAMA_MAPEL+'</option>';
-                        }
-                        $('#tentor').html(html);
-            }
-        });
-    }
-
-    function getRuangan(){
-        var tgl = document.getElementById('tanggal').value;
-        var time = document.getElementById('waktu').value;
-        $.ajax({
-            url : "<?php echo base_url('Jadwal/cekRuangan')?>",
-            method: "POST",
-            dataType :"json",
-            data: {
-            time : time,
-            tgl : tgl
-            },
-            success : function(data){
-                var html = '';
-                        var i;
-                        for(i=0; i<data.length; i++){
-                            html += '<option value='+data[i].ID_RUANGAN+'>'+data[i].NAMA_RUANGAN+'</option>';
-                        }
-                        $('#ruangan').html(html);
-            }
-        });
-    }
-
-    function getKelombel(){
-        var tgl = document.getElementById('tanggal').value;
-        $.ajax({
-            url : "<?php echo base_url('Jadwal/cekKelombel')?>",
-            method: "POST",
-            dataType :"json",
-            data: {
-            tgl : tgl
-            },
-            success : function(data){
-                console.log(data);
-                var html = '';
-                        var i;
-                        for(i=0; i<data.length; i++){
-                            html += '<option value='+data[i].ID_KELAS+'>'+data[i].NAMA_KELAS+'</option>';
-                        }
-                        $('#kls').html(html);
             }
         });
     }	

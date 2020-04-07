@@ -15,7 +15,25 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="<?php echo base_url('Pegawai/tambah')?>"><button type="button" class="btn btn-primary btn-round" >Tambah data</button></a>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <a href="<?php echo base_url('Pegawai/tambah')?>"><button type="button" class="btn btn-primary btn-round" >Tambah data</button></a>
+                                </div>
+                                <div class="col-md-7">
+                                    <form action="<?php echo base_url('Pegawai')?>" method="POST">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <input type="text" name="keyword" class="form-control" placeholder="Search......" autocomplete="off" autofocus/>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <input type="submit" class="btn btn-primary" name="submit"/>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                         <div class="table-responsive">
@@ -34,29 +52,25 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $nourut = 1;
+                                    $nourut = $start;
                                     foreach ($peg as $pegawai) {
                                         $id = $pegawai->ID_PEGAWAI;
                                     ?>
                                     <tr>
-                                        <td><?php echo $nourut++;?></td>
+                                        <td><?php echo ++$nourut;?></td>
                                         <td><?php echo $pegawai->NAMA_PEGAWAI; ?></td>
                                         <td><?php echo $pegawai->ALAMAT_PEGAWAI; ?></td>
                                         <td><?php echo date("d-m-Y",strtotime($pegawai->TGL_LAHIR_PEG)) ?></td>
                                         <td><?php echo $pegawai->NOTELP_PEGAWAI; ?></td>
                                         <td><?php echo $pegawai->EMAIL; ?></td>
-                                        <td><?php if($pegawai->STATUS == 1){?>
+                                        <td><?php if($pegawai->STATUS_PEGAWAI == 1){?>
                                                 <center><p style="color: orange"><i class="fa fa-check-circle fa-2x"></i></p></center>
                                             <?php } else {?>
                                                 <center><p style="color: red"><i class="fa fa-times-circle fa-2x"></i></p></center>
                                             <?php }?>
                                         </td>
                                         <td>
-                                            <?php if($pegawai->STATUS == 1){?>
-                                                <button type="button" class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-pencil-alt"></i></button>
-                                            <?php } else {?>
-                                                <button type="button" class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>" disabled><i class="fa fa-pencil-alt"></i></button>
-                                            <?php }?>
+                                            <button type="button" class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-pencil-alt"></i></button>
                                         </td>
                                     </tr>
                                     <?php
@@ -64,6 +78,7 @@
                                     ?>
                                 </tbody>
                             </table>
+                            <?php echo $this->pagination->create_links();?>
                         </div>
                     </div>
                 </div>
@@ -80,7 +95,7 @@
                     $tgl_lahir = $p->TGL_LAHIR_PEG;
                     $notelp = $p->NOTELP_PEGAWAI;
                     $email = $p->EMAIL;
-                    $status = $p->STATUS;
+                    $status = $p->STATUS_PEGAWAI;
             ?>
             <div class="modal fade" id="modal_edit<?php echo $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">

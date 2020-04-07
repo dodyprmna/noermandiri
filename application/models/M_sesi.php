@@ -2,20 +2,19 @@
 
 class M_sesi extends CI_Model {
 	//nama tabel dan primary key
-    private $table = 'waktu';
-    private $pk = 'ID_WAKTU';
+    private $table = 'sesi';
+    private $pk = 'ID_SESI';
 
 	//tampilkan semua data
-    public function getAll() {
+    public function tampilkanSemua() {
         $q = $this->db->order_by($this->pk);
         $q = $this->db->get($this->table);
         return $q;
     }
 
-    public function getSelainTentor() {
-        $query=$this->db->query("SELECT *
-                                FROM jabatan
-                                WHERE ID_JABATAN != 'TNTR'");
-        return $query;
+    public function hapus($id)
+    {
+    	$this->db->where('ID_SESI', $id);
+		$this->db->delete('sesi');
     }
 }

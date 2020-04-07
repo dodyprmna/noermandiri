@@ -32,7 +32,7 @@
 			<!-- Logo Header -->
 			<div class="logo-header" data-background-color="blue">
 				
-				<a href="index.html" class="logo">
+				<a href="<?php echo base_url('Home')?>" class="logo">
                     <img src="<?php echo base_url('assets/img/logo/logo1.ico')?>" width="30" weight="30" alt="navbar brand" class="navbar-brand">
                     <font color="#FFFFF" size="2">&nbsp LBB Noermandiri</font>
 				</a>
@@ -68,7 +68,7 @@
 											<div class="avatar-lg"><img src="<?php echo base_url('assets/adm/img/profile.jpg')?>" alt="image profile" class="avatar-img rounded"></div>
 											<div class="u-text">
 												<h4><?php echo $this->session->userdata('ses_nama'); ?></h4>
-												<p class="text-muted"><?php echo $this->session->userdata('akses'); ?></p>
+												<p class="text-muted"><?php echo $this->session->userdata('ses_email'); ?></p>
 											</div>
 										</div>
 									</li>
@@ -105,61 +105,56 @@
 					</div>
 					<ul class="nav nav-primary">
                         <?php if($this->session->userdata('akses')=='admin'):?>
-						<li class="nav-item active">
+						<li <?=$this->uri->segment(1) == 'Home' ? 'class="nav-item active"' : 'class="nav-item"'?>>
 							<a href="<?php echo base_url('Home')?>" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
 								<p>Dashboard</p>
 							</a>
 						</li>
-						<li class="nav-item">
+						<li <?=$this->uri->segment(1) == 'Pegawai' || $this->uri->segment(1) == 'Tentor' || $this->uri->segment(1) == 'Siswa' || $this->uri->segment(1) == 'Mata_Pelajaran' || $this->uri->segment(1) == 'Ruangan' || $this->uri->segment(1) == 'Kelas' || $this->uri->segment(1) == 'Jenjang_Kelas' || $this->uri->segment(1) == 'Sesi' ? 'class="nav-item active submenu"' : 'class="nav-item"'?>>
 							<a data-toggle="collapse" href="#base">
 								<i class="fas fa-database"></i>
 								<p>Data Master</p>
 								<span class="caret"></span>
 							</a>
-							<div class="collapse" id="base">
+							<div class="collapse <?=$this->uri->segment(1) == 'Pegawai' || $this->uri->segment(1) == 'Tentor' || $this->uri->segment(1) == 'Siswa' || $this->uri->segment(1) == 'Mata_Pelajaran' || $this->uri->segment(1) == 'Ruangan' || $this->uri->segment(1) == 'Kelas' || $this->uri->segment(1) == 'Jenjang_Kelas' || $this->uri->segment(1) == 'Sesi' ? 'show' : 'class="nav-item"'?>" id="base">
 								<ul class="nav nav-collapse">
-									<li>
+									<li <?=$this->uri->segment(1) == 'Pegawai' ? 'class="active"' : ''?>>
 										<a href="<?php echo base_url('Pegawai')?>">
 											<span class="sub-item">Data Pegawai</span>
 										</a>
 									</li>
-									<li>
+									<li <?=$this->uri->segment(1) == 'Tentor' ? 'class="active"' : ''?>>
 										<a href="<?php echo base_url('Tentor')?>">
 											<span class="sub-item">Data Tentor</span>
 										</a>
 									</li>
-									<li>
+									<li <?=$this->uri->segment(1) == 'Siswa' ? 'class="active"' : ''?>>
 										<a href="<?php echo base_url('Siswa')?>">
 											<span class="sub-item">Data Siswa</span>
 										</a>
 									</li>
-									<li>
+									<li <?=$this->uri->segment(1) == 'Mata_Pelajaran' ? 'class="active"' : ''?>>
 										<a href="<?php echo base_url('Mata_Pelajaran')?>">
 											<span class="sub-item">Data Mata Pelajaran</span>
 										</a>
                                     </li>
-                                    <li>
+                                    <li <?=$this->uri->segment(1) == 'Ruangan' ? 'class="active"' : ''?>>
 										<a href="<?php echo base_url('Ruangan')?>">
 											<span class="sub-item">Data Ruangan</span>
 										</a>
                                     </li>
-									<li>
+									<li <?=$this->uri->segment(1) == 'Kelas' ? 'class="active"' : ''?>>
 										<a href="<?php echo base_url('Kelas')?>">
 											<span class="sub-item">Data Kelas Kelompok Belajar</span>
 										</a>
 									</li>
-									<li>
+									<li <?=$this->uri->segment(1) == 'Jenjang_Kelas' ? 'class="active"' : ''?>>
 										<a href="<?php echo base_url('Jenjang_Kelas')?>">
 											<span class="sub-item">Data Jenjang Kelas</span>
 										</a>
 									</li>
-									<li>
-										<a href="<?php echo base_url('Jabatan')?>">
-											<span class="sub-item">Data Jabatan</span>
-										</a>
-									</li>
-									<li>
+									<li <?=$this->uri->segment(1) == 'Sesi' ? 'class="active"' : ''?>>
 										<a href="<?php echo base_url('Sesi')?>">
 											<span class="sub-item">Data Sesi</span>
 										</a>
@@ -167,66 +162,82 @@
 								</ul>
 							</div>
 						</li>
-						<li class="nav-item">
+						<li <?=$this->uri->segment(1) == 'Pendaftaran' ? 'class="nav-item active submenu"' : 'class="nav-item"'?>>
 							<a data-toggle="collapse" href="#sidebarLayouts">
 								<i class="fas fa-th-list"></i>
 								<p>Data Pendaftaran</p>
 								<span class="caret"></span>
 							</a>
-							<div class="collapse" id="sidebarLayouts">
+							<div class="collapse <?=$this->uri->segment(1) == 'Pendaftaran' ? 'show' : ''?>" id="sidebarLayouts">
 								<ul class="nav nav-collapse">
-									<li>
+									<li <?=$this->uri->segment(2) == 'siswa_baru' ? 'class="active"' : ''?>>
 										<a href="<?php echo base_url('Pendaftaran/siswa_baru')?>">
 											<span class="sub-item">Pendaftaran Siswa Baru
                                             </span>
 										</a>
 									</li>
-									<li>
-										<a href="overlay-sidebar.html">
+									<li <?=$this->uri->segment(2) == 'daftar_ulang' ? 'class="active"' : ''?>>
+										<a href="<?php echo base_url('Pendaftaran/daftar_ulang')?>">
 											<span class="sub-item">Daftar Ulang</span>
 										</a>
 									</li>
 								</ul>
 							</div>
 						</li>
-						<li class="nav-item">
-							<a href="<?php echo base_url('Pembayaran')?>">
+						<li class="nav-item <?=$this->uri->segment(1) == 'Pembayaran' || $this->uri->segment(1) == 'Pembayaran_daftar_ulang' ? 'active' : ''?>">
+							<a data-toggle="collapse" href="#sidebarPembayaran">
 								<i class="fas fa-money-bill-alt"></i>
 								<p>Data Pembayaran</p>
+								<span class="caret"></span>
 							</a>
+							<div class="collapse <?=$this->uri->segment(1) == 'Pembayaran' || $this->uri->segment(1) == 'Pembayaran_daftar_ulang'? 'show' : ''?>" id="sidebarPembayaran">
+								<ul class="nav nav-collapse">
+									<li <?=$this->uri->segment(2) == 'pembayaran_daftar_siswa_baru' ? 'class="active"' : ''?>>
+										<a href="<?php echo base_url('Pembayaran/pembayaran_daftar_siswa_baru')?>">
+											<span class="sub-item">Pembayaran Daftar Siswa Baru
+                                            </span>
+										</a>
+									</li>
+									<li <?=$this->uri->segment(1) == 'Pembayaran_daftar_ulang' ? 'class="active"' : ''?>>
+										<a href="<?php echo base_url('Pembayaran_daftar_ulang')?>">
+											<span class="sub-item">Pembayaran Daftar Ulang</span>
+										</a>
+									</li>
+								</ul>
+							</div>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item <?=$this->uri->segment(1) == 'Jadwal' ? 'active' : ''?>">
 							<a href="<?php echo base_url('Jadwal')?>">
 								<i class="fas fa-calendar-alt"></i>
 								<p>Jadwal Les</p>
 							</a>
                         </li>
                         <?php elseif($this->session->userdata('akses')=='pemilik'):?>
-                        <li class="nav-item active">
+                        <li class="nav-item <?=$this->uri->segment(1) == 'Home' ? 'active' : ''?>">
 							<a href="<?php echo base_url('Home')?>" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
 								<p>Dashboard</p>
 							</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item <?=$this->uri->segment(1) == 'Laporan' ? 'active submenu' : ''?>">
 							<a data-toggle="collapse" href="#base">
 								<i class="fas fa-database"></i>
 								<p>Laporan</p>
 								<span class="caret"></span>
 							</a>
-							<div class="collapse" id="base">
+							<div class="collapse <?=$this->uri->segment(1) == 'Laporan' ? 'show' : ''?>" id="base">
 								<ul class="nav nav-collapse">
-									<li>
+									<li class="<?=$this->uri->segment(2) == 'laporan_pendaftaran' ? 'active' : ''?>">
 										<a href="components/avatars.html">
 											<span class="sub-item">Laporan Pendaftaran</span>
 										</a>
 									</li>
-									<li>
+									<li class="<?=$this->uri->segment(2) == 'laporan_pembayaran' ? 'active' : ''?>">
 										<a href="components/buttons.html">
 											<span class="sub-item">Laporan Pembayaran</span>
 										</a>
                                     </li>
-                                    <li>
+                                    <li class="<?=$this->uri->segment(2) == 'laporan_jadwal_les' ? 'active' : ''?>">
 										<a href="components/buttons.html">
 											<span class="sub-item">Laporan Jadwal Les</span>
 										</a>
@@ -235,35 +246,41 @@
 							</div>
 						</li>
                         <?php elseif($this->session->userdata('akses')=='tentor'):?>
-                        <li class="nav-item active">
+                        <li class="nav-item <?=$this->uri->segment(1) == 'Home' ? 'active' : ''?>">
 							<a href="<?php echo base_url('Home')?>" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
 								<p>Dashboard</p>
 							</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item <?=$this->uri->segment(1) == 'Jadwal' ? 'active' : ''?>">
 							<a data-toggle="collapse" href="#base">
 								<i class="fas fa-calendar-alt"></i>
 								<p>Jadwal Mengajar</p>
 							</a>
                         </li>
                         <?php else:?>
-                        <li class="nav-item active">
-							<a data-toggle="collapse" href="<?php echo base_url('Home')?>" class="collapsed" aria-expanded="false">
+                        <li class="nav-item <?=$this->uri->segment(1) == 'Home' ? 'active' : ''?>">
+							<a href="<?php echo base_url('Home')?>" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
 								<p>Dashboard</p>
 							</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item <?=$this->uri->segment(1) == 'Jadwal' ? 'active' : ''?>">
 						<a href="<?php echo base_url('Jadwal')?>">
 								<i class="fas fa-calendar-alt"></i>
 								<p>Jadwal Les</p>
 							</a>
                         </li>
-                        <li class="nav-item">
-							<a data-toggle="collapse" href="#base">
+                        <li class="nav-item <?=$this->uri->segment(2) == 'tambah' ? 'active' : ''?>">
+							<a href="<?php echo base_url('Daftar_Ulang/tambah')?>">
 								<i class="fas fa-pencil-alt"></i>
 								<p>Daftar Ulang</p>
+							</a>
+                        </li>
+                        <li class="nav-item <?=$this->uri->segment(2) == 'riwayat_pembayaran' ? 'active' : ''?>">
+							<a href="<?php echo base_url('Daftar_Ulang/riwayat_pembayaran')?>">
+								<i class="fas fa-money-bill-alt"></i>
+								<p>Riwayat Pembayaran</p>
 							</a>
                         </li>
                         <?php endif;?>    

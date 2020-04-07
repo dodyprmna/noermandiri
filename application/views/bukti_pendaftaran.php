@@ -34,9 +34,6 @@
 
     <table>
         <tr>
-            <td>Nama pegawai</td><td>: <?= ucfirst($nama);?></td>
-        </tr>
-        <tr>
             <td>Alamat</td><td>: <?= ucfirst($alamat);?></td>
         </tr>
         <tr>

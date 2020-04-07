@@ -18,7 +18,7 @@
                             <div class="row">
                                 <div class="col-md-5"></div>
                                 <div class="col-md-7">
-                                    <form action="<?php echo base_url('Pendaftaran/siswa_baru')?>" method="POST">
+                                    <form action="<?php echo base_url('Pendaftaran/daftar_ulang')?>" method="POST">
                                         <div class="row">
                                             <div class="col-lg-4"></div>
                                             <div class="col-lg-5">
@@ -38,67 +38,56 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>No.Pendaftaran</th>
-                                        <th>Jenjang Kelas</th>
-                                        <th>Total Biaya</th>
-                                        <th>Status Pembayaran</th>
-                                        <th>Aksi</th>
+                                        <th>No.Daftar Ulang</th>
+                                        <th>Tanggal</th>
+                                        <th>Biaya</th>
+                                        <th>Status</th>
+                                        <th>Bayar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $nourut = $start;
-                                    foreach ($pendaftaran as $reg) {
-                                        $id = $reg->NO_PENDAFTARAN;
+                                    $nourut = 1;
+                                    foreach ($daftar_ulang as $d) {
+                                    $id = $d->ID_DAFTAR_ULANG;
                                     ?>
                                     <tr>
-                                        <td><?php echo ++$nourut?></td>
-                                        <td><?php echo $reg->NO_PENDAFTARAN?></td>
-                                        <td><?php echo $reg->NAMA_JENJANG; ?></td>
-                                        <td>Rp. <?php echo number_format($reg->TOTAL_TAGIHAN,2,',','.'); ?></td>
-                                        <td>
-                                            <?php if($reg->STATUS == 1){?>
-                                                <center><p style="color: orange"><i class="fa fa-check-circle fa-2x"></i></p></center>
+                                        <td><?php echo $nourut++?></td>
+                                        <td><?php echo $d->ID_DAFTAR_ULANG; ?></td>
+                                        <td><?php echo $d->TGL_DAFTAR_ULANG; ?></td>
+                                        <td><?php echo $d->TOTAL_BIAYA_DAFTAR_ULANG; ?></td>
+                                        <td><?php if($d->STATUS == 1){?>
+                                                <center><p style="color: orange"><i class="fa fa-check-circle fa-2x mt-3"></i></p><p class="mt--2">Sudah dibayar</p></center>
                                             <?php } else {?>
-                                                <center><p style="color: red"><i class="fa fa-times-circle fa-2x"></i></p></center>
-                                            <?php }?> 
+                                                <center><p style="color: red"><i class="fa fa-times-circle fa-2x mt-3"></i></p><pclass="mt--2">Belum dibayar</p></center>
+                                            <?php }?>
                                         </td>
                                         <td>
-                                            <?php if($reg->STATUS == 1){?>
+                                            <?php if($d->STATUS == 1){?>
                                                 <button type="button" class="btn btn-primary btn-sm" disabled>Bayar</button>
                                             <?php } else {?>
                                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_pembayaran<?php echo $id?>">Bayar</button>
                                             <?php }?>
                                         </td>
+
                                     </tr>
                                     <?php
                                     }
                                     ?>
                                 </tbody>
                             </table>
-                            <?php echo $this->pagination->create_links();?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <?php
-    foreach($pendaftaran as $p):
-        $id = $p->NO_PENDAFTARAN;
-        $nama = $p->NAMA_PENDAFTAR;
-        $jenjang = $p->ID_JENJANG;
-        $tgl = $p->TANGGAL_PENDAFTARAN;
-        $total = $p->TOTAL_TAGIHAN;
-        $alamat = $p->ALAMAT_PENDAFTAR;
-        $tgl_lahir = $p->TGL_LAHIR_PENDAFTAR;
-        $jk = $p->JENIS_KELAMIN;
-        $telp = $p->NOTELP_PENDAFTAR;
-        $telp_ortu = $p->NOTELP_ORTU;
-        $email = $p->EMAIL_PENDAFTAR;
-        $sekolah = $p->ASAL_SEKOLAH;
+<?php
+    foreach($daftar_ulang as $du):
+        $id = $du->ID_DAFTAR_ULANG;
+        $total = $du->TOTAL_BIAYA_DAFTAR_ULANG;
+        $no_induk = $du->NO_INDUK;
+        $jenjang = $du->ID_JENJANG;
     ?>
     <div class="modal fade" id="modal_pembayaran<?php echo $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -110,7 +99,7 @@
         </button>
         </div>
         <div class="modal-body">
-        <form action="<?php echo base_url('Pembayaran/simpan_pembayaran_siswa_baru')?>" method="POST">
+        <form action="<?php echo base_url('Pembayaran_daftar_ulang/simpan_pembayaran')?>" method="POST">
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-4">
@@ -124,56 +113,17 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-4">
-                        <label>Tanggal Pendaftaran</label>
-                    </div>
-                    <div class="col-lg-7">
-                        <input type="date" class="form-control" name="tgl" id="tgl" value="<?php echo $tgl?>" readonly/>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <label>Nama Pendaftar</label>
-                    </div>
-                    <div class="col-lg-7">
-                        <input type="text" class="form-control" name="nama_edit" id="nama_edit" value="<?php echo $nama?>" readonly/>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <label>Jenjang Kelas</label>
-                    </div>
-                    <div class="col-lg-7">
-                        <input type="text" class="form-control" name="jejang" id="jenjang" value="<?php echo $jenjang?>" readonly/>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-lg-4">
                         <label>Total Tagihan</label>
                     </div>
                     <div class="col-lg-7">
-                        <input type="text" class="form-control" name="t" id="t" value="Rp. <?php echo number_format($total,2,',','.');?>" readonly/>
-                        
+                        <input type="text" class="form-control" name="tot" id="tot" value="Rp. <?php echo number_format($total,2,',','.');?>" readonly/>
                     </div>
-                    <input type="hidden" class="form-control" name="total" id="total" value="<?php echo $total?>" readonly/>
                 </div>
             </div>
+            <input type="hidden" class="form-control" name="total" id="total" value="<?php echo $total;?>" readonly/>
             <!-- data siswa -->
-            <input type="hidden" name="nama_siswa" value="<?php echo $nama?>"/>
-            <input type="hidden" name="alamat_siswa" value="<?php echo$alamat?>"/>
+            <input type="hidden" name="no_induk" value="<?php echo $no_induk?>"/>
             <input type="hidden" name="jenjang" value="<?php echo $jenjang?>"/>
-            <input type="hidden" name="tgl_lahir" value="<?php echo $tgl_lahir?>"/>
-            <input type="hidden" name="jk" value="<?php echo $jk?>"/>
-            <input type="hidden" name="email" value="<?php echo $email?>"/>
-            <input type="hidden" name="telp_siswa" value="<?php echo $telp?>"/>
-            <input type="hidden" name="telp_ortu" value="<?php echo $telp_ortu?>"/>
-            <input type="hidden" name="sekolah" value="<?php echo$sekolah?>"/>
-
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-4"></div>

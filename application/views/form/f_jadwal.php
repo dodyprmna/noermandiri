@@ -41,11 +41,11 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-select-list">
-                                                        <select class="form-control" name="waktu" id="waktu" onchange="getTentor(); getRuangan()">
+                                                        <select class="form-control" name="sesi" id="sesi" onchange="getTentor(); getRuangan()">
                                                             <option value="">- Pilih Jam -</option>
                                                             <?php
-                                                            foreach($waktu as $jam) { ?>
-                                                            <option value="<?php echo $jam->ID_WAKTU;?>"><?php echo $jam->WAKTU; ?></option>
+                                                            foreach($sesi as $jam) { ?>
+                                                            <option value="<?php echo $jam->ID_SESI?>"><?php echo date("H:i",strtotime($jam->JAM_MULAI))?> - <?php echo date("H:i",strtotime($jam->JAM_SELESAI))?></option>
                                                             <?php
                                                             } ?>
                                                         </select>
@@ -166,10 +166,11 @@
 
     function getTentor(){
         var tgl = document.getElementById('tanggal').value;
-        var time = document.getElementById('waktu').value;
+        var time = document.getElementById('sesi').value;
         $.ajax({
             url : "<?php echo base_url('Jadwal/cekTentor')?>",
             method: "POST",
+            contentType: "application/json; charset=utf-8",
             dataType :"json",
             data: {
             time : time,
@@ -179,7 +180,7 @@
                 var html = '';
                         var i;
                         for(i=0; i<data.length; i++){
-                            html += '<option value='+data[i].ID_PEGAWAI+'>'+data[i].NAMA_PEGAWAI+" - "+data[i].NAMA_MAPEL+'</option>';
+                            html += '<option value='+data[i].ID_TENTOR+'>'+data[i].NAMA_TENTOR+" - "+data[i].NAMA_MAPEL+'</option>';
                         }
                         $('#tentor').html(html);
             }
@@ -188,7 +189,7 @@
 
     function getRuangan(){
         var tgl = document.getElementById('tanggal').value;
-        var time = document.getElementById('waktu').value;
+        var time = document.getElementById('sesi').value;
         $.ajax({
             url : "<?php echo base_url('Jadwal/cekRuangan')?>",
             method: "POST",

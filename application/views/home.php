@@ -9,9 +9,9 @@
                     </div>
                 </div>
             </div>
-            <?php if($this->session->userdata('akses')=='admin'):?>
             <div class="page-inner mt--5">
                 <div class="row mt--2">
+                    <?php if($this->session->userdata('akses')=='admin'):?>
                     <div class="col-sm-6 col-md-3">
                         <div class="card card-stats card-info card-round">
                             <a href="<?php echo base_url('Pendaftaran')?>">
@@ -72,6 +72,82 @@
                             </a> 
                         </div>
                     </div>
+                    <?php elseif($this->session->userdata('akses')=='tentor'):?>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="card card-stats card-primary card-round">
+                            <a href="<?php echo base_url('Jadwal')?>">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="icon-big text-center">
+                                                <i class="flaticon-calendar"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-7 col-stats">
+                                            <div class="text">
+                                                <h5 class="card-title">Jadwal Mengajar</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a> 
+                        </div>
+                    </div>
+                    <?php elseif($this->session->userdata('akses')=='siswa'):?>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="card card-stats card-primary card-round">
+                            <a href="<?php echo base_url('Jadwal')?>">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="icon-big text-center">
+                                                <i class="flaticon-calendar"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-7 col-stats">
+                                            <div class="text">
+                                                <h5 class="card-title">Jadwal Les</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a> 
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="card card-stats card-warning card-round">
+                            <a href="<?php echo base_url('Pendaftaran/daftar_ulang')?>">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="icon-big text-center">
+                                                <i class="flaticon-pen"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-7 col-stats">
+                                            <div class="text">
+                                                <h5 class="card-title">Daftar Ulang</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a> 
+                        </div>
+                    </div>
+                    <?php else:?>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="chart-container" style="min-height: 250px">
+                                    <br><br><br><br>
+                                        <h1 align="center">Welcome back <?php echo $this->session->userdata('ses_nama'); ?></h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endif;?>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
@@ -86,20 +162,4 @@
                     </div>
                 </div>
             </div>
-            <?php else:?>
-            <div class="page-inner mt--5">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="chart-container" style="min-height: 250px">
-                                <br><br><br><br>
-                                    <h1 align="center">Welcome back <?php echo $this->session->userdata('ses_nama'); ?></h1>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <?php endif;?>
         </div>

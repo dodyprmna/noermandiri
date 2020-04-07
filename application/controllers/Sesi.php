@@ -12,8 +12,8 @@
         function index(){
             //jika sebagai admin
             if($this->session->userdata('akses') == 'admin'){
-                $this->load->model('M_sesi');
-                $sesi = $this->M_sesi->getAll()->result();
+                $this->load->model('M_API');
+                $sesi = $this->M_API->getAll('sesi')->result();
                 $data = array(
                         'sesi'       => $sesi,
         	            'title'      => 'Data Sesi',
@@ -41,16 +41,24 @@
             }
         }
 
+        public function hapus($id)
+        {
+            $this->load->model('M_sesi');
+            $this->M_sesi->hapus($id);
+            $this->session->set_flashdata('flash','Dihapus');
+            redirect(site_url('Sesi'));
+        }
+
         public function aksiTambah()
         {
             if($this->session->userdata('akses') == 'admin'){
-                $mulai   = $this->input->post('jam_mulai', TRUE);
-                $selesai = $this->input->post('jam_selesai', TRUE);
                 $data = array(
-                    'ID_WAKTU'           => '',
-                    'WAKTU'              => $mulai.' - '.$selesai
+                    'ID_SESI'            => '',
+                    'JAM_MULAI'          => $this->input->post('jam_mulai', TRUE),
+                    'JAM_SELESAI'        => $this->input->post('jam_selesai', TRUE)
                 );
-                $this->db->insert('waktu', $data);
+                $this->load->model('M_API');
+                $this->M_API->saveData('sesi',$data);
                 $this->session->set_flashdata('flash','Disimpan');
                 redirect(site_url('Sesi'));
 

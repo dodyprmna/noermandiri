@@ -14,12 +14,23 @@
             //jika sebagai admin
             if($this->session->userdata('akses') == 'admin'){
                 $this->load->model('M_mata_pelajaran');
-                $rows = $this->M_mata_pelajaran->tampilkanSemua()->result();
+                $this->load->library('pagination');
+
+                $config['base_url'] = 'http://localhost/LBBNoermandiri/Mata_Pelajaran/index';
+                $config['total_rows'] = $this->M_mata_pelajaran->hitung_mapel();
+                $config['per_page'] = 5;
+
+                //initialize
+                $this->pagination->initialize($config);
+
+                $d['start'] = $this->uri->segment(3);
+                $rows = $this->M_mata_pelajaran->tampilkanSemua($config['per_page'],$d['start'])->result();
                 $data = array(
                         'mata_ajar'    => $rows,
         	            'title'        => 'Data Mata Pelajaran',
         	            'content'      => 'tabel/t_mata_pelajaran',
         	            'judul'        => 'Data Mata Pelajaran',
+                        'start'        => $this->uri->segment(3)
         	        );
         	        $this->load->view('layout', $data);
             }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
@@ -37,10 +48,9 @@
 
             $this->load->library('form_validation');
             $this->form_validation->set_error_delimiters('<div style="color:red; margin-bottom: 5px">','</div>');
-            $this->load->model('M_mata_pelajaran');
-            $mata_ajar = $this->M_mata_pelajaran->TampilkanSemua()->result();
+            
             $data = array(
-                'mata_ajar' => $mata_ajar,
+                
                 'judul'     => 'Form Tambah Mata Pelajaran',
                 'title'     => 'Tambah Data Mata Pelajaran',
                 'content'   => 'form/f_mata_pelajaran',

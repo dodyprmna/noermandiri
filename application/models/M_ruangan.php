@@ -20,7 +20,7 @@ class M_ruangan extends CI_Model {
         $query=$this->db->query("SELECT r.ID_RUANGAN, r.NAMA_RUANGAN
                                 FROM ruangan r
                                 WHERE r.ID_RUANGAN not in (SELECT j.ID_RUANGAN FROM jadwal_les j
-                                WHERE j.ID_WAKTU = '$waktu' and j.TANGGAL = '$tanggal')");
+                                WHERE j.ID_SESI = '$waktu' and j.TANGGAL = '$tanggal')");
         return $query;
     }
 }
