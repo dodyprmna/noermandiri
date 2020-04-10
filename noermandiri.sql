@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2020 at 02:49 PM
+-- Generation Time: Apr 03, 2020 at 06:09 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -33,30 +33,8 @@ CREATE TABLE `daftar_ulang` (
   `ID_JENJANG` varchar(6) NOT NULL,
   `NO_INDUK` varchar(13) NOT NULL,
   `TGL_DAFTAR_ULANG` date NOT NULL,
-  `TOTAL_BIAYA_DAFTAR_ULANG` int(11) NOT NULL,
-  `STATUS` tinyint(1) NOT NULL
+  `TOTAL_BIAYA_DAFTAR_ULANG` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `daftar_ulang`
---
-
-INSERT INTO `daftar_ulang` (`ID_DAFTAR_ULANG`, `ID_JENJANG`, `NO_INDUK`, `TGL_DAFTAR_ULANG`, `TOTAL_BIAYA_DAFTAR_ULANG`, `STATUS`) VALUES
-('DU060420001', '03', '0002', '2020-04-06', 1000000, 0),
-('DU070420002', '02', '0001', '2020-04-06', 1000000, 1),
-('DU070420003', '03', '0001', '2020-04-06', 1000000, 1);
-
---
--- Triggers `daftar_ulang`
---
-DELIMITER $$
-CREATE TRIGGER `id_Daftar_Ulang_Auto` BEFORE INSERT ON `daftar_ulang` FOR EACH ROW BEGIN
-DECLARE nr integer 	DEFAULT 0;
-	SELECT COUNT(*)INTO @id FROM daftar_ulang;
-    set NEW.ID_DAFTAR_ULANG  = CONCAT("DU",DATE_FORMAT(CURRENT_DATE,'%d%m%y'),LPAD(@id+1,3,'0'));
-END
-$$
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -93,7 +71,9 @@ CREATE TABLE `jenjang_kelas` (
 INSERT INTO `jenjang_kelas` (`ID_JENJANG`, `NAMA_JENJANG`, `BIAYA`) VALUES
 ('01', '1 SMP', 1000000),
 ('02', '2 SMP', 1000000),
-('03', '3 SMP', 1000000);
+('03', '3 SMP', 1000000),
+('04', '1 SMA', 1000000),
+('05', '2 SMA', 1000000);
 
 --
 -- Triggers `jenjang_kelas`
@@ -118,15 +98,6 @@ CREATE TABLE `kelas` (
   `ID_JENJANG` varchar(6) NOT NULL,
   `NAMA_KELAS` varchar(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `kelas`
---
-
-INSERT INTO `kelas` (`ID_KELAS`, `ID_JENJANG`, `NAMA_KELAS`) VALUES
-('1SMPA', '01', '1 SMP A'),
-('2SMPA', '02', '2 SMP A'),
-('3SMPA', '03', '3 SMP A');
 
 -- --------------------------------------------------------
 
@@ -209,14 +180,6 @@ CREATE TABLE `pembayaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pembayaran`
---
-
-INSERT INTO `pembayaran` (`ID_PEMBAYARAN`, `ID_PEGAWAI`, `NO_PENDAFTARAN`, `TANGGAL_PEMBAYARAN`, `TOTAL_PEMBAYARAN`) VALUES
-('PAY060420001', 'PEG001', 'REG060420001', '2020-04-06', 1050000),
-('PAY060420002', 'PEG001', 'REG060420002', '2020-04-06', 1050000);
-
---
 -- Triggers `pembayaran`
 --
 DELIMITER $$
@@ -242,27 +205,6 @@ CREATE TABLE `pembayaran_daftar_ulang` (
   `TOTAL_PEMBAYARAN_DAFTAR_ULANG` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `pembayaran_daftar_ulang`
---
-
-INSERT INTO `pembayaran_daftar_ulang` (`ID_PEMBAYARAN_DAFTAR_ULANG`, `ID_DAFTAR_ULANG`, `ID_PEGAWAI`, `TGL_PEMBAYARAN_DAFTAR_ULANG`, `TOTAL_PEMBAYARAN_DAFTAR_ULANG`) VALUES
-('', 'DU060420001', 'PEG001', '2020-04-06', 1000000),
-('PYU070420002', 'DU070420002', 'PEG001', '2020-04-06', 1000000),
-('PYU070420003', 'DU070420003', 'PEG001', '2020-04-06', 1000000);
-
---
--- Triggers `pembayaran_daftar_ulang`
---
-DELIMITER $$
-CREATE TRIGGER `Id_Pembayaran_Daftar_Ulang_Auto` BEFORE INSERT ON `pembayaran_daftar_ulang` FOR EACH ROW BEGIN
-DECLARE nr integer 	DEFAULT 0;
-	SELECT COUNT(*)INTO @id FROM pembayaran_daftar_ulang;
-    set NEW.ID_PEMBAYARAN_DAFTAR_ULANG  = CONCAT("PYU",DATE_FORMAT(CURRENT_DATE,'%d%m%y'),LPAD(@id+1,3,'0'));
-END
-$$
-DELIMITER ;
-
 -- --------------------------------------------------------
 
 --
@@ -286,14 +228,6 @@ CREATE TABLE `pendaftaran_siswa_baru` (
   `STATUS` tinyint(1) NOT NULL,
   `ASAL_SEKOLAH` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `pendaftaran_siswa_baru`
---
-
-INSERT INTO `pendaftaran_siswa_baru` (`NO_PENDAFTARAN`, `ID_JENJANG`, `TANGGAL_PENDAFTARAN`, `NAMA_PENDAFTAR`, `JENIS_KELAMIN`, `ALAMAT_PENDAFTAR`, `TGL_LAHIR_PENDAFTAR`, `NOTELP_PENDAFTAR`, `NOTELP_ORTU`, `EMAIL_PENDAFTAR`, `TOTAL_TAGIHAN`, `BIAYA_REGISTRASI`, `BIAYA_LES`, `STATUS`, `ASAL_SEKOLAH`) VALUES
-('REG060420001', '02', '2020-04-06', 'M Rizal Ramadhani', 'L', 'Simokerto', '2020-04-01', '0855', '0855', 'rizal@gmail.com', 1050000, 50000, 1000000, 1, 'SMPN 9 Surabaya'),
-('REG060420002', '03', '2020-04-06', 'Taufik', 'L', 'Simokerto', '2020-04-01', '0877', '0877', 'taufik@gmail.com', 1050000, 50000, 1000000, 1, 'SMPN5 Surabaya');
 
 --
 -- Triggers `pendaftaran_siswa_baru`
@@ -355,7 +289,8 @@ CREATE TABLE `sesi` (
 --
 
 INSERT INTO `sesi` (`ID_SESI`, `NAMA_SESI`, `JAM_MULAI`, `JAM_SELESAI`) VALUES
-('SES1', '', '12:00:00', '14:00:00');
+('SES1', '', '17:00:00', '19:00:00'),
+('SES2', '', '19:00:00', '21:00:00');
 
 --
 -- Triggers `sesi`
@@ -389,15 +324,6 @@ CREATE TABLE `siswa` (
   `STATUS_SISWA` tinyint(1) NOT NULL,
   `PASSWORD_SISWA` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `siswa`
---
-
-INSERT INTO `siswa` (`NO_INDUK`, `ID_KELAS`, `NAMA_SISWA`, `ALAMAT_SISWA`, `TGL_LAHIR_SISWA`, `JK_SISWA`, `EMAIL_SISWA`, `NOTELP_ORTU_SISWA`, `NOTELP_SISWA`, `ASAL_SEKOLAH`, `STATUS_SISWA`, `PASSWORD_SISWA`) VALUES
-('0001', '2SMPA', 'M Rizal Ramadhanii', 'Simokertoo', '2020-04-02', 'L', 'rizal@gmail.com', '0855', '08555', 'SMPN 9 Surabaya', 1, 'd68be6cebcd6d1653ae74776709324d1'),
-('0002', '3SMPA', 'Taufik', 'Simokerto', '2020-04-01', 'L', 'taufik@gmail.com', '', '0877', 'SMPN5 Surabaya', 1, 'e707124b7acf5a2856b17899afa99bb6'),
-('0003', '2SMPA', 'Teteh', 'Surabaya', '2020-03-04', 'P', 'teteh@gmail.com', '0877', '0877', 'SMPN 9', 1, 'e707124b7acf5a2856b17899afa99bb6');
 
 --
 -- Triggers `siswa`
