@@ -25,4 +25,11 @@ class M_pembayaran_daftar_ulang extends CI_Model {
         $query = $this->db->get();
 		return $query;
     }
+
+    public function getDataById($id){
+        $query=$this->db->query("SELECT p.ID_PEMBAYARAN_DAFTAR_ULANG, p.ID_DAFTAR_ULANG ,p.TGL_PEMBAYARAN_DAFTAR_ULANG, p.TOTAL_PEMBAYARAN_DAFTAR_ULANG ,peg.NAMA_PEGAWAI FROM pembayaran_daftar_ulang p 
+                                LEFT JOIN pegawai peg on p.ID_PEGAWAI = peg.ID_PEGAWAI
+                                WHERE ID_PEMBAYARAN_DAFTAR_ULANG='$id' LIMIT 1");
+        return $query;
+    }
 }

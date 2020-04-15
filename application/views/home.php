@@ -135,16 +135,24 @@
                         </div>
                     </div>
                     <?php else:?>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
+                    <div class="col-sm-6 col-md-3">
+                        <div class="card card-stats card-info card-round">
+                            <a href="<?php echo base_url('')?>">
                                 <div class="card-body">
-                                    <div class="chart-container" style="min-height: 250px">
-                                    <br><br><br><br>
-                                        <h1 align="center">Welcome back <?php echo $this->session->userdata('ses_nama'); ?></h1>
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="icon-big text-center">
+                                                <i class="flaticon-list"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-7 col-stats">
+                                            <div class="text">
+                                                <h5 class="card-title">Laporan</h5>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>    
                         </div>
                     </div>
                     <?php endif;?>

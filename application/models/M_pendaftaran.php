@@ -19,8 +19,9 @@ class M_pendaftaran extends CI_Model {
     }
 
     public function getDataRegistrasi($email) {
-        $query=$this->db->query("SELECT *
-                                 FROM pendaftaran_siswa_baru
+        $query=$this->db->query("SELECT p.NO_PENDAFTARAN, p.NAMA_PENDAFTAR, p.ALAMAT_PENDAFTAR, p.NOTELP_PENDAFTAR, p.TGL_LAHIR_PENDAFTAR, p.EMAIL_PENDAFTAR, p.BIAYA_REGISTRASI, p.BIAYA_LES ,p.TOTAL_TAGIHAN,p.ASAL_SEKOLAH, jk.NAMA_JENJANG
+                                 FROM pendaftaran_siswa_baru p
+                                 JOIN jenjang_kelas jk ON p.ID_JENJANG = jk.ID_JENJANG
                                  WHERE EMAIL_PENDAFTAR = '$email'
                                  ORDER BY NO_PENDAFTARAN DESC limit 1");
         return $query;

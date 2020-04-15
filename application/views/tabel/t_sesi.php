@@ -70,7 +70,7 @@
         </button>
         </div>
         <div class="modal-body">
-        <form action="<?php echo base_url('Tentor/update')?>" method="POST">
+        <form action="<?php echo base_url('Sesi/update')?>" method="POST">
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-4">
@@ -94,7 +94,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-4">
-                        <label>Jam Mulai</label>
+                        <label>Jam Selesai</label>
                     </div>
                     <div class="col-lg-7">
                         <input type="time" class="form-control" name="jam_selesai_edit" id="jam_selesai_edit" value="<?php echo $jam_selesai?>" required/>

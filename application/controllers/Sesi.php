@@ -66,4 +66,22 @@
                 echo "<script>history.go(-1);</script>";
             }
         }
+
+        public function update(){
+            if($this->session->userdata('akses') == 'admin'){
+                $id = $this->input->post('id_edit', TRUE);
+                $data = array(
+                    'JAM_MULAI'     => $this->input->post('jam_mulai_edit', TRUE),
+                    'JAM_SELESAI'   => $this->input->post('jam_selesai_edit', TRUE),
+                );
+                $this->load->model('M_sesi');
+                $this->M_sesi->update($data, $id);
+                $this->session->set_flashdata('flash','ubah');
+
+                redirect(site_url('Sesi'));
+
+            }else{
+                echo "<script>history.go(-1);</script>";
+            }
+        }
     }

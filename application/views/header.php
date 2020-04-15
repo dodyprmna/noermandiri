@@ -69,6 +69,7 @@
 											<div class="u-text">
 												<h4><?php echo $this->session->userdata('ses_nama'); ?></h4>
 												<p class="text-muted"><?php echo $this->session->userdata('ses_email'); ?></p>
+												<a href="<?php echo base_url('Profil')?>" class="btn btn-xs btn-secondary btn-sm">Lihat Profil</a>
 											</div>
 										</div>
 									</li>
@@ -253,7 +254,7 @@
 							</a>
 						</li>
 						<li class="nav-item <?=$this->uri->segment(1) == 'Jadwal' ? 'active' : ''?>">
-							<a data-toggle="collapse" href="#base">
+							<a href="<?php echo base_url('Jadwal')?>">
 								<i class="fas fa-calendar-alt"></i>
 								<p>Jadwal Mengajar</p>
 							</a>

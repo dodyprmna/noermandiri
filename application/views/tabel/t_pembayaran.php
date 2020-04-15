@@ -19,10 +19,10 @@
                                 <div class="col-md-6">
                                     <form action="<?php echo base_url('Pembayaran/pembayaran_daftar_siswa_baru')?>" method="POST">
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6 mt-3">
                                                 <input type="text" name="keyword" class="form-control" placeholder="Search......" autocomplete="off" autofocus/>
                                             </div>
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-3 mt-3">
                                                 <input type="submit" class="btn btn-primary" name="submit"/>
                                             </div>
                                         </div>
@@ -31,15 +31,34 @@
                                 <div class="col-md-6">
                                     <form action="<?php echo base_url('Pembayaran/aksiPilihJenisPembayaran')?>" method="POST">
                                         <div class="row">
-                                            <div class="col-lg-9">
-                                                <select class="form-control" id="jenis_pembayaran" name="jenis">
-                                                    <option value="0">- Pilih Pembayaran -</option>
-                                                    <option value="1">Pembayaran daftar siswa baru</option>
-                                                    <option value="2">Pembayaran daftar ulang</option>
+                                            <div class="col-lg-4 mt-3">
+                                                <select  class="form-control" id="bulan" name="bulan">
+                                                    <option value="">- Pilih Bulan -</option>
+                                                    <option value="01">Januari</option>
+                                                    <option value="02">Februari</option>
+                                                    <option value="03">Maret</option>
+                                                    <option value="04">April</option>
+                                                    <option value="05">Mei</option>
+                                                    <option value="06">Juni</option>
+                                                    <option value="07">Juli</option>
+                                                    <option value="08">Agustus</option>
+                                                    <option value="09">September</option>
+                                                    <option value="10">Oktober</option>
+                                                    <option value="11">November</option>
+                                                    <option value="12">Desember</option>
                                                 </select>
                                             </div>
-                                            <div class="col-lg-2">
-                                                <button type="submit" class="btn btn-primary" name="Tambah">Pilih</button> 
+                                            <div class="col-lg-4 mt-3">
+                                                <select class="form-control" id="tahun" name="tahun">
+                                                    <option value="">- Pilih Tahun -</option>
+                                                    <option value="2019">2019</option>
+                                                    <option value="2020">2020</option>
+                                                    <option value="2021">2021</option>
+                                                    <option value="2022">2022</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-2 mt-3">
+                                                <button type="submit" class="btn btn-primary" name="Tambah"><i class="fa fa-print"> Laporan</i></button>
                                             </div>
                                         </div>
                                     </form>

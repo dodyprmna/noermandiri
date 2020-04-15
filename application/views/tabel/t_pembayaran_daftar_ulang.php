@@ -92,7 +92,7 @@
                                         <td><?php echo $p->ID_PEGAWAI;?></td>
                                         <td><?php echo date("d-m-Y",strtotime($p->TGL_PEMBAYARAN_DAFTAR_ULANG)); ?></td>
                                         <td><?php echo number_format($p->TOTAL_PEMBAYARAN_DAFTAR_ULANG,2,',','.'); ?></td>
-                                        <td><a href="<?php echo base_url('Pembayaran/cetak_bukti_pembayaran/'.$id)?>" type="button" class="btn btn-primary btn-sm"><i class="fa fa-print"></i> Cetak</a></td>
+                                        <td><a href="<?php echo base_url('Pembayaran_daftar_ulang/cetak_bukti_pembayaran/'.$id)?>" type="button" class="btn btn-primary btn-sm"><i class="fa fa-print"></i> Cetak</a></td>
                                     </tr>
                                     <?php
                                     }

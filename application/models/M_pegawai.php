@@ -32,6 +32,12 @@ class M_pegawai extends CI_Model {
         return $this->db->get()->num_rows();
     }
 
+    public function update_password($data,$id)
+    {
+        $this->db->where('ID_PEGAWAI', $id);
+        $this->db->update($this->tabel, $data);
+    }
+
     // public function getPegawaiByIdMapel($kode){
     //     $mapel = $this->db->query("SELECT * FROM pegawai WHERE ID_MAPEL='$kode'");
     //     if($mapel->num_rows()>0){

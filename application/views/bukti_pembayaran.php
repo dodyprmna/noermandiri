@@ -3,12 +3,11 @@
     <title>Invoice</title>
   <style type="text/css">
   body{background:#efefef;font-family:arial;}
-  #wrapshopcart{width:85%;margin:3em auto;padding:5px;background:#fff;box-shadow:0 0 0px #ddd;}
   h1{margin:0;padding:0;font-size:2.5em;font-weight:bold;}
-  p{font-size:1.2em;margin:6;}
+  p{font-size:14px;margin:6;}
   table{margin:0em 0 0 0; border:8px solid #eee;width:100%; border-collapse: separate;border-spacing:0;}
-  table th{background:#fafafa; border:none; padding:20px ; font-weight:normal;text-align:left;font-size: 1.5em}
-  table td{background:#fff; border:none; padding:12px  20px; font-weight:normal;text-align:left; border-top:1px solid #eee;font-size: 1.2em}
+  table th{background:#fafafa; border:none; padding:20px ; font-weight:normal;text-align:left;font-size: 18px}
+  table td{background:#fff; border:none; padding:12px  20px; font-weight:normal;text-align:left; border-top:1px solid #eee;font-size: 14px}
   table tr.total td{font-size:1.5em;}
   .btnsubmit{display:inline-block;padding:10px;border:1px solid #ddd;background:#eee;color:#000;text-decoration:none;margin:2em 0;}
   form{margin:2em 0 0 0;}

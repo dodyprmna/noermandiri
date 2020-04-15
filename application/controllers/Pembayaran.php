@@ -137,10 +137,8 @@
 
         public function cetak_bukti_pembayaran($id){
             $this->load->model('M_pembayaran');
-            $pembayaran_baru = $this->M_pembayaran->cek_pembayaran_daftar_siswa_baru($id);
-            //jika data pembayaran siswa baru
-            if($pembayaran_baru->num_rows() > 0){ 
-                $data=$pembayaran_baru->row_array();
+            $data = $this->M_pembayaran->getDataById($id)->row_array();
+            if($this->session->userdata('akses') == 'admin'){
                 $this->load->library('dompdf_gen');
                 $row['id']                = $data['ID_PEMBAYARAN'];
                 $row['pegawai']           = $data['NAMA_PEGAWAI'];
@@ -153,21 +151,8 @@
                 $this->dompdf->set_paper('A4','landscape');
                 $this->dompdf->render();
                 $this->dompdf->stream('Bukti_pembayaran.pdf',array("Attachment" => 0));
-            }else { 
-                $cek_siswa=$this->M_login->auth_siswa($username,$password);
-                if ($cek_siswa->num_rows() > 0) {
-                    $data=$cek_siswa->row_array();
-                    $this->session->set_userdata('masuk',TRUE);
-                    $this->session->set_userdata('akses','siswa');
-                    $this->session->set_userdata('ses_id',$data['NOINDUK']);
-                    $this->session->set_userdata('ses_nama',$data['NAMA_SISWA']);
-                    $this->session->set_userdata('ses_kelas',$data['ID_KELAS']);
-                    redirect(site_url('Home'));
-                }else {
-                    $error = 'Username atau Password salah';
-                $this->index($error);
-                }
-
+            }else {
+                echo "<script>history.go(-1);</script>";
             }
         }
     }

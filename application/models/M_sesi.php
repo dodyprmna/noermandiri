@@ -17,4 +17,9 @@ class M_sesi extends CI_Model {
     	$this->db->where('ID_SESI', $id);
 		$this->db->delete('sesi');
     }
+
+    function update($data , $id){
+        $this->db->where('ID_SESI', $id);
+        $this->db->update($this->table, $data);
+    }
 }

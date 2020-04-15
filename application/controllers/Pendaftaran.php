@@ -167,8 +167,10 @@
             $row['nama']        = $dataa[0]->NAMA_PENDAFTAR;
             $row['alamat']      = $dataa[0]->ALAMAT_PENDAFTAR;
             $row['telepon']     = $dataa[0]->NOTELP_PENDAFTAR;
-            $row['tanggal']     = $dataa[0]->TANGGAL_PENDAFTARAN;
-            $row['jenjang']     = $dataa[0]->ID_JENJANG;
+            $row['tanggal']     = $dataa[0]->TGL_LAHIR_PENDAFTAR;
+            $row['jenjang']     = $dataa[0]->NAMA_JENJANG;
+            $row['email']       = $dataa[0]->EMAIL_PENDAFTAR;
+            $row['sekolah']     = $dataa[0]->ASAL_SEKOLAH;
             $row['biaya_regis'] = number_format($dataa[0]->BIAYA_REGISTRASI,2,',','.');
             $row['biaya_les']   = number_format($dataa[0]->BIAYA_LES,2,',','.');
             $row['total']       = number_format($dataa[0]->TOTAL_TAGIHAN,2,',','.');

@@ -32,12 +32,18 @@ class Auth extends CI_Controller {
                 $this->session->set_userdata('ses_id',$data['ID_PEGAWAI']);
                 $this->session->set_userdata('ses_nama',$data['NAMA_PEGAWAI']);
                 $this->session->set_userdata('ses_email',$data['EMAIL']);
+                $this->session->set_userdata('ses_alamat',$data['ALAMAT_PEGAWAI']);
+                $this->session->set_userdata('ses_tgl_lahir',$data['TGL_LAHIR_PEG']);
+                $this->session->set_userdata('ses_telp',$data['NOTELP_PEGAWAI']);
                 redirect(site_url('Home'));
             }elseif($data['LEVEL']=='2'){ //akses pemilik
                 $this->session->set_userdata('akses','pemilik');
                 $this->session->set_userdata('ses_id',$data['ID_PEGAWAI']);
                 $this->session->set_userdata('ses_nama',$data['NAMA_PEGAWAI']);
                 $this->session->set_userdata('ses_email',$data['EMAIL']);
+                $this->session->set_userdata('ses_alamat',$data['ALAMAT_PEGAWAI']);
+                $this->session->set_userdata('ses_tgl_lahir',$data['TGL_LAHIR_PEG']);
+                $this->session->set_userdata('ses_telp',$data['NOTELP_PEGAWAI']);
                 redirect(site_url('Home'));
             }else{
                 $error = 'Username atau Password salah';
@@ -51,6 +57,9 @@ class Auth extends CI_Controller {
                 $this->session->set_userdata('ses_id',$data['ID_TENTOR']);
                 $this->session->set_userdata('ses_nama',$data['NAMA_TENTOR']);
                 $this->session->set_userdata('ses_email',$data['EMAIL_TENTOR']);
+                $this->session->set_userdata('ses_alamat',$data['ALAMAT_TENTOR']);
+                $this->session->set_userdata('ses_tgl_lahir',$data['TGL_LAHIR_TENTOR']);
+                $this->session->set_userdata('ses_telp',$data['NOTELP_PEGAWAI']);
                 redirect(site_url('Home'));
             }else{
                 $error = 'Username atau Password salah';
@@ -67,6 +76,10 @@ class Auth extends CI_Controller {
                 $this->session->set_userdata('ses_nama',$data['NAMA_SISWA']);
                 $this->session->set_userdata('ses_kelas',$data['ID_KELAS']);
                 $this->session->set_userdata('ses_email',$data['EMAIL_SISWA']);
+                $this->session->set_userdata('ses_kelas',$data['ALAMAT_SISWA']);
+                $this->session->set_userdata('ses_tgl_lahir',$data['TGL_LAHIR_SISWA']);
+                $this->session->set_userdata('ses_telp',$data['NOTELP_SISWA']);
+                $this->session->set_userdata('ses_alamat',$data['ALAMAT_SISWA']);
                 redirect(site_url('Home'));
             }else {
                 $error = 'Username atau Password salah';

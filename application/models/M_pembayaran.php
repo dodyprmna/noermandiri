@@ -32,8 +32,8 @@ class M_pembayaran extends CI_Model {
 		return $query;
     }
 
-    public function cek_pembayaran_daftar_siswa_baru($id){
-        $query=$this->db->query("SELECT p.ID_PEMBAYARAN, p.NO_PENDAFTARAN ,p.TANGGAL_PEMBAYARAN, p.TOTAL_PEMBAYARAN ,peg.NAMA_PEGAWAI FROM pembayaran p 
+    public function getDataById($id){
+        $query=$this->db->query("SELECT p.NO_PENDAFTARAN, p.ID_PEMBAYARAN, p.NO_PENDAFTARAN ,p.TANGGAL_PEMBAYARAN, p.TOTAL_PEMBAYARAN ,peg.NAMA_PEGAWAI FROM pembayaran p 
         						LEFT JOIN pegawai peg on p.ID_PEGAWAI = peg.ID_PEGAWAI
         						WHERE ID_PEMBAYARAN='$id' LIMIT 1");
         return $query;
