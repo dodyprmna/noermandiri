@@ -99,5 +99,22 @@
                 echo "<script>history.go(-1);</script>";
             }
         }
+
+        public function update(){
+            if($this->session->userdata('akses') == 'admin'){
+                $id = $this->input->post('id_edit', TRUE);
+                $data = array(
+                    'NAMA_MAPEL'     => $this->input->post('nama_edit', TRUE)
+                );
+                $this->load->model('M_mata_pelajaran');
+                $this->M_mata_pelajaran->update($data, $id);
+                $this->session->set_flashdata('flash','ubah');
+
+                redirect(site_url('Mata_Pelajaran'));
+
+            }else{
+                echo "<script>history.go(-1);</script>";
+            }
+        }
     }
 ?>

@@ -17,10 +17,10 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <a href="<?php echo base_url('Tentor/tambah')?>"><button type="button" class="btn btn-primary btn-round" >Tambah data</button></a>
+                                    <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#modal_tambah">Tambah data</button>
                                 </div>
                                 <div class="col-md-7">
-                                    <form action="<?php echo base_url('Tentor')?>" method="POST">
+                                    <form action="<?php echo base_url('Siswa')?>" method="POST">
                                         <div class="row">
                                             <div class="col-lg-3">
                                             </div>
@@ -61,7 +61,7 @@
                                         <td><?php echo $siswa->NO_INDUK; ?></td>
                                         <td><?php echo $siswa->NAMA_SISWA; ?></td>
                                         <td><?php echo $siswa->ALAMAT_SISWA; ?></td>
-                                        <td><?php echo $siswa->TGL_LAHIR_SISWA; ?></td>
+                                        <td><?php echo date("d-m-Y", strtotime($siswa->TGL_LAHIR_SISWA)); ?></td>
                                         <td><?php echo $siswa->NOTELP_SISWA; ?></td>
                                         <td><?php echo $siswa->NOTELP_ORTU_SISWA; ?></td>
                                         <td><?php if($siswa->STATUS_SISWA == 1){?>
@@ -98,12 +98,13 @@
         $email = $s->EMAIL_SISWA;
         $status = $s->STATUS_SISWA;
         $tgl_lahir = $s->TGL_LAHIR_SISWA;
+        $kls = $s->ID_KELAS;
 ?>
 <div class="modal fade" id="modal_edit<?php echo $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
         <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLongTitle" align="center">Form Edit Tentor</h3>
+        <h3 class="modal-title" id="exampleModalLongTitle" align="center">Form Edit Data Siswa</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -113,7 +114,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-4">
-                        <label>ID Pegawai</label>
+                        <label>ID Siswa</label>
                     </div>
                     <div class="col-lg-7">
                         <input type="text" class="form-control" name="noinduk_edit" id="noinduk_edit" value="<?php echo $id?>" readonly/>
@@ -123,7 +124,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-4">
-                        <label>Nama Pegawai</label>
+                        <label>Nama Siswa</label>
                     </div>
                     <div class="col-lg-7">
                         <input type="text" class="form-control" name="nama_edit" id="nama_edit" value="<?php echo $nama?>" required/>
@@ -180,6 +181,24 @@
                     </div>
                 </div>
             </div>
+             <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label>Kelas</label>
+                    </div>
+                    <div class="col-lg-7">
+                        <select class="form-control" name="kelas_edit" id="kelas_edit">
+                            <option value="">-Pilih Kelas-</option>
+                                <?php
+                                    foreach ($kelas as $k) { ?>
+                                        <option value="<?php echo $k->ID_KELAS;?>" <?=$k->ID_KELAS == $kls ? 'selected' : ''?>><?php echo $k->NAMA_KELAS;?></option>
+                                <?php
+                                }
+                                ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-4">
@@ -213,3 +232,67 @@
     </div>
 </div>
 <?php endforeach;?>
+
+
+<!-- Modal tambah -->
+<div class="modal fade" id="modal_tambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLongTitle" align="center">Masukkan nomor pendaftaran</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <form action="<?php echo base_url('Siswa/tambah')?>" method="POST">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label>Nomer Pendaftaran</label>
+                    </div>
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" name="no_pendaftaran" id="no_pendaftaran" onchange="cek_data()" />
+                        <p id="keterangan" style="color: #fc1703"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-4"></div>
+                    <div class="col-lg-8">
+                        <button type="reset" class="btn btn-danger btn-sm" name="Batal">Batal</button>&nbsp;
+                        <button type="submit" class="btn btn-primary btn-sm" id="btn_submit" name="Tambah" disabled>Submit</button> 
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function cek_data() {
+        var no_pendaftaran = document.getElementById('no_pendaftaran').value;
+        var ket = document.getElementById('keterangan')
+        var btn = document.getElementById('btn_submit');
+        $.ajax({
+            url : "<?php echo base_url('Pendaftaran/cek_data')?>",
+            method: "POST",
+            dataType :"json",
+            data: {
+            id : no_pendaftaran
+            },
+            success : function(data){
+                console.log(data.length);
+                if (data.length > 0) {
+                    btn.disabled = false;
+                }else{
+                    ket.innerHTML = "mohon masukkan nomor pendaftaran dengan benar";
+                }
+            }
+        });
+    }
+    
+</script>

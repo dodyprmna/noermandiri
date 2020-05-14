@@ -51,7 +51,7 @@
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 					<div>
-						<center><?php echo $error ; ?></center><br>
+						<center><p style="color: white"><?php echo $error ; ?></p></center><br>
 					</div>
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">

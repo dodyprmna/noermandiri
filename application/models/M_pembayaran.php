@@ -43,5 +43,49 @@ class M_pembayaran extends CI_Model {
         $query=$this->db->query("SELECT*FROM pembayaran WHERE ID_PEMBAYARAN='$id' LIMIT 1");
         return $query;
     }
-    
+
+    public function getAll()
+    {
+        $this->db->SELECT('*');
+        $this->db->FROM('pembayaran p'); 
+        $this->db->join('pegawai pg','p.ID_PEGAWAI = pg.ID_PEGAWAI');
+        $this->db->order_by('p.ID_PEMBAYARAN','ASC');
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function getByPeriode($awal,$akhir) {
+        $this->db->SELECT('*');
+        $this->db->FROM('pembayaran p'); 
+        $this->db->join('pegawai pg','p.ID_PEGAWAI = pg.ID_PEGAWAI');
+        $this->db->where('p.TANGGAL_PEMBAYARAN >=',$awal);
+        $this->db->where('p.TANGGAL_PEMBAYARAN <=',$akhir);
+        $this->db->order_by('p.ID_PEMBAYARAN','ASC');
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function total($awal,$akhir) {
+        $this->db->SELECT('SUM(TOTAL_PEMBAYARAN) as total');
+        $this->db->FROM('pembayaran'); 
+        $this->db->where('TANGGAL_PEMBAYARAN >=',$awal);
+        $this->db->where('TANGGAL_PEMBAYARAN <=',$akhir);
+        $query = $this->db->get()->row();
+        return $query;
+    }
+
+    public function getTotalPembayaran()
+    {
+        $this->db->SELECT('SUM(TOTAL_PEMBAYARAN) as total');
+        $this->db->FROM('pembayaran'); 
+        $query = $this->db->get()->row();
+        return $query;
+    }
+
+    public function get_by_no_pendaftaran($id) {
+        $query=$this->db->query("SELECT p.NO_PENDAFTARAN, p.ID_PEMBAYARAN, p.NO_PENDAFTARAN ,p.TANGGAL_PEMBAYARAN, p.TOTAL_PEMBAYARAN ,peg.NAMA_PEGAWAI FROM pembayaran p 
+                                LEFT JOIN pegawai peg on p.ID_PEGAWAI = peg.ID_PEGAWAI
+                                WHERE NO_PENDAFTARAN = '$id' LIMIT 1");
+        return $query;
+    }
 }

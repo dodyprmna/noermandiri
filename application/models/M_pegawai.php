@@ -38,6 +38,12 @@ class M_pegawai extends CI_Model {
         $this->db->update($this->tabel, $data);
     }
 
+    public function getById($id)
+    {
+        $this->db->where('ID_PEGAWAI',$id);
+        return $this->db->get('pegawai')->row();
+    }
+
     // public function getPegawaiByIdMapel($kode){
     //     $mapel = $this->db->query("SELECT * FROM pegawai WHERE ID_MAPEL='$kode'");
     //     if($mapel->num_rows()>0){
@@ -51,12 +57,14 @@ class M_pegawai extends CI_Model {
     //     return $hasil;
     // }
 
-    public function getTentorTersedia($waktu,$tanggal){
-        $query=$this->db->query("SELECT *
-                                FROM tentor t
-                                JOIN mata_pelajaran mp ON t.ID_MAPEL = mp.ID_MAPEL
-                                WHERE t.ID_TENTOR not in (SELECT j.ID_TENTOR FROM jadwal_les j
-                                WHERE j.ID_WAKTU = '$waktu' and j.TANGGAL = '$tanggal')");
-        return $query;
-    }
+    // public function getTentorTersedia($waktu,$tanggal){
+    //     $query=$this->db->query("SELECT *
+    //                             FROM tentor t
+    //                             JOIN mata_pelajaran mp ON t.ID_MAPEL = mp.ID_MAPEL
+    //                             WHERE t.ID_TENTOR not in (SELECT j.ID_TENTOR FROM jadwal_les j
+    //                             WHERE j.ID_WAKTU = '$waktu' and j.TANGGAL = '$tanggal')");
+    //     return $query;
+    // }
+
+
 }

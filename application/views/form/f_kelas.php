@@ -28,7 +28,7 @@
                                                     <label>Nama Kelas</label>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="nama_kelas" name="nama_kelas"/>
+                                                    <input type="text" class="form-control" id="nama_kelas" name="nama_kelas" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -41,7 +41,7 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-select-list">
-                                                        <select class="form-control" name="jenjang" id="jenjang">
+                                                        <select class="form-control" name="jenjang" id="jenjang" required>
                                                             <option value="">-Pilih Jenjang Kelas-</option>
                                                             <?php
                                                             foreach ($jenjang as $jjg) { ?>

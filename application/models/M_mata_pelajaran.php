@@ -14,6 +14,14 @@ class M_mata_pelajaran extends CI_Model {
         return $query;
     }
 
+    public function getById($id)
+    {
+        $this->db->select('*');
+        $this->db->from('mata_pelajaran');
+        $this->db->where('ID_MAPEL',$id);
+        return $this->db->get();
+    }
+
     public function tampilMapel() {
         $query=$this->db->query("SELECT *FROM mata_pelajaran");
     	return $query;
@@ -27,5 +35,10 @@ class M_mata_pelajaran extends CI_Model {
         $this->db->select('*');
         $this->db->from('mata_pelajaran');
         return $this->db->get()->num_rows();
+    }
+
+    function update($data , $id){
+        $this->db->where('ID_MAPEL', $id);
+        $this->db->update($this->table, $data);
     }
 }

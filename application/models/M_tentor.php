@@ -46,4 +46,19 @@ class M_tentor extends CI_Model {
         $this->db->update($this->table, $data);
     }
 
+    public function getById($id)
+    {
+        $this->db->where('ID_TENTOR',$id);
+        return $this->db->get('tentor')->row();
+    }
+
+    public function tentor_aktif()
+    {
+        $this->db->SELECT('*');
+        $this->db->FROM('tentor');
+        $this->db->where('STATUS_TENTOR','1');
+        $query = $this->db->get();
+        return $query;
+    }
+
 }

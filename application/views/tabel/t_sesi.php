@@ -38,7 +38,7 @@
                                         <td><?php echo $nourut++;?></td>
                                         <td><?php echo $ses->ID_SESI; ?></td>
                                         <td><?php echo date("H:i",strtotime($ses->JAM_MULAI))?> - <?php echo date("H:i",strtotime($ses->JAM_SELESAI))?></td>
-                                        <td><button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-pencil-alt"></i></button><a href="<?php echo base_url('Sesi/hapus/'.$id)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a></td>
+                                        <td><button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-pencil-alt"></i></td>
                                     </tr>
                                     <?php
                                     }

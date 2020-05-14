@@ -89,7 +89,7 @@
     foreach($pendaftaran as $p):
         $id = $p->NO_PENDAFTARAN;
         $nama = $p->NAMA_PENDAFTAR;
-        $jenjang = $p->ID_JENJANG;
+        $jenjang = $p->NAMA_JENJANG;
         $tgl = $p->TANGGAL_PENDAFTARAN;
         $total = $p->TOTAL_TAGIHAN;
         $alamat = $p->ALAMAT_PENDAFTAR;

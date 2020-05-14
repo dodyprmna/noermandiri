@@ -25,6 +25,7 @@
                                         <th>No</th>
                                         <th>ID Jenjang Kelas</th>
                                         <th>Jenjang Kelas</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -36,7 +37,7 @@
                                         <td><?php echo $nourut++?></td>
                                         <td><?php echo $jk->ID_JENJANG; ?></td>
                                         <td><?php echo $jk->NAMA_JENJANG; ?></td>
-
+                                        <td><button type="button" class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $jk->ID_JENJANG;?>"><i class="fa fa-pencil-alt"></i></button></td>
                                     </tr>
                                     <?php
                                     }
@@ -49,3 +50,58 @@
             </div>
         </div>
     </div>
+
+<!-- Modal Edit -->
+<?php
+    foreach($jenjang as $j):
+    $id = $j->ID_JENJANG;
+    $nama = $j->NAMA_JENJANG;
+?>
+            <div class="modal fade" id="modal_edit<?php echo $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLongTitle" align="center">Form Edit Data Jenjang Kelas</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="<?php echo base_url('Jenjang_Kelas/update')?>" method="POST">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label>ID Jenjang Kelas</label>
+                                </div>
+                                <div class="col-lg-7">
+                                    <input type="text" class="form-control" name="id_edit" id="id_edit" value="<?php echo $id?>" readonly/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label>Jenjang Kelas</label>
+                                </div>
+                                <div class="col-lg-7">
+                                    <input type="text" class="form-control" name="nama_edit" id="nama_edit" value="<?php echo $nama?>" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-4"></div>
+                                <div class="col-lg-8">
+                                    <div class="login-horizental cancel-wp pull-left">
+                                        <button type="reset" class="btn btn-danger btn-sm" class="close" data-dismiss="modal" aria-label="Close" name="Batal">Batal</button>&nbsp;
+                                        <button type="submit" class="btn btn-primary btn-sm" name="Tambah">Simpan</button> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <?php endforeach;?>

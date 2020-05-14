@@ -18,7 +18,7 @@
                             <div class="row">
                                 <div class="col-md-5"></div>
                                 <div class="col-md-7">
-                                    <form action="<?php echo base_url('Pendaftaran/daftar_ulang')?>" method="POST">
+                                    <form action="<?php echo base_url('Daftar_Ulang')?>" method="POST">
                                         <div class="row">
                                             <div class="col-lg-4"></div>
                                             <div class="col-lg-5">
@@ -56,14 +56,14 @@
                                         <td><?php echo $d->ID_DAFTAR_ULANG; ?></td>
                                         <td><?php echo $d->TGL_DAFTAR_ULANG; ?></td>
                                         <td><?php echo $d->TOTAL_BIAYA_DAFTAR_ULANG; ?></td>
-                                        <td><?php if($d->STATUS == 1){?>
+                                        <td><?php if($d->STATUS_DAFTAR_ULANG == 1){?>
                                                 <center><p style="color: orange"><i class="fa fa-check-circle fa-2x mt-3"></i></p><p class="mt--2">Sudah dibayar</p></center>
                                             <?php } else {?>
                                                 <center><p style="color: red"><i class="fa fa-times-circle fa-2x mt-3"></i></p><pclass="mt--2">Belum dibayar</p></center>
                                             <?php }?>
                                         </td>
                                         <td>
-                                            <?php if($d->STATUS == 1){?>
+                                            <?php if($d->STATUS_DAFTAR_ULANG == 1){?>
                                                 <button type="button" class="btn btn-primary btn-sm" disabled>Bayar</button>
                                             <?php } else {?>
                                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_pembayaran<?php echo $id?>">Bayar</button>

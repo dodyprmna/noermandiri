@@ -68,7 +68,8 @@
         <tr class=""><td ><b>Total</b></td><td><b>Rp. <?= ucfirst($total);?></b></td></tr>
     </table>   
     <br><br>
-    <p>*harap segera melakukan pembayaran di tempat</p><br><br>
+    <p>*harap segera melakukan pembayaran melalui transfer ke No.Rekening............./ bayar di tempat</p><br>
+    <p>*untuk upload bukti transfer silahkan login menggunakan email sebagai username dan nomor telepon sebagai passwordnya</p><br>
     
   </div>
  

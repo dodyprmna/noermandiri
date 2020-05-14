@@ -90,6 +90,7 @@
                 'NOTELP_PENDAFTAR'      => $this->input->post('telepon', true),
                 'NOTELP_ORTU'           => $this->input->post('telepon_ortu', true),
                 'EMAIL_PENDAFTAR'       => $this->input->post('email_pendaftaran', true),
+                'PASSWORD_PENDAFTAR'    => MD5($this->input->post('telepon')),
                 'ASAL_SEKOLAH'          => $this->input->post('asal_sekolah', true),
                 'BIAYA_REGISTRASI'      => '50000',
                 'BIAYA_LES'             => $row[0]->BIAYA,
@@ -105,49 +106,17 @@
             }
         }
 
-        public function daftar_ulang($value='')
-        {
-            if($this->session->userdata('akses') == 'admin'){
-                
-                $this->load->model('M_daftar_ulang');
-                //config
-                $this->load->library('pagination');
-                //ambil data search
-                if ($this->input->post('submit')) {
-                    $d['keyword'] = $this->input->post('keyword');
-                }else{
-                    $d['keyword'] = null;
-                }
-
-                
-                $config['base_url'] = 'http://localhost/LBBNoermandiri/Pendaftaran/daftar_ulang';
-                $this->db->like('ID_DAFTAR_ULANG',$d['keyword']);
-                $this->db->from('daftar_ulang');
-                $config['total_rows'] = $this->db->count_all_results();
-                $config['per_page'] = 5;
-
-                //initialize
-                $this->pagination->initialize($config);
-
-                $d['start'] = $this->uri->segment(3);
-                $rows = $this->M_daftar_ulang->getDataDaftarUlangSiswa($config['per_page'],$d['start'],$d['keyword'])->result();
-                $data = array(
-                        'daftar_ulang'      => $rows,
-                        'title'             => 'Data Daftar Ulang',
-                        'content'           => 'tabel/t_daftar_ulang',
-                        'judul'             => 'Data Daftar Ulang',
-                        'start'             =>  $this->uri->segment(3)
-                    );
-                    $this->load->view('layout', $data);
-            }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
-                echo"<script>history.go(-1);</script>";
-            }
-        }
-
         function cek_pendaftaran(){
             $email = $this->input->post('email',TRUE);
             $this->load->model('M_pendaftaran');
             $data = $this->M_pendaftaran->getDataRegistrasi($email)->result();
+            echo json_encode($data);
+        }
+
+        function cek_data(){
+            $id = $this->input->post('id',TRUE);
+            $this->load->model('M_pendaftaran');
+            $data = $this->M_pendaftaran->getPendaftaranById($id)->result();
             echo json_encode($data);
         }
 

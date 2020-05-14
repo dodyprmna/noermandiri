@@ -7,6 +7,16 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <link rel="icon" href="<?php echo base_url('assets/img/logo1.png')?>" type="image/png" />
+    <script src="<?php echo base_url('assets/adm/js/plugin/webfont/webfont.min.js')?>"></script>
+    <script>
+      WebFont.load({
+        google: {"families":["Lato:300,400,700,900"]},
+        custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ["<?php echo base_url('assets/adm/css/fonts.min.css')?>"]},
+        active: function() {
+          sessionStorage.fonts = true;
+        }
+      });
+    </script>
     <title>LBB Noermandiri</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.css')?>" />
@@ -354,7 +364,7 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-lg-12 mt-5">
-                    <form class="form_area" id="form-invoice" action="<?php echo base_url('Pendaftaran/cetak_bukti_pendaftaran_siswa_baru')?>" method="POST">
+                    <form class="form_area" id="form-invoice" action="<?php echo base_url('Pendaftaran/cetak_bukti_pendaftaran_siswa_baru')?>" method="POST" target="_blank">
                       <div class="row">
                         <div class="col-lg-12">
                           <input class="form-control" type="email" name="email" id="email" placeholder="Masukkan email anda" onchange="cek_data_pendaftaran()" />
@@ -364,7 +374,7 @@
                           </label></center>
                         </div>
                         <div class="col-lg-12 text-center">
-                          <button class="btn btn-primary" id="btncetak" disabled>Cetak</button>
+                          <button class="btn btn-primary" id="btncetak" disabled><i class="fa fa-download"></i> download</button>
                         </div>
                       </div>
                     </form>
@@ -684,7 +694,6 @@
               email : email
               },
               success : function(data){
-                  var html = '';
                   if (data.length > 0) {
                       document.getElementById('keterangan').innerHTML = "Data ditemukan";
                       btn.disabled = false;

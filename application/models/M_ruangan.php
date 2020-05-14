@@ -23,4 +23,9 @@ class M_ruangan extends CI_Model {
                                 WHERE j.ID_SESI = '$waktu' and j.TANGGAL = '$tanggal')");
         return $query;
     }
+
+    function update($data , $id){
+        $this->db->where('ID_RUANGAN', $id);
+        $this->db->update($this->table, $data);
+    }
 }

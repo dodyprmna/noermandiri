@@ -83,7 +83,7 @@
             $this->form_validation->set_rules('level','level', 'required',['required' => '*level tidak boleh kosong']);
 
                 if ($this->form_validation->run() == FALSE) {
-                    //jika validasi gagal maka akan kembali ke form tambah jadwal
+                    //jika validasi gagal maka akan kembali ke form tambah pegawai
                     $this->tambah();
                     } else {    
                     //jika validasi berhasil

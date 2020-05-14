@@ -22,4 +22,16 @@ class M_Jenjang_Kelas extends CI_Model {
                                 WHERE ID_JENJANG= '$id'");
         return $query;
     }
+
+    public function getById($id){
+        $query=$this->db->query("SELECT *
+                                FROM jenjang_kelas
+                                WHERE ID_JENJANG= '$id'");
+        return $query;
+    }
+
+    function update($data , $id){
+        $this->db->where('ID_JENJANG', $id);
+        $this->db->update($this->table, $data);
+    }
 }

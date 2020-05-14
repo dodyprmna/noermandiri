@@ -19,32 +19,50 @@
   </style>
  </head><body>
   <div class="container-fluid">
-    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash');?>"></div>
     <div class="row">
-        <div class="col-md-12"><br>
-        <center><img src="<?php echo $_SERVER['DOCUMENT_ROOT']."./LBBNoermandiri/assets/img/header_invoice1.png";?>" width="650" height="125"></center>
-        </div>
+      <div class="col-md-12"><br>
+      <center><img src="<?php echo $_SERVER['DOCUMENT_ROOT']."./LBBNoermandiri/assets/img/header_invoice1.png";?>" width="650" height="125"></center>
+      </div>
     </div>
-
-    <table>
-        <tr>
-          <th width="70%" style="background-color: #b3b3b3;color: #ffffff"><img src="<?php echo $_SERVER['DOCUMENT_ROOT']."./LBBNoermandiri/assets/img/lunas.png";?>" width="150" height="50" align="right"></th>
-          <th align="right" width="30%" style="background-color: #b3b3b3;color: #ffffff"><strong>#<?= ucfirst($id);?></th></strong>
-        </tr>
-        <tr>
-            <td>Nomer pendaftaran</td><td>: <?= ucfirst($no_pendaftaran);?></td>
-        </tr>
-        <tr>
-            <td>Nama pegawai</td><td>: <?= ucfirst($pegawai);?></td>
-        </tr>
-        <tr>
-            <td>Tanggal pembayaran</td><td>: <?= ucfirst($tanggal);?></td>
-        </tr>
-        <tr>
-            <td>Total pembayaran</td><td>: Rp. <?= ucfirst($total);?></td>
-        </tr>
-    </table>
-    
+    <div class="row">
+      <div class="col-md-12">
+        <table>
+            <tr>
+              <th width="70%" style="background-color: #b3b3b3;color: #ffffff"><img src="<?php echo $_SERVER['DOCUMENT_ROOT']."./LBBNoermandiri/assets/img/lunas.png";?>" width="150" height="50" align="right"></th>
+              <th align="right" width="30%" style="background-color: #b3b3b3;color: #ffffff"><strong>#<?= ucfirst($id);?></th></strong>
+            </tr>
+            <tr>
+                <td>Nomer pendaftaran</td><td>: <?= ucfirst($no_pendaftaran);?></td>
+            </tr>
+            <tr>
+                <td>Nama pegawai</td><td>: <?= ucfirst($pegawai);?></td>
+            </tr>
+            <tr>
+                <td>Tanggal pembayaran</td><td>: <?= ucfirst($tanggal);?></td>
+            </tr>
+            <tr>
+                <td>Total pembayaran</td><td>: Rp. <?= ucfirst($total);?></td>
+            </tr>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <p>*untuk melihat jadwal les dapat membuka web LBB Noermandiri dengan login menggunakan username dan password</p>
+        <p>*username anda : <?= ucfirst($username);?> dan password anda : <?= ucfirst($password);?></p>
+      </div>
+    </div>
+    <div class="row" style="background-color: white">
+      <div class="col-md-12" style="text-align: right;">
+        <p>Surabaya, <?= ucfirst($tanggal);?></p>
+      </div>
+    </div>
+    <div class="row" style="background-color: white">
+      <div class="col-md-12" style="text-align: right;">
+        <br><br><br><br>
+        <p>(............................................)</p>
+      </div>
+    </div>
   </div>
  
  </body></html>

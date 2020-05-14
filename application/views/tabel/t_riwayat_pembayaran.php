@@ -20,27 +20,24 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>No.Daftar Ulang</th>
-                                        <th>Tanggal</th>
-                                        <th>Biaya</th>
-                                        <th>Status</th>
+                                        <th>No Pembayaran</th>
+                                        <th>Tanggal Pembayaran</th>
+                                        <th>Total Bayar</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $nourut = 1;
-                                    foreach ($tagihan as $t) {
+                                    foreach ($riwayat as $r) {
+                                        
                                     ?>
                                     <tr>
                                         <td><?php echo $nourut++?></td>
-                                        <td><?php echo $t->ID_DAFTAR_ULANG; ?></td>
-                                        <td><?php echo $t->TGL_DAFTAR_ULANG; ?></td>
-                                        <td><?php echo $t->TOTAL_BIAYA_DAFTAR_ULANG; ?></td>
-                                        <td><?php if($t->STATUS == 1){?>
-                                                <center><p style="color: orange"><i class="fa fa-check-circle fa-2x mt-3"></i></p><p class="mt--2">Sudah dibayar</p></center>
-                                            <?php } else {?>
-                                                <center><p style="color: red"><i class="fa fa-times-circle fa-2x mt-3"></i></p><pclass="mt--2">Belum dibayar</p></center>
-                                            <?php }?>
+                                        <td><?php echo $r->ID_PEMBAYARAN_DAFTAR_ULANG?></td>
+                                        <td><?php echo date("d-m-Y",strtotime($r->TGL_PEMBAYARAN_DAFTAR_ULANG)); ?></td>
+                                        <td>Rp. <?php echo number_format($r->TOTAL_BIAYA_DAFTAR_ULANG,2,',','.'); ?></td>
+                                        <td><a target="_blank" href="<?php echo base_url('Pembayaran_daftar_ulang/cetak_bukti_pembayaran/'.$r->ID_PEMBAYARAN_DAFTAR_ULANG)?>" class="btn btn-primary btn-sm"><i class="fa fa-download"></i> Kwitansi</a>
                                         </td>
                                     </tr>
                                     <?php

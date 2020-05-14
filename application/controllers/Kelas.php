@@ -61,7 +61,7 @@
                     } else {    
                     //jika validasi berhasil
                         $data = array(
-                            'ID_KELAS'      =>  str_replace(' ', '', $this->input->post('nama_kelas', TRUE)),
+                            'ID_KELAS'      => '',
                             'ID_JENJANG'    => $this->input->post('jenjang', TRUE),
                             'NAMA_KELAS'    => $this->input->post('nama_kelas', TRUE),
                         );
@@ -83,6 +83,23 @@
             $this->load->model('M_kelas');
             $data    = $this->M_kelas->getKelas($jenjang)->result();
             echo json_encode($data);
+        }
+
+        public function update(){
+            if($this->session->userdata('akses') == 'admin'){
+                $id = $this->input->post('id_edit', TRUE);
+                $data = array(
+                    'NAMA_KELAS'     => $this->input->post('nama_edit', TRUE)
+                );
+                $this->load->model('M_kelas');
+                $this->M_kelas->update($data, $id);
+                $this->session->set_flashdata('flash','ubah');
+
+                redirect(site_url('Kelas'));
+
+            }else{
+                echo "<script>history.go(-1);</script>";
+            }
         }
     }
 ?>

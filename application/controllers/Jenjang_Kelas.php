@@ -48,9 +48,9 @@
             $this->form_validation->set_error_delimiters('<div style="margin-bottom:-10px"><span style="color:red;font-size:12px">', '</span></div>');
 
             //rules validasi
-            $this->form_validation->set_rules('nama_jenjang', 'NAMA JENJANG', 'required|min_length[3]|max_length[5]',['required' => '*nama jenjang tidak boleh kosong',
+            $this->form_validation->set_rules('nama_jenjang', 'NAMA JENJANG', 'required|min_length[3]|max_length[6]',['required' => '*nama jenjang tidak boleh kosong',
                 'min_length' => '*nama jenjang minimal 3 karakter',
-                'max_length' => '*nama jenjang minimal 5 karakter',]);
+                'max_length' => '*nama jenjang maksimal 5  karakter',]);
             $this->form_validation->set_rules('biaya', 'biaya', 'required|min_length[7]|max_length[7]',['required' => '*biaya kelas tidak boleh kosong',
                 'min_length' => '*biaya minimal 7 karakter',
                 'max_length' => '*biaya minimal 7 karakter']);
@@ -71,6 +71,23 @@
 
                         redirect(site_url('Jenjang_Kelas'));
                     }
+
+            }else{
+                echo "<script>history.go(-1);</script>";
+            }
+        }
+
+        public function update(){
+            if($this->session->userdata('akses') == 'admin'){
+                $id = $this->input->post('id_edit', TRUE);
+                $data = array(
+                    'NAMA_JENJANG'     => $this->input->post('nama_edit', TRUE)
+                );
+                $this->load->model('M_jenjang_kelas');
+                $this->M_jenjang_kelas->update($data, $id);
+                $this->session->set_flashdata('flash','ubah');
+
+                redirect(site_url('Jenjang_Kelas'));
 
             }else{
                 echo "<script>history.go(-1);</script>";

@@ -43,6 +43,18 @@
                                                 <div class="col-lg-1">
                                                 </div>
                                                 <div class="col-lg-3">
+                                                    <label>Jenjang Kelas</label>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <input type="text" class="form-control" name="" id="" value="<?php echo $nama_jenjang?>" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-lg-1">
+                                                </div>
+                                                <div class="col-lg-3">
                                                     <label>Alamat</label>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -139,7 +151,7 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-select-list">
-                                                        <select class="form-control custom-select-value" name="kelas" id="kelas">
+                                                        <select class="form-control custom-select-value" name="kelas" id="kelas" required>
                                                             <option value="">-Pilih Kelas-</option>
                                                             <?php
                                                                 foreach ($kelas as $k) { ?>

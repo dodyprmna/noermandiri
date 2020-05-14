@@ -13,12 +13,41 @@
             //jika sebagai admin
             if($this->session->userdata('akses') == 'admin'){
                 $this->load->model('M_kelas');
+                $this->load->model('M_jadwal_les');
+                $this->load->model('M_sesi');
+                $this->load->model('M_API');
+
+                if ($this->input->post('submit')) {
+                    if ($this->input->post('periode') == "") {
+                        $d['periode'] = null;
+                        $d['kelas'] = $this->input->post('kelas');
+                    }elseif($this->input->post('kelas') == ""){
+                        $d['periode'] = $this->input->post('periode');
+                        $d['kelas'] = null;
+                    }else{
+                        $d['periode'] = $this->input->post('periode');
+                        $d['kelas'] = $this->input->post('kelas');
+                    }
+                }else{
+                    $d['periode'] = null;
+                    $d['kelas'] = null;
+                }
+
+
                 $kelombel   = $this->M_kelas->TampilkanSemua()->result();
+                $jadwal = $this->M_jadwal_les->getAll($d['kelas'],$d['periode'])->result();
+                $jumlah = $this->M_jadwal_les->getAll($d['kelas'],$d['periode'])->num_rows();
+                $mapel = $this->M_API->getAll('mata_pelajaran')->result();
+                $sesi = $this->M_sesi->tampilkanSemua()->result();
                 $data = array(
                         'title'     => 'Jadwal Les',
                         'content'   => 'tabel/t_jadwal',
                         'judul'     => 'Jadwal Les',
-                        'kelombel'  => $kelombel
+                        'kelombel'  => $kelombel,
+                        'jadwal'    => $jadwal,
+                        'jumlah'    => $jumlah,
+                        'mapel'     => $mapel,
+                        'sesi'      => $sesi
                     );
                     $this->load->view('layout', $data);
             //jika sebagai tentor
@@ -109,6 +138,12 @@
             }else{
                 echo "<script>history.go(-1);</script>";
             }
+        }
+
+        public function hapus($id)
+        {
+            $this->load->model('M_jadwal_les');
+            $this->M_jadwal_les->hapus($id);
         }
 
 
