@@ -17,11 +17,11 @@ const notelp = $('.datatelp').data('datatelp');
 		}).then(function() {
             document.location.href = 'Beranda/#cetak_invoice';
         });
-	}else if(flashdata == "error") {
+	}else if(flashdata == "pass") {
 		Swal.fire({
-			title : 'Gagal!',
-			text  : 'Mohon isi form dengan benar',
-			icon  : 'error'
+			title : 'Berhasil',
+			text  : 'Password berhasil diubah',
+			icon  : 'success'
 		});
 	}else if(flashdata == "ubah") {
 		Swal.fire({
@@ -29,4 +29,29 @@ const notelp = $('.datatelp').data('datatelp');
 			text  : 'Data berhasil diubah',
 			icon  : 'success'
 		});
+	}else if(flashdata == "Dihapus") {
+		Swal.fire({
+			title : 'Berhasil',
+			text  : 'Data berhasil dihapus',
+			icon  : 'success'
+		});
 	}
+
+	$('.tombol_hapus').on('click',function(e){
+		e.preventDefault();
+		const href = $(this).attr('href');
+
+		Swal.fire({
+			title : 'Apakah anda yakin',
+			text  : 'ingin menghapus data?',
+			type  : 'warning',
+			confirmButtonText : 'Hapus',
+			showCancelButton : true,
+			confirmButtonColor : '#3085d6',
+			cancelButtonColor : '#d33'
+		}).then((result) => {
+			if (result.value) {
+				document.location.href = href;
+			}
+		})
+	});
